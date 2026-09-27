@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Cryptagent — Windows Phase 1–3 package
 
 Start with [the worked input and backend walkthrough](WALKTHROUGH.md), then
@@ -40,3 +41,6 @@ Do not expose held-out labels or repairs to the future assessment agent.
 - [Sources](SOURCES.md)
 
 Intentionally defective C++ fixtures live only in phase3. Never deploy them.
+=======
+# cryptAgent
+>>>>>>> 9033221b2a68a50cf9f5bd6d160df67d9154775a
