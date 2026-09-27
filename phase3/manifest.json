@@ -1,0 +1,3999 @@
+{
+  "version": "1.0",
+  "independence": "shared-template synthetic corpus; exploratory only",
+  "cases": [
+    {
+      "case_id": "F01_reference",
+      "scenario_group": "F01",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F01_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 0,
+      "aad_bytes": 0,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F01_fixed_nonce",
+      "scenario_group": "F01",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F01_fixed_nonce/candidate.cpp",
+      "source_sha256": "0124046bc93746a93faa87acff7a25051601baedaa7c24258326a8f2a14c5b8f",
+      "plaintext_bytes": 0,
+      "aad_bytes": 0,
+      "mutations": [
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F01_fixed_key",
+      "scenario_group": "F01",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F01_fixed_key/candidate.cpp",
+      "source_sha256": "f92096e1616e1ecd07544bb0b366b6b4fa478887a1e5ffa81f9750cef612d477",
+      "plaintext_bytes": 0,
+      "aad_bytes": 0,
+      "mutations": [
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02"
+      ],
+      "trigger_checks": [
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F01_ignore_auth",
+      "scenario_group": "F01",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F01_ignore_auth/candidate.cpp",
+      "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+      "plaintext_bytes": 0,
+      "aad_bytes": 0,
+      "mutations": [
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F01_multi",
+      "scenario_group": "F01",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F01_multi/candidate.cpp",
+      "source_sha256": "6fecfe8eca1c10ef59f5d9113c8d7ef357e01445a0f944b10443a4c00e2134b6",
+      "plaintext_bytes": 0,
+      "aad_bytes": 0,
+      "mutations": [
+        "fixed_nonce",
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02",
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce",
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow.",
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F02_reference",
+      "scenario_group": "F02",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F02_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 0,
+      "aad_bytes": 1,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F02_omit_aad",
+      "scenario_group": "F02",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F02_omit_aad/candidate.cpp",
+      "source_sha256": "35f38005df596f8bc39f470f497805b93bb6b34ea64ef2e0d4a99b9ff952e43a",
+      "plaintext_bytes": 0,
+      "aad_bytes": 1,
+      "mutations": [
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04"
+      ],
+      "trigger_checks": [
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F02_log_plaintext",
+      "scenario_group": "F02",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F02_log_plaintext/candidate.cpp",
+      "source_sha256": "eb8ad13412d1e3dcbd27be8b3ccb7698ad6722fd64b717a5246a154e10a22b30",
+      "plaintext_bytes": 0,
+      "aad_bytes": 1,
+      "mutations": [
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F02_log_key",
+      "scenario_group": "F02",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F02_log_key/candidate.cpp",
+      "source_sha256": "a002ecd7222717c69ddefca1cf4329c74ad33756b42cdef0899ad2d9251bfaff",
+      "plaintext_bytes": 0,
+      "aad_bytes": 1,
+      "mutations": [
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F02_multi",
+      "scenario_group": "F02",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F02_multi/candidate.cpp",
+      "source_sha256": "b83b846dff23ee36e8c6ee7e02030991c485ff81d98a94b18c793258901f70e6",
+      "plaintext_bytes": 0,
+      "aad_bytes": 1,
+      "mutations": [
+        "omit_aad",
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "C-04",
+        "S-01"
+      ],
+      "trigger_checks": [
+        "aad",
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations.",
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F03_reference",
+      "scenario_group": "F03",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F03_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 0,
+      "aad_bytes": 16,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F03_oversize_plaintext",
+      "scenario_group": "F03",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F03_oversize_plaintext/candidate.cpp",
+      "source_sha256": "a7200a521329baf79c52fbedc985cccfefd977600030100f1584c3b6ca097eff",
+      "plaintext_bytes": 0,
+      "aad_bytes": 16,
+      "mutations": [
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F03_oversize_aad",
+      "scenario_group": "F03",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F03_oversize_aad/candidate.cpp",
+      "source_sha256": "f462a40b903047ed454d901f726177b37ca60373257cfb72010a209f929fe21b",
+      "plaintext_bytes": 0,
+      "aad_bytes": 16,
+      "mutations": [
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F03_reject_empty",
+      "scenario_group": "F03",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F03_reject_empty/candidate.cpp",
+      "source_sha256": "ee9f8479000b546ec29b8d3df885d16d1b560c5c8f36858a76329cc6cb9c2cec",
+      "plaintext_bytes": 0,
+      "aad_bytes": 16,
+      "mutations": [
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F03_multi",
+      "scenario_group": "F03",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F03_multi/candidate.cpp",
+      "source_sha256": "7e78112b26b2cae19a63f302536e3ab84f89378a538a345c0013ecda70bcaa8b",
+      "plaintext_bytes": 0,
+      "aad_bytes": 16,
+      "mutations": [
+        "oversize_plaintext",
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext",
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation.",
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F04_reference",
+      "scenario_group": "F04",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F04_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 0,
+      "aad_bytes": 255,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F04_reject_boundary",
+      "scenario_group": "F04",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F04_reject_boundary/candidate.cpp",
+      "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+      "plaintext_bytes": 0,
+      "aad_bytes": 255,
+      "mutations": [
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F04_fixed_nonce",
+      "scenario_group": "F04",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F04_fixed_nonce/candidate.cpp",
+      "source_sha256": "0124046bc93746a93faa87acff7a25051601baedaa7c24258326a8f2a14c5b8f",
+      "plaintext_bytes": 0,
+      "aad_bytes": 255,
+      "mutations": [
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F04_fixed_key",
+      "scenario_group": "F04",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F04_fixed_key/candidate.cpp",
+      "source_sha256": "f92096e1616e1ecd07544bb0b366b6b4fa478887a1e5ffa81f9750cef612d477",
+      "plaintext_bytes": 0,
+      "aad_bytes": 255,
+      "mutations": [
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02"
+      ],
+      "trigger_checks": [
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F04_multi",
+      "scenario_group": "F04",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F04_multi/candidate.cpp",
+      "source_sha256": "9c7c1f88be5a92db6f7f1996e9b86895a6c69c425784ba5f54f6a95072f9ae7a",
+      "plaintext_bytes": 0,
+      "aad_bytes": 255,
+      "mutations": [
+        "reject_boundary",
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03",
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary",
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size.",
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F05_reference",
+      "scenario_group": "F05",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F05_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 0,
+      "aad_bytes": 65536,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F05_ignore_auth",
+      "scenario_group": "F05",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F05_ignore_auth/candidate.cpp",
+      "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+      "plaintext_bytes": 0,
+      "aad_bytes": 65536,
+      "mutations": [
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F05_omit_aad",
+      "scenario_group": "F05",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F05_omit_aad/candidate.cpp",
+      "source_sha256": "35f38005df596f8bc39f470f497805b93bb6b34ea64ef2e0d4a99b9ff952e43a",
+      "plaintext_bytes": 0,
+      "aad_bytes": 65536,
+      "mutations": [
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04"
+      ],
+      "trigger_checks": [
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F05_log_plaintext",
+      "scenario_group": "F05",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F05_log_plaintext/candidate.cpp",
+      "source_sha256": "eb8ad13412d1e3dcbd27be8b3ccb7698ad6722fd64b717a5246a154e10a22b30",
+      "plaintext_bytes": 0,
+      "aad_bytes": 65536,
+      "mutations": [
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F05_multi",
+      "scenario_group": "F05",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F05_multi/candidate.cpp",
+      "source_sha256": "69ad7c3759453ff9a31f23d0719dff9c93fecac893130c01c6598dde17d473de",
+      "plaintext_bytes": 0,
+      "aad_bytes": 65536,
+      "mutations": [
+        "ignore_auth",
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper",
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value.",
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F06_reference",
+      "scenario_group": "F06",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F06_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 1,
+      "aad_bytes": 0,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F06_log_key",
+      "scenario_group": "F06",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F06_log_key/candidate.cpp",
+      "source_sha256": "a002ecd7222717c69ddefca1cf4329c74ad33756b42cdef0899ad2d9251bfaff",
+      "plaintext_bytes": 1,
+      "aad_bytes": 0,
+      "mutations": [
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F06_oversize_plaintext",
+      "scenario_group": "F06",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F06_oversize_plaintext/candidate.cpp",
+      "source_sha256": "a7200a521329baf79c52fbedc985cccfefd977600030100f1584c3b6ca097eff",
+      "plaintext_bytes": 1,
+      "aad_bytes": 0,
+      "mutations": [
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F06_oversize_aad",
+      "scenario_group": "F06",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F06_oversize_aad/candidate.cpp",
+      "source_sha256": "f462a40b903047ed454d901f726177b37ca60373257cfb72010a209f929fe21b",
+      "plaintext_bytes": 1,
+      "aad_bytes": 0,
+      "mutations": [
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F06_multi",
+      "scenario_group": "F06",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F06_multi/candidate.cpp",
+      "source_sha256": "c91d70486a5c67539cfd41cfba1b23868693d4376fe5c8aa9c6e47e5a271b3c9",
+      "plaintext_bytes": 1,
+      "aad_bytes": 0,
+      "mutations": [
+        "log_key",
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01",
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log",
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes.",
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F07_reference",
+      "scenario_group": "F07",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F07_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 1,
+      "aad_bytes": 1,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F07_reject_empty",
+      "scenario_group": "F07",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F07_reject_empty/candidate.cpp",
+      "source_sha256": "ee9f8479000b546ec29b8d3df885d16d1b560c5c8f36858a76329cc6cb9c2cec",
+      "plaintext_bytes": 1,
+      "aad_bytes": 1,
+      "mutations": [
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F07_reject_boundary",
+      "scenario_group": "F07",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F07_reject_boundary/candidate.cpp",
+      "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+      "plaintext_bytes": 1,
+      "aad_bytes": 1,
+      "mutations": [
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F07_fixed_nonce",
+      "scenario_group": "F07",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F07_fixed_nonce/candidate.cpp",
+      "source_sha256": "0124046bc93746a93faa87acff7a25051601baedaa7c24258326a8f2a14c5b8f",
+      "plaintext_bytes": 1,
+      "aad_bytes": 1,
+      "mutations": [
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F07_multi",
+      "scenario_group": "F07",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F07_multi/candidate.cpp",
+      "source_sha256": "b230c54512f95cb3ba0b74955acc098508665498ac51cb9261ed5832607d1b5e",
+      "plaintext_bytes": 1,
+      "aad_bytes": 1,
+      "mutations": [
+        "reject_empty",
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty",
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext.",
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F08_reference",
+      "scenario_group": "F08",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F08_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 1,
+      "aad_bytes": 16,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F08_fixed_key",
+      "scenario_group": "F08",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F08_fixed_key/candidate.cpp",
+      "source_sha256": "f92096e1616e1ecd07544bb0b366b6b4fa478887a1e5ffa81f9750cef612d477",
+      "plaintext_bytes": 1,
+      "aad_bytes": 16,
+      "mutations": [
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02"
+      ],
+      "trigger_checks": [
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F08_ignore_auth",
+      "scenario_group": "F08",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F08_ignore_auth/candidate.cpp",
+      "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+      "plaintext_bytes": 1,
+      "aad_bytes": 16,
+      "mutations": [
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F08_omit_aad",
+      "scenario_group": "F08",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F08_omit_aad/candidate.cpp",
+      "source_sha256": "35f38005df596f8bc39f470f497805b93bb6b34ea64ef2e0d4a99b9ff952e43a",
+      "plaintext_bytes": 1,
+      "aad_bytes": 16,
+      "mutations": [
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04"
+      ],
+      "trigger_checks": [
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F08_multi",
+      "scenario_group": "F08",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F08_multi/candidate.cpp",
+      "source_sha256": "c2535173d59a0bf3923740e27e5491a4cb3a1de74888118712c20f2fe0bd991b",
+      "plaintext_bytes": 1,
+      "aad_bytes": 16,
+      "mutations": [
+        "fixed_key",
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-02",
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "fixed-key",
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source.",
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F09_reference",
+      "scenario_group": "F09",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F09_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 1,
+      "aad_bytes": 255,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F09_log_plaintext",
+      "scenario_group": "F09",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F09_log_plaintext/candidate.cpp",
+      "source_sha256": "eb8ad13412d1e3dcbd27be8b3ccb7698ad6722fd64b717a5246a154e10a22b30",
+      "plaintext_bytes": 1,
+      "aad_bytes": 255,
+      "mutations": [
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F09_log_key",
+      "scenario_group": "F09",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F09_log_key/candidate.cpp",
+      "source_sha256": "a002ecd7222717c69ddefca1cf4329c74ad33756b42cdef0899ad2d9251bfaff",
+      "plaintext_bytes": 1,
+      "aad_bytes": 255,
+      "mutations": [
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F09_oversize_plaintext",
+      "scenario_group": "F09",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F09_oversize_plaintext/candidate.cpp",
+      "source_sha256": "a7200a521329baf79c52fbedc985cccfefd977600030100f1584c3b6ca097eff",
+      "plaintext_bytes": 1,
+      "aad_bytes": 255,
+      "mutations": [
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F09_multi",
+      "scenario_group": "F09",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F09_multi/candidate.cpp",
+      "source_sha256": "265d56625d4e71f1925181159ad8a2efa42e80031d4b77a206c2705f01901467",
+      "plaintext_bytes": 1,
+      "aad_bytes": 255,
+      "mutations": [
+        "log_plaintext",
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log",
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks.",
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F10_reference",
+      "scenario_group": "F10",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F10_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 1,
+      "aad_bytes": 65536,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F10_oversize_aad",
+      "scenario_group": "F10",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F10_oversize_aad/candidate.cpp",
+      "source_sha256": "f462a40b903047ed454d901f726177b37ca60373257cfb72010a209f929fe21b",
+      "plaintext_bytes": 1,
+      "aad_bytes": 65536,
+      "mutations": [
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F10_reject_empty",
+      "scenario_group": "F10",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F10_reject_empty/candidate.cpp",
+      "source_sha256": "ee9f8479000b546ec29b8d3df885d16d1b560c5c8f36858a76329cc6cb9c2cec",
+      "plaintext_bytes": 1,
+      "aad_bytes": 65536,
+      "mutations": [
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F10_reject_boundary",
+      "scenario_group": "F10",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F10_reject_boundary/candidate.cpp",
+      "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+      "plaintext_bytes": 1,
+      "aad_bytes": 65536,
+      "mutations": [
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F10_multi",
+      "scenario_group": "F10",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F10_multi/candidate.cpp",
+      "source_sha256": "2c41c74df147b4e09a39c019eb31800a71acdb80307663d2ef6ed4765207a548",
+      "plaintext_bytes": 1,
+      "aad_bytes": 65536,
+      "mutations": [
+        "oversize_aad",
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01",
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad",
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption.",
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F11_reference",
+      "scenario_group": "F11",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F11_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 15,
+      "aad_bytes": 0,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F11_fixed_nonce",
+      "scenario_group": "F11",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F11_fixed_nonce/candidate.cpp",
+      "source_sha256": "0124046bc93746a93faa87acff7a25051601baedaa7c24258326a8f2a14c5b8f",
+      "plaintext_bytes": 15,
+      "aad_bytes": 0,
+      "mutations": [
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F11_fixed_key",
+      "scenario_group": "F11",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F11_fixed_key/candidate.cpp",
+      "source_sha256": "f92096e1616e1ecd07544bb0b366b6b4fa478887a1e5ffa81f9750cef612d477",
+      "plaintext_bytes": 15,
+      "aad_bytes": 0,
+      "mutations": [
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02"
+      ],
+      "trigger_checks": [
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F11_ignore_auth",
+      "scenario_group": "F11",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F11_ignore_auth/candidate.cpp",
+      "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+      "plaintext_bytes": 15,
+      "aad_bytes": 0,
+      "mutations": [
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F11_multi",
+      "scenario_group": "F11",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F11_multi/candidate.cpp",
+      "source_sha256": "6fecfe8eca1c10ef59f5d9113c8d7ef357e01445a0f944b10443a4c00e2134b6",
+      "plaintext_bytes": 15,
+      "aad_bytes": 0,
+      "mutations": [
+        "fixed_nonce",
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02",
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce",
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow.",
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F12_reference",
+      "scenario_group": "F12",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F12_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 15,
+      "aad_bytes": 1,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F12_omit_aad",
+      "scenario_group": "F12",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F12_omit_aad/candidate.cpp",
+      "source_sha256": "35f38005df596f8bc39f470f497805b93bb6b34ea64ef2e0d4a99b9ff952e43a",
+      "plaintext_bytes": 15,
+      "aad_bytes": 1,
+      "mutations": [
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04"
+      ],
+      "trigger_checks": [
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F12_log_plaintext",
+      "scenario_group": "F12",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F12_log_plaintext/candidate.cpp",
+      "source_sha256": "eb8ad13412d1e3dcbd27be8b3ccb7698ad6722fd64b717a5246a154e10a22b30",
+      "plaintext_bytes": 15,
+      "aad_bytes": 1,
+      "mutations": [
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F12_log_key",
+      "scenario_group": "F12",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F12_log_key/candidate.cpp",
+      "source_sha256": "a002ecd7222717c69ddefca1cf4329c74ad33756b42cdef0899ad2d9251bfaff",
+      "plaintext_bytes": 15,
+      "aad_bytes": 1,
+      "mutations": [
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F12_multi",
+      "scenario_group": "F12",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F12_multi/candidate.cpp",
+      "source_sha256": "b83b846dff23ee36e8c6ee7e02030991c485ff81d98a94b18c793258901f70e6",
+      "plaintext_bytes": 15,
+      "aad_bytes": 1,
+      "mutations": [
+        "omit_aad",
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "C-04",
+        "S-01"
+      ],
+      "trigger_checks": [
+        "aad",
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations.",
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F13_reference",
+      "scenario_group": "F13",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F13_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 15,
+      "aad_bytes": 16,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F13_oversize_plaintext",
+      "scenario_group": "F13",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F13_oversize_plaintext/candidate.cpp",
+      "source_sha256": "a7200a521329baf79c52fbedc985cccfefd977600030100f1584c3b6ca097eff",
+      "plaintext_bytes": 15,
+      "aad_bytes": 16,
+      "mutations": [
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F13_oversize_aad",
+      "scenario_group": "F13",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F13_oversize_aad/candidate.cpp",
+      "source_sha256": "f462a40b903047ed454d901f726177b37ca60373257cfb72010a209f929fe21b",
+      "plaintext_bytes": 15,
+      "aad_bytes": 16,
+      "mutations": [
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F13_reject_empty",
+      "scenario_group": "F13",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F13_reject_empty/candidate.cpp",
+      "source_sha256": "ee9f8479000b546ec29b8d3df885d16d1b560c5c8f36858a76329cc6cb9c2cec",
+      "plaintext_bytes": 15,
+      "aad_bytes": 16,
+      "mutations": [
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F13_multi",
+      "scenario_group": "F13",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F13_multi/candidate.cpp",
+      "source_sha256": "7e78112b26b2cae19a63f302536e3ab84f89378a538a345c0013ecda70bcaa8b",
+      "plaintext_bytes": 15,
+      "aad_bytes": 16,
+      "mutations": [
+        "oversize_plaintext",
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext",
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation.",
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F14_reference",
+      "scenario_group": "F14",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F14_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 15,
+      "aad_bytes": 255,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F14_reject_boundary",
+      "scenario_group": "F14",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F14_reject_boundary/candidate.cpp",
+      "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+      "plaintext_bytes": 15,
+      "aad_bytes": 255,
+      "mutations": [
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F14_fixed_nonce",
+      "scenario_group": "F14",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F14_fixed_nonce/candidate.cpp",
+      "source_sha256": "0124046bc93746a93faa87acff7a25051601baedaa7c24258326a8f2a14c5b8f",
+      "plaintext_bytes": 15,
+      "aad_bytes": 255,
+      "mutations": [
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F14_fixed_key",
+      "scenario_group": "F14",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F14_fixed_key/candidate.cpp",
+      "source_sha256": "f92096e1616e1ecd07544bb0b366b6b4fa478887a1e5ffa81f9750cef612d477",
+      "plaintext_bytes": 15,
+      "aad_bytes": 255,
+      "mutations": [
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02"
+      ],
+      "trigger_checks": [
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F14_multi",
+      "scenario_group": "F14",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F14_multi/candidate.cpp",
+      "source_sha256": "9c7c1f88be5a92db6f7f1996e9b86895a6c69c425784ba5f54f6a95072f9ae7a",
+      "plaintext_bytes": 15,
+      "aad_bytes": 255,
+      "mutations": [
+        "reject_boundary",
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03",
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary",
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size.",
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F15_reference",
+      "scenario_group": "F15",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F15_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 15,
+      "aad_bytes": 65536,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F15_ignore_auth",
+      "scenario_group": "F15",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F15_ignore_auth/candidate.cpp",
+      "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+      "plaintext_bytes": 15,
+      "aad_bytes": 65536,
+      "mutations": [
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F15_omit_aad",
+      "scenario_group": "F15",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F15_omit_aad/candidate.cpp",
+      "source_sha256": "35f38005df596f8bc39f470f497805b93bb6b34ea64ef2e0d4a99b9ff952e43a",
+      "plaintext_bytes": 15,
+      "aad_bytes": 65536,
+      "mutations": [
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04"
+      ],
+      "trigger_checks": [
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F15_log_plaintext",
+      "scenario_group": "F15",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F15_log_plaintext/candidate.cpp",
+      "source_sha256": "eb8ad13412d1e3dcbd27be8b3ccb7698ad6722fd64b717a5246a154e10a22b30",
+      "plaintext_bytes": 15,
+      "aad_bytes": 65536,
+      "mutations": [
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F15_multi",
+      "scenario_group": "F15",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F15_multi/candidate.cpp",
+      "source_sha256": "69ad7c3759453ff9a31f23d0719dff9c93fecac893130c01c6598dde17d473de",
+      "plaintext_bytes": 15,
+      "aad_bytes": 65536,
+      "mutations": [
+        "ignore_auth",
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper",
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value.",
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F16_reference",
+      "scenario_group": "F16",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F16_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 16,
+      "aad_bytes": 0,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F16_log_key",
+      "scenario_group": "F16",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F16_log_key/candidate.cpp",
+      "source_sha256": "a002ecd7222717c69ddefca1cf4329c74ad33756b42cdef0899ad2d9251bfaff",
+      "plaintext_bytes": 16,
+      "aad_bytes": 0,
+      "mutations": [
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F16_oversize_plaintext",
+      "scenario_group": "F16",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F16_oversize_plaintext/candidate.cpp",
+      "source_sha256": "a7200a521329baf79c52fbedc985cccfefd977600030100f1584c3b6ca097eff",
+      "plaintext_bytes": 16,
+      "aad_bytes": 0,
+      "mutations": [
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F16_oversize_aad",
+      "scenario_group": "F16",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F16_oversize_aad/candidate.cpp",
+      "source_sha256": "f462a40b903047ed454d901f726177b37ca60373257cfb72010a209f929fe21b",
+      "plaintext_bytes": 16,
+      "aad_bytes": 0,
+      "mutations": [
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F16_multi",
+      "scenario_group": "F16",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F16_multi/candidate.cpp",
+      "source_sha256": "c91d70486a5c67539cfd41cfba1b23868693d4376fe5c8aa9c6e47e5a271b3c9",
+      "plaintext_bytes": 16,
+      "aad_bytes": 0,
+      "mutations": [
+        "log_key",
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01",
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log",
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes.",
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F17_reference",
+      "scenario_group": "F17",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F17_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 16,
+      "aad_bytes": 1,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F17_reject_empty",
+      "scenario_group": "F17",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F17_reject_empty/candidate.cpp",
+      "source_sha256": "ee9f8479000b546ec29b8d3df885d16d1b560c5c8f36858a76329cc6cb9c2cec",
+      "plaintext_bytes": 16,
+      "aad_bytes": 1,
+      "mutations": [
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F17_reject_boundary",
+      "scenario_group": "F17",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F17_reject_boundary/candidate.cpp",
+      "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+      "plaintext_bytes": 16,
+      "aad_bytes": 1,
+      "mutations": [
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F17_fixed_nonce",
+      "scenario_group": "F17",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F17_fixed_nonce/candidate.cpp",
+      "source_sha256": "0124046bc93746a93faa87acff7a25051601baedaa7c24258326a8f2a14c5b8f",
+      "plaintext_bytes": 16,
+      "aad_bytes": 1,
+      "mutations": [
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F17_multi",
+      "scenario_group": "F17",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F17_multi/candidate.cpp",
+      "source_sha256": "b230c54512f95cb3ba0b74955acc098508665498ac51cb9261ed5832607d1b5e",
+      "plaintext_bytes": 16,
+      "aad_bytes": 1,
+      "mutations": [
+        "reject_empty",
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty",
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext.",
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F18_reference",
+      "scenario_group": "F18",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F18_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 16,
+      "aad_bytes": 16,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F18_fixed_key",
+      "scenario_group": "F18",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F18_fixed_key/candidate.cpp",
+      "source_sha256": "f92096e1616e1ecd07544bb0b366b6b4fa478887a1e5ffa81f9750cef612d477",
+      "plaintext_bytes": 16,
+      "aad_bytes": 16,
+      "mutations": [
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02"
+      ],
+      "trigger_checks": [
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F18_ignore_auth",
+      "scenario_group": "F18",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F18_ignore_auth/candidate.cpp",
+      "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+      "plaintext_bytes": 16,
+      "aad_bytes": 16,
+      "mutations": [
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F18_omit_aad",
+      "scenario_group": "F18",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F18_omit_aad/candidate.cpp",
+      "source_sha256": "35f38005df596f8bc39f470f497805b93bb6b34ea64ef2e0d4a99b9ff952e43a",
+      "plaintext_bytes": 16,
+      "aad_bytes": 16,
+      "mutations": [
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04"
+      ],
+      "trigger_checks": [
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F18_multi",
+      "scenario_group": "F18",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F18_multi/candidate.cpp",
+      "source_sha256": "c2535173d59a0bf3923740e27e5491a4cb3a1de74888118712c20f2fe0bd991b",
+      "plaintext_bytes": 16,
+      "aad_bytes": 16,
+      "mutations": [
+        "fixed_key",
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-02",
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "fixed-key",
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source.",
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F19_reference",
+      "scenario_group": "F19",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F19_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 16,
+      "aad_bytes": 255,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F19_log_plaintext",
+      "scenario_group": "F19",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F19_log_plaintext/candidate.cpp",
+      "source_sha256": "eb8ad13412d1e3dcbd27be8b3ccb7698ad6722fd64b717a5246a154e10a22b30",
+      "plaintext_bytes": 16,
+      "aad_bytes": 255,
+      "mutations": [
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F19_log_key",
+      "scenario_group": "F19",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F19_log_key/candidate.cpp",
+      "source_sha256": "a002ecd7222717c69ddefca1cf4329c74ad33756b42cdef0899ad2d9251bfaff",
+      "plaintext_bytes": 16,
+      "aad_bytes": 255,
+      "mutations": [
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F19_oversize_plaintext",
+      "scenario_group": "F19",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F19_oversize_plaintext/candidate.cpp",
+      "source_sha256": "a7200a521329baf79c52fbedc985cccfefd977600030100f1584c3b6ca097eff",
+      "plaintext_bytes": 16,
+      "aad_bytes": 255,
+      "mutations": [
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F19_multi",
+      "scenario_group": "F19",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F19_multi/candidate.cpp",
+      "source_sha256": "265d56625d4e71f1925181159ad8a2efa42e80031d4b77a206c2705f01901467",
+      "plaintext_bytes": 16,
+      "aad_bytes": 255,
+      "mutations": [
+        "log_plaintext",
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log",
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks.",
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F20_reference",
+      "scenario_group": "F20",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F20_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 16,
+      "aad_bytes": 65536,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F20_oversize_aad",
+      "scenario_group": "F20",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F20_oversize_aad/candidate.cpp",
+      "source_sha256": "f462a40b903047ed454d901f726177b37ca60373257cfb72010a209f929fe21b",
+      "plaintext_bytes": 16,
+      "aad_bytes": 65536,
+      "mutations": [
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F20_reject_empty",
+      "scenario_group": "F20",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F20_reject_empty/candidate.cpp",
+      "source_sha256": "ee9f8479000b546ec29b8d3df885d16d1b560c5c8f36858a76329cc6cb9c2cec",
+      "plaintext_bytes": 16,
+      "aad_bytes": 65536,
+      "mutations": [
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F20_reject_boundary",
+      "scenario_group": "F20",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F20_reject_boundary/candidate.cpp",
+      "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+      "plaintext_bytes": 16,
+      "aad_bytes": 65536,
+      "mutations": [
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F20_multi",
+      "scenario_group": "F20",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F20_multi/candidate.cpp",
+      "source_sha256": "2c41c74df147b4e09a39c019eb31800a71acdb80307663d2ef6ed4765207a548",
+      "plaintext_bytes": 16,
+      "aad_bytes": 65536,
+      "mutations": [
+        "oversize_aad",
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01",
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad",
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption.",
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F21_reference",
+      "scenario_group": "F21",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F21_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 17,
+      "aad_bytes": 0,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F21_fixed_nonce",
+      "scenario_group": "F21",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F21_fixed_nonce/candidate.cpp",
+      "source_sha256": "0124046bc93746a93faa87acff7a25051601baedaa7c24258326a8f2a14c5b8f",
+      "plaintext_bytes": 17,
+      "aad_bytes": 0,
+      "mutations": [
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F21_fixed_key",
+      "scenario_group": "F21",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F21_fixed_key/candidate.cpp",
+      "source_sha256": "f92096e1616e1ecd07544bb0b366b6b4fa478887a1e5ffa81f9750cef612d477",
+      "plaintext_bytes": 17,
+      "aad_bytes": 0,
+      "mutations": [
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02"
+      ],
+      "trigger_checks": [
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F21_ignore_auth",
+      "scenario_group": "F21",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F21_ignore_auth/candidate.cpp",
+      "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+      "plaintext_bytes": 17,
+      "aad_bytes": 0,
+      "mutations": [
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F21_multi",
+      "scenario_group": "F21",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F21_multi/candidate.cpp",
+      "source_sha256": "6fecfe8eca1c10ef59f5d9113c8d7ef357e01445a0f944b10443a4c00e2134b6",
+      "plaintext_bytes": 17,
+      "aad_bytes": 0,
+      "mutations": [
+        "fixed_nonce",
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02",
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce",
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow.",
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F22_reference",
+      "scenario_group": "F22",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F22_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 17,
+      "aad_bytes": 1,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F22_omit_aad",
+      "scenario_group": "F22",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F22_omit_aad/candidate.cpp",
+      "source_sha256": "35f38005df596f8bc39f470f497805b93bb6b34ea64ef2e0d4a99b9ff952e43a",
+      "plaintext_bytes": 17,
+      "aad_bytes": 1,
+      "mutations": [
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04"
+      ],
+      "trigger_checks": [
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F22_log_plaintext",
+      "scenario_group": "F22",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F22_log_plaintext/candidate.cpp",
+      "source_sha256": "eb8ad13412d1e3dcbd27be8b3ccb7698ad6722fd64b717a5246a154e10a22b30",
+      "plaintext_bytes": 17,
+      "aad_bytes": 1,
+      "mutations": [
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F22_log_key",
+      "scenario_group": "F22",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F22_log_key/candidate.cpp",
+      "source_sha256": "a002ecd7222717c69ddefca1cf4329c74ad33756b42cdef0899ad2d9251bfaff",
+      "plaintext_bytes": 17,
+      "aad_bytes": 1,
+      "mutations": [
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F22_multi",
+      "scenario_group": "F22",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F22_multi/candidate.cpp",
+      "source_sha256": "b83b846dff23ee36e8c6ee7e02030991c485ff81d98a94b18c793258901f70e6",
+      "plaintext_bytes": 17,
+      "aad_bytes": 1,
+      "mutations": [
+        "omit_aad",
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "C-04",
+        "S-01"
+      ],
+      "trigger_checks": [
+        "aad",
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations.",
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F23_reference",
+      "scenario_group": "F23",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F23_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 17,
+      "aad_bytes": 16,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F23_oversize_plaintext",
+      "scenario_group": "F23",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F23_oversize_plaintext/candidate.cpp",
+      "source_sha256": "a7200a521329baf79c52fbedc985cccfefd977600030100f1584c3b6ca097eff",
+      "plaintext_bytes": 17,
+      "aad_bytes": 16,
+      "mutations": [
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F23_oversize_aad",
+      "scenario_group": "F23",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F23_oversize_aad/candidate.cpp",
+      "source_sha256": "f462a40b903047ed454d901f726177b37ca60373257cfb72010a209f929fe21b",
+      "plaintext_bytes": 17,
+      "aad_bytes": 16,
+      "mutations": [
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F23_reject_empty",
+      "scenario_group": "F23",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F23_reject_empty/candidate.cpp",
+      "source_sha256": "ee9f8479000b546ec29b8d3df885d16d1b560c5c8f36858a76329cc6cb9c2cec",
+      "plaintext_bytes": 17,
+      "aad_bytes": 16,
+      "mutations": [
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F23_multi",
+      "scenario_group": "F23",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F23_multi/candidate.cpp",
+      "source_sha256": "7e78112b26b2cae19a63f302536e3ab84f89378a538a345c0013ecda70bcaa8b",
+      "plaintext_bytes": 17,
+      "aad_bytes": 16,
+      "mutations": [
+        "oversize_plaintext",
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext",
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation.",
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F24_reference",
+      "scenario_group": "F24",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F24_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 17,
+      "aad_bytes": 255,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F24_reject_boundary",
+      "scenario_group": "F24",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F24_reject_boundary/candidate.cpp",
+      "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+      "plaintext_bytes": 17,
+      "aad_bytes": 255,
+      "mutations": [
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F24_fixed_nonce",
+      "scenario_group": "F24",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F24_fixed_nonce/candidate.cpp",
+      "source_sha256": "0124046bc93746a93faa87acff7a25051601baedaa7c24258326a8f2a14c5b8f",
+      "plaintext_bytes": 17,
+      "aad_bytes": 255,
+      "mutations": [
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F24_fixed_key",
+      "scenario_group": "F24",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F24_fixed_key/candidate.cpp",
+      "source_sha256": "f92096e1616e1ecd07544bb0b366b6b4fa478887a1e5ffa81f9750cef612d477",
+      "plaintext_bytes": 17,
+      "aad_bytes": 255,
+      "mutations": [
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02"
+      ],
+      "trigger_checks": [
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F24_multi",
+      "scenario_group": "F24",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F24_multi/candidate.cpp",
+      "source_sha256": "9c7c1f88be5a92db6f7f1996e9b86895a6c69c425784ba5f54f6a95072f9ae7a",
+      "plaintext_bytes": 17,
+      "aad_bytes": 255,
+      "mutations": [
+        "reject_boundary",
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03",
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary",
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size.",
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F25_reference",
+      "scenario_group": "F25",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F25_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 17,
+      "aad_bytes": 65536,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F25_ignore_auth",
+      "scenario_group": "F25",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F25_ignore_auth/candidate.cpp",
+      "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+      "plaintext_bytes": 17,
+      "aad_bytes": 65536,
+      "mutations": [
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F25_omit_aad",
+      "scenario_group": "F25",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F25_omit_aad/candidate.cpp",
+      "source_sha256": "35f38005df596f8bc39f470f497805b93bb6b34ea64ef2e0d4a99b9ff952e43a",
+      "plaintext_bytes": 17,
+      "aad_bytes": 65536,
+      "mutations": [
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04"
+      ],
+      "trigger_checks": [
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F25_log_plaintext",
+      "scenario_group": "F25",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F25_log_plaintext/candidate.cpp",
+      "source_sha256": "eb8ad13412d1e3dcbd27be8b3ccb7698ad6722fd64b717a5246a154e10a22b30",
+      "plaintext_bytes": 17,
+      "aad_bytes": 65536,
+      "mutations": [
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F25_multi",
+      "scenario_group": "F25",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F25_multi/candidate.cpp",
+      "source_sha256": "69ad7c3759453ff9a31f23d0719dff9c93fecac893130c01c6598dde17d473de",
+      "plaintext_bytes": 17,
+      "aad_bytes": 65536,
+      "mutations": [
+        "ignore_auth",
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper",
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value.",
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F26_reference",
+      "scenario_group": "F26",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F26_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 0,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F26_log_key",
+      "scenario_group": "F26",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F26_log_key/candidate.cpp",
+      "source_sha256": "a002ecd7222717c69ddefca1cf4329c74ad33756b42cdef0899ad2d9251bfaff",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 0,
+      "mutations": [
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F26_oversize_plaintext",
+      "scenario_group": "F26",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F26_oversize_plaintext/candidate.cpp",
+      "source_sha256": "a7200a521329baf79c52fbedc985cccfefd977600030100f1584c3b6ca097eff",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 0,
+      "mutations": [
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F26_oversize_aad",
+      "scenario_group": "F26",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F26_oversize_aad/candidate.cpp",
+      "source_sha256": "f462a40b903047ed454d901f726177b37ca60373257cfb72010a209f929fe21b",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 0,
+      "mutations": [
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F26_multi",
+      "scenario_group": "F26",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F26_multi/candidate.cpp",
+      "source_sha256": "c91d70486a5c67539cfd41cfba1b23868693d4376fe5c8aa9c6e47e5a271b3c9",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 0,
+      "mutations": [
+        "log_key",
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01",
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log",
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes.",
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F27_reference",
+      "scenario_group": "F27",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F27_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 1,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F27_reject_empty",
+      "scenario_group": "F27",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F27_reject_empty/candidate.cpp",
+      "source_sha256": "ee9f8479000b546ec29b8d3df885d16d1b560c5c8f36858a76329cc6cb9c2cec",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 1,
+      "mutations": [
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F27_reject_boundary",
+      "scenario_group": "F27",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F27_reject_boundary/candidate.cpp",
+      "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 1,
+      "mutations": [
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F27_fixed_nonce",
+      "scenario_group": "F27",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F27_fixed_nonce/candidate.cpp",
+      "source_sha256": "0124046bc93746a93faa87acff7a25051601baedaa7c24258326a8f2a14c5b8f",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 1,
+      "mutations": [
+        "fixed_nonce"
+      ],
+      "expected_violations": [
+        "C-03"
+      ],
+      "trigger_checks": [
+        "fixed-nonce"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Fresh random nonce on every encryption; inspect RNG data flow."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F27_multi",
+      "scenario_group": "F27",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F27_multi/candidate.cpp",
+      "source_sha256": "b230c54512f95cb3ba0b74955acc098508665498ac51cb9261ed5832607d1b5e",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 1,
+      "mutations": [
+        "reject_empty",
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty",
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext.",
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F28_reference",
+      "scenario_group": "F28",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F28_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 16,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F28_fixed_key",
+      "scenario_group": "F28",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F28_fixed_key/candidate.cpp",
+      "source_sha256": "f92096e1616e1ecd07544bb0b366b6b4fa478887a1e5ffa81f9750cef612d477",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 16,
+      "mutations": [
+        "fixed_key"
+      ],
+      "expected_violations": [
+        "C-02"
+      ],
+      "trigger_checks": [
+        "fixed-key"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F28_ignore_auth",
+      "scenario_group": "F28",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F28_ignore_auth/candidate.cpp",
+      "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 16,
+      "mutations": [
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F28_omit_aad",
+      "scenario_group": "F28",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F28_omit_aad/candidate.cpp",
+      "source_sha256": "35f38005df596f8bc39f470f497805b93bb6b34ea64ef2e0d4a99b9ff952e43a",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 16,
+      "mutations": [
+        "omit_aad"
+      ],
+      "expected_violations": [
+        "C-04"
+      ],
+      "trigger_checks": [
+        "aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Pass the actual associated data to both operations."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F28_multi",
+      "scenario_group": "F28",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "development",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F28_multi/candidate.cpp",
+      "source_sha256": "c2535173d59a0bf3923740e27e5491a4cb3a1de74888118712c20f2fe0bd991b",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 16,
+      "mutations": [
+        "fixed_key",
+        "ignore_auth"
+      ],
+      "expected_violations": [
+        "C-02",
+        "C-04",
+        "E-01"
+      ],
+      "trigger_checks": [
+        "fixed-key",
+        "tamper"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Use the library key generator; inspect production key source.",
+        "Reject failed authentication and return no value."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F29_reference",
+      "scenario_group": "F29",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F29_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 255,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F29_log_plaintext",
+      "scenario_group": "F29",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F29_log_plaintext/candidate.cpp",
+      "source_sha256": "eb8ad13412d1e3dcbd27be8b3ccb7698ad6722fd64b717a5246a154e10a22b30",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 255,
+      "mutations": [
+        "log_plaintext"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F29_log_key",
+      "scenario_group": "F29",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F29_log_key/candidate.cpp",
+      "source_sha256": "a002ecd7222717c69ddefca1cf4329c74ad33756b42cdef0899ad2d9251bfaff",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 255,
+      "mutations": [
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F29_oversize_plaintext",
+      "scenario_group": "F29",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F29_oversize_plaintext/candidate.cpp",
+      "source_sha256": "a7200a521329baf79c52fbedc985cccfefd977600030100f1584c3b6ca097eff",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 255,
+      "mutations": [
+        "oversize_plaintext"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-plaintext"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the plaintext limit before allocation."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F29_multi",
+      "scenario_group": "F29",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "validation",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F29_multi/candidate.cpp",
+      "source_sha256": "265d56625d4e71f1925181159ad8a2efa42e80031d4b77a206c2705f01901467",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 255,
+      "mutations": [
+        "log_plaintext",
+        "log_key"
+      ],
+      "expected_violations": [
+        "S-01"
+      ],
+      "trigger_checks": [
+        "log",
+        "log"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Remove plaintext logging, including debug sinks.",
+        "Never output secret key bytes."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F30_reference",
+      "scenario_group": "F30",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "reference",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F30_reference/candidate.cpp",
+      "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 65536,
+      "mutations": [],
+      "expected_violations": [],
+      "trigger_checks": [
+        "roundtrip"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F30_oversize_aad",
+      "scenario_group": "F30",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F30_oversize_aad/candidate.cpp",
+      "source_sha256": "f462a40b903047ed454d901f726177b37ca60373257cfb72010a209f929fe21b",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 65536,
+      "mutations": [
+        "oversize_aad"
+      ],
+      "expected_violations": [
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F30_reject_empty",
+      "scenario_group": "F30",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F30_reject_empty/candidate.cpp",
+      "source_sha256": "ee9f8479000b546ec29b8d3df885d16d1b560c5c8f36858a76329cc6cb9c2cec",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 65536,
+      "mutations": [
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F30_reject_boundary",
+      "scenario_group": "F30",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "single_defect",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F30_reject_boundary/candidate.cpp",
+      "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 65536,
+      "mutations": [
+        "reject_boundary"
+      ],
+      "expected_violations": [
+        "F-01"
+      ],
+      "trigger_checks": [
+        "boundary"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Accept the inclusive maximum size."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    },
+    {
+      "case_id": "F30_multi",
+      "scenario_group": "F30",
+      "source_ancestry": "shared-reference-template-v1",
+      "split": "heldout",
+      "kind": "multiple_defects",
+      "spec_path": "phase2/examples/spec.json",
+      "source_path": "phase3/cases/F30_multi/candidate.cpp",
+      "source_sha256": "2c41c74df147b4e09a39c019eb31800a71acdb80307663d2ef6ed4765207a548",
+      "plaintext_bytes": 1048576,
+      "aad_bytes": 65536,
+      "mutations": [
+        "oversize_aad",
+        "reject_empty"
+      ],
+      "expected_violations": [
+        "F-01",
+        "M-01"
+      ],
+      "trigger_checks": [
+        "oversize-aad",
+        "empty"
+      ],
+      "label_status": "authored_expectation_pending_native_confirmation",
+      "evidence_artifacts": [],
+      "repair_expectations": [
+        "Restore the AAD limit in encryption.",
+        "Accept a valid zero-length plaintext."
+      ],
+      "all_other_requirements": "inconclusive_until_checked"
+    }
+  ]
+}

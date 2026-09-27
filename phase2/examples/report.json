@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "mode": "demonstration",
+  "profile_id": "windows-msvc-x64-v1",
+  "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+  "overall": "inconclusive",
+  "execution": "not_executed",
+  "results": [
+    {
+      "requirement_id": "F-01",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    },
+    {
+      "requirement_id": "C-01",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    },
+    {
+      "requirement_id": "C-02",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    },
+    {
+      "requirement_id": "C-03",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    },
+    {
+      "requirement_id": "C-04",
+      "status": "inconclusive",
+      "evidence_type": "static_heuristic",
+      "summary": "Suspected ignored authentication result; needs confirmed evidence.",
+      "artifacts": [
+        "trace.json"
+      ]
+    },
+    {
+      "requirement_id": "M-01",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    },
+    {
+      "requirement_id": "M-02",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    },
+    {
+      "requirement_id": "S-01",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    },
+    {
+      "requirement_id": "S-02",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    },
+    {
+      "requirement_id": "L-01",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    },
+    {
+      "requirement_id": "L-02",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    },
+    {
+      "requirement_id": "E-01",
+      "status": "inconclusive",
+      "evidence_type": "static_heuristic",
+      "summary": "Suspected ignored authentication result; needs confirmed evidence.",
+      "artifacts": [
+        "trace.json"
+      ]
+    },
+    {
+      "requirement_id": "B-01",
+      "status": "inconclusive",
+      "evidence_type": "none",
+      "summary": "Required checks have not been executed.",
+      "artifacts": []
+    }
+  ],
+  "limitations": [
+    "No candidate execution or LLM call.",
+    "A narrow source pattern is not a verifier.",
+    "Missing native, memory, cleanup and timing evidence."
+  ]
+}

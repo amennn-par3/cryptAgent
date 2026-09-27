@@ -1,0 +1,27 @@
+{
+  "case_id": "F22_omit_aad",
+  "scenario_group": "F22",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F22_omit_aad/candidate.cpp",
+  "source_sha256": "35f38005df596f8bc39f470f497805b93bb6b34ea64ef2e0d4a99b9ff952e43a",
+  "plaintext_bytes": 17,
+  "aad_bytes": 1,
+  "mutations": [
+    "omit_aad"
+  ],
+  "expected_violations": [
+    "C-04"
+  ],
+  "trigger_checks": [
+    "aad"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Pass the actual associated data to both operations."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

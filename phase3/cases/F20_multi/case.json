@@ -1,0 +1,31 @@
+{
+  "case_id": "F20_multi",
+  "scenario_group": "F20",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "heldout",
+  "kind": "multiple_defects",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F20_multi/candidate.cpp",
+  "source_sha256": "2c41c74df147b4e09a39c019eb31800a71acdb80307663d2ef6ed4765207a548",
+  "plaintext_bytes": 16,
+  "aad_bytes": 65536,
+  "mutations": [
+    "oversize_aad",
+    "reject_empty"
+  ],
+  "expected_violations": [
+    "F-01",
+    "M-01"
+  ],
+  "trigger_checks": [
+    "oversize-aad",
+    "empty"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Restore the AAD limit in encryption.",
+    "Accept a valid zero-length plaintext."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

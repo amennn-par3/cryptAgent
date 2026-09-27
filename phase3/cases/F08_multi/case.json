@@ -1,0 +1,32 @@
+{
+  "case_id": "F08_multi",
+  "scenario_group": "F08",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "multiple_defects",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F08_multi/candidate.cpp",
+  "source_sha256": "c2535173d59a0bf3923740e27e5491a4cb3a1de74888118712c20f2fe0bd991b",
+  "plaintext_bytes": 1,
+  "aad_bytes": 16,
+  "mutations": [
+    "fixed_key",
+    "ignore_auth"
+  ],
+  "expected_violations": [
+    "C-02",
+    "C-04",
+    "E-01"
+  ],
+  "trigger_checks": [
+    "fixed-key",
+    "tamper"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Use the library key generator; inspect production key source.",
+    "Reject failed authentication and return no value."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

@@ -1,0 +1,116 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "mode": {
+      "enum": [
+        "demonstration",
+        "native_check",
+        "agent_assessment"
+      ]
+    },
+    "profile_id": {
+      "const": "windows-msvc-x64-v1"
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "overall": {
+      "enum": [
+        "passes_checks",
+        "fails_checks",
+        "inconclusive"
+      ]
+    },
+    "execution": {
+      "enum": [
+        "not_executed",
+        "executed"
+      ]
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "requirement_id": {
+            "enum": [
+              "F-01",
+              "C-01",
+              "C-02",
+              "C-03",
+              "C-04",
+              "M-01",
+              "M-02",
+              "S-01",
+              "S-02",
+              "L-01",
+              "L-02",
+              "E-01",
+              "B-01"
+            ]
+          },
+          "status": {
+            "enum": [
+              "passes_checks",
+              "violated",
+              "inconclusive",
+              "not_applicable"
+            ]
+          },
+          "evidence_type": {
+            "enum": [
+              "none",
+              "empirical",
+              "static_heuristic",
+              "formal"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "artifacts": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "requirement_id",
+          "status",
+          "evidence_type",
+          "summary",
+          "artifacts"
+        ]
+      },
+      "minItems": 13,
+      "maxItems": 13
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "mode",
+    "profile_id",
+    "source_sha256",
+    "overall",
+    "execution",
+    "results",
+    "limitations"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

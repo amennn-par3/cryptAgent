@@ -1,0 +1,27 @@
+{
+  "case_id": "F14_reject_boundary",
+  "scenario_group": "F14",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "validation",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F14_reject_boundary/candidate.cpp",
+  "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+  "plaintext_bytes": 15,
+  "aad_bytes": 255,
+  "mutations": [
+    "reject_boundary"
+  ],
+  "expected_violations": [
+    "F-01"
+  ],
+  "trigger_checks": [
+    "boundary"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Accept the inclusive maximum size."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

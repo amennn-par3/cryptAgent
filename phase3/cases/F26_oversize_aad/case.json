@@ -1,0 +1,27 @@
+{
+  "case_id": "F26_oversize_aad",
+  "scenario_group": "F26",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F26_oversize_aad/candidate.cpp",
+  "source_sha256": "f462a40b903047ed454d901f726177b37ca60373257cfb72010a209f929fe21b",
+  "plaintext_bytes": 1048576,
+  "aad_bytes": 0,
+  "mutations": [
+    "oversize_aad"
+  ],
+  "expected_violations": [
+    "M-01"
+  ],
+  "trigger_checks": [
+    "oversize-aad"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Restore the AAD limit in encryption."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

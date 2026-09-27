@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "task_id": "aead-wrapper-v1",
+  "scheme": "XChaCha20-Poly1305",
+  "library": "libsodium",
+  "language": "C++20",
+  "profile_id": "windows-msvc-x64-v1",
+  "operations": [
+    "generate_key",
+    "encrypt",
+    "decrypt"
+  ],
+  "limits": {
+    "plaintext_max": 1048576,
+    "aad_max": 65536,
+    "key_bytes": 32,
+    "nonce_bytes": 24,
+    "tag_bytes": 16
+  },
+  "secret_inputs": [
+    "key",
+    "plaintext"
+  ],
+  "public_inputs": [
+    "nonce",
+    "ciphertext",
+    "aad",
+    "lengths"
+  ],
+  "requirements": [
+    "F-01",
+    "C-01",
+    "C-02",
+    "C-03",
+    "C-04",
+    "M-01",
+    "M-02",
+    "S-01",
+    "S-02",
+    "L-01",
+    "L-02",
+    "E-01",
+    "B-01"
+  ],
+  "on_auth_failure": "error_with_no_plaintext",
+  "nonce_policy": "internal_random_per_encryption",
+  "max_repairs": 3
+}

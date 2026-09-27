@@ -1,0 +1,123 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scheme": {
+      "const": "XChaCha20-Poly1305"
+    },
+    "library": {
+      "const": "libsodium"
+    },
+    "language": {
+      "const": "C++20"
+    },
+    "profile_id": {
+      "const": "windows-msvc-x64-v1"
+    },
+    "operations": {
+      "const": [
+        "generate_key",
+        "encrypt",
+        "decrypt"
+      ]
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "plaintext_max": {
+          "const": 1048576
+        },
+        "aad_max": {
+          "const": 65536
+        },
+        "key_bytes": {
+          "const": 32
+        },
+        "nonce_bytes": {
+          "const": 24
+        },
+        "tag_bytes": {
+          "const": 16
+        }
+      },
+      "required": [
+        "plaintext_max",
+        "aad_max",
+        "key_bytes",
+        "nonce_bytes",
+        "tag_bytes"
+      ]
+    },
+    "secret_inputs": {
+      "const": [
+        "key",
+        "plaintext"
+      ]
+    },
+    "public_inputs": {
+      "const": [
+        "nonce",
+        "ciphertext",
+        "aad",
+        "lengths"
+      ]
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "F-01",
+          "C-01",
+          "C-02",
+          "C-03",
+          "C-04",
+          "M-01",
+          "M-02",
+          "S-01",
+          "S-02",
+          "L-01",
+          "L-02",
+          "E-01",
+          "B-01"
+        ]
+      },
+      "minItems": 13,
+      "maxItems": 13,
+      "uniqueItems": true
+    },
+    "on_auth_failure": {
+      "const": "error_with_no_plaintext"
+    },
+    "nonce_policy": {
+      "const": "internal_random_per_encryption"
+    },
+    "max_repairs": {
+      "const": 3
+    }
+  },
+  "required": [
+    "schema_version",
+    "task_id",
+    "scheme",
+    "library",
+    "language",
+    "profile_id",
+    "operations",
+    "limits",
+    "secret_inputs",
+    "public_inputs",
+    "requirements",
+    "on_auth_failure",
+    "nonce_policy",
+    "max_repairs"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

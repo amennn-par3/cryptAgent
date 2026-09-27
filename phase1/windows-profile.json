@@ -1,0 +1,29 @@
+{
+  "profile_id": "windows-msvc-x64-v1",
+  "os": "Windows 11",
+  "architecture": "x64",
+  "language": "C++20",
+  "compiler_family": "MSVC v143 / Visual Studio 2022",
+  "compiler_exact_version": null,
+  "windows_sdk_version": null,
+  "cmake_minimum": "3.24",
+  "libsodium_version": null,
+  "libsodium_archive_sha256": null,
+  "release_flags": [
+    "/O2",
+    "/W4",
+    "/permissive-"
+  ],
+  "diagnostic_flags": [
+    "/Od",
+    "/Zi",
+    "/fsanitize=address"
+  ],
+  "runtime": "MultiThreaded (/MT), matching official static dependency",
+  "dependency_linkage": "static",
+  "pin_status": "pending_dependency_setup",
+  "timing": "native Windows physical host; same-public-length comparisons; no sanitizer",
+  "supported_profiles": [
+    "windows-msvc-x64-v1"
+  ]
+}

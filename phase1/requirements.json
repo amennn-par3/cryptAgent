@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "requirements": [
+    {
+      "id": "F-01",
+      "title": "Functional correctness",
+      "evidence_recipe": "Reference API comparison, round trip, empty and boundary tests",
+      "limitation": "Testing does not prove all inputs correct.",
+      "mandatory": true
+    },
+    {
+      "id": "C-01",
+      "title": "Initialize libsodium before use",
+      "evidence_recipe": "Inspect sodium_init and test its failure seam",
+      "limitation": "Real initialization failure may not be reproducible.",
+      "mandatory": true
+    },
+    {
+      "id": "C-02",
+      "title": "Approved key generation",
+      "evidence_recipe": "Inspect key-generation API and absence of fixed keys",
+      "limitation": "No empirical test proves generator entropy.",
+      "mandatory": true
+    },
+    {
+      "id": "C-03",
+      "title": "Fresh production nonce",
+      "evidence_recipe": "Inspect randombytes_buf data flow; repeated-call test",
+      "limitation": "Random nonce collisions are negligible, not impossible.",
+      "mandatory": true
+    },
+    {
+      "id": "C-04",
+      "title": "Authenticate before release",
+      "evidence_recipe": "Tamper ciphertext, nonce, tag and AAD; wrong-key test",
+      "limitation": "Do not claim replay prevention.",
+      "mandatory": true
+    },
+    {
+      "id": "M-01",
+      "title": "Bounded sizes and safe arithmetic",
+      "evidence_recipe": "Boundary checks, AddressSanitizer, bounded fuzzing",
+      "limitation": "Executed paths only; ASan is not a proof.",
+      "mandatory": true
+    },
+    {
+      "id": "M-02",
+      "title": "Ownership and lifetime safety",
+      "evidence_recipe": "Move and destruction tests, ASan, review",
+      "limitation": "Does not establish safety of arbitrary C++.",
+      "mandatory": true
+    },
+    {
+      "id": "S-01",
+      "title": "No unintended secret output",
+      "evidence_recipe": "Capture stdout/stderr and inspect sinks",
+      "limitation": "Caller-authorized plaintext output is permitted.",
+      "mandatory": true
+    },
+    {
+      "id": "S-02",
+      "title": "Clear owned secret allocations",
+      "evidence_recipe": "Inspect RAII cleanup and optimized code; instrument deallocation before free",
+      "limitation": "No claims about all registers, caches or caller copies.",
+      "mandatory": true
+    },
+    {
+      "id": "L-01",
+      "title": "No wrapper secret-dependent control or indexing",
+      "evidence_recipe": "Restricted source review, with approved library calls trusted",
+      "limitation": "Public lengths and authentication result may affect control flow.",
+      "mandatory": true
+    },
+    {
+      "id": "L-02",
+      "title": "Complete controlled timing experiment",
+      "evidence_recipe": "Native Windows release harness, fixed public lengths and positive/negative controls",
+      "limitation": "No detected leakage is not a constant-time proof; harness pending Phase 4.",
+      "mandatory": true
+    },
+    {
+      "id": "E-01",
+      "title": "Explicit failure without partial output",
+      "evidence_recipe": "Allocation and authentication failure tests; exception-boundary review",
+      "limitation": "OS process termination is outside recoverable-error contract.",
+      "mandatory": true
+    },
+    {
+      "id": "B-01",
+      "title": "Reproducible Windows build",
+      "evidence_recipe": "Compiler, SDK, dependency and source hashes with test logs",
+      "limitation": "Passing on one profile does not pass another.",
+      "mandatory": true
+    }
+  ]
+}

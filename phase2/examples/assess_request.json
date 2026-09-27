@@ -1,0 +1,6 @@
+{
+  "mode": "assess",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F01_ignore_auth/candidate.cpp",
+  "profile_id": "windows-msvc-x64-v1"
+}

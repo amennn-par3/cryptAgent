@@ -1,0 +1,27 @@
+{
+  "case_id": "F19_log_plaintext",
+  "scenario_group": "F19",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "validation",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F19_log_plaintext/candidate.cpp",
+  "source_sha256": "eb8ad13412d1e3dcbd27be8b3ccb7698ad6722fd64b717a5246a154e10a22b30",
+  "plaintext_bytes": 16,
+  "aad_bytes": 255,
+  "mutations": [
+    "log_plaintext"
+  ],
+  "expected_violations": [
+    "S-01"
+  ],
+  "trigger_checks": [
+    "log"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Remove plaintext logging, including debug sinks."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

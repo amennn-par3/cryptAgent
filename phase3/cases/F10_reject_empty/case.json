@@ -1,0 +1,27 @@
+{
+  "case_id": "F10_reject_empty",
+  "scenario_group": "F10",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "heldout",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F10_reject_empty/candidate.cpp",
+  "source_sha256": "ee9f8479000b546ec29b8d3df885d16d1b560c5c8f36858a76329cc6cb9c2cec",
+  "plaintext_bytes": 1,
+  "aad_bytes": 65536,
+  "mutations": [
+    "reject_empty"
+  ],
+  "expected_violations": [
+    "F-01"
+  ],
+  "trigger_checks": [
+    "empty"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Accept a valid zero-length plaintext."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

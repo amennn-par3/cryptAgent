@@ -1,0 +1,30 @@
+{
+  "case_id": "F13_multi",
+  "scenario_group": "F13",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "multiple_defects",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F13_multi/candidate.cpp",
+  "source_sha256": "7e78112b26b2cae19a63f302536e3ab84f89378a538a345c0013ecda70bcaa8b",
+  "plaintext_bytes": 15,
+  "aad_bytes": 16,
+  "mutations": [
+    "oversize_plaintext",
+    "oversize_aad"
+  ],
+  "expected_violations": [
+    "M-01"
+  ],
+  "trigger_checks": [
+    "oversize-plaintext",
+    "oversize-aad"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Restore the plaintext limit before allocation.",
+    "Restore the AAD limit in encryption."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}
