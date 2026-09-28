@@ -1,0 +1,43 @@
+# Dependencies and local environment
+node_modules/
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs and process files
+*.log
+*.pid
+
+# Windows and editor files
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Python caches used by report generation
+__pycache__/
+*.py[cod]
+.venv/
+.training-venv/
+
+# Temporary evaluation rendering
+evaluation/tmp/
+
+# Local LLM runtimes, weights, adapters, and checkpoints
+models/*.gguf
+models/*.safetensors
+models/checkpoints/
+training/outputs/
+runtime/llama/*.exe
+runtime/llama/*.dll
+
+# Native build output
+*.exe
+*.obj
+*.pdb
+*.ilk
+build/
+out/
+

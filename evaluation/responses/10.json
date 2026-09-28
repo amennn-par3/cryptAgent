@@ -1,0 +1,143 @@
+{
+  "id": "10",
+  "name": "review_service_unavailable",
+  "file": "10_review_service_unavailable.cpp",
+  "expected": "review_unavailable",
+  "description": "Same baseline, reviewed in a separate agent process with no API key. This tests infrastructure failure, not a code property.",
+  "recordedAt": "2026-09-15T20:08:09.338Z",
+  "route": "Separate production verifier process with OPENAI_API_KEY removed; no model request",
+  "actual": "review_unavailable",
+  "response": {
+    "reportVersion": "2.0",
+    "id": "094c2bcf-be41-481c-9612-4e7d68023710",
+    "createdAt": "2026-09-15T20:08:09.292Z",
+    "profileId": "aes128-gcm-tampering-v1",
+    "profileVersion": "1.0.0",
+    "profileHash": "e9628f6228bdacfaa5d6bc3ee966872bdd2e78074920f81e8cb2d100350af892",
+    "sourceHash": "c95f56fcebbb6724335b72560baa233a07a8dd52ab2d7882b2372c4833726219",
+    "sourceLines": 129,
+    "scope": "unassessed",
+    "verdict": "review_unavailable",
+    "headline": "AI review could not complete",
+    "summary": "Connect an OpenAI API key to enable GPT-6 Astra · Medium. Source observations, if present, remain available.",
+    "assessmentType": "source_review",
+    "findings": [],
+    "checks": [
+      {
+        "id": "F01",
+        "title": "Functional correctness",
+        "requirement": "Valid supported inputs encrypt and decrypt correctly.",
+        "assessment": "not_reviewed",
+        "reason": "The AI review did not produce a validated assessment.",
+        "evidenceType": "llm_source_review"
+      },
+      {
+        "id": "F02",
+        "title": "Tampering rejection",
+        "requirement": "Modified ciphertext, nonce, authentication tag and associated data are rejected.",
+        "assessment": "not_reviewed",
+        "reason": "The AI review did not produce a validated assessment.",
+        "evidenceType": "llm_source_review"
+      },
+      {
+        "id": "F03",
+        "title": "Authentication before output",
+        "requirement": "Failed authenticated decryption exposes no plaintext and reports failure.",
+        "assessment": "not_reviewed",
+        "reason": "The AI review did not produce a validated assessment.",
+        "evidenceType": "llm_source_review"
+      },
+      {
+        "id": "F04",
+        "title": "Key and nonce handling",
+        "requirement": "Use a 16-byte key, 12-byte nonce and 16-byte tag for this profile; never reuse a nonce for encryption under the same key.",
+        "assessment": "not_reviewed",
+        "reason": "The AI review did not produce a validated assessment.",
+        "evidenceType": "llm_source_review"
+      },
+      {
+        "id": "F05",
+        "title": "Input boundaries",
+        "requirement": "Reject malformed lengths and handle output-buffer capacities safely.",
+        "assessment": "not_reviewed",
+        "reason": "The AI review did not produce a validated assessment.",
+        "evidenceType": "llm_source_review"
+      }
+    ],
+    "verificationChecks": [
+      {
+        "id": "F01",
+        "title": "Functional correctness",
+        "requirement": "Valid supported inputs encrypt and decrypt correctly.",
+        "status": "not_run",
+        "evidenceType": "none",
+        "reason": "Native compilation and execution are not connected in this first version."
+      },
+      {
+        "id": "F02",
+        "title": "Tampering rejection",
+        "requirement": "Modified ciphertext, nonce, authentication tag and associated data are rejected.",
+        "status": "not_run",
+        "evidenceType": "none",
+        "reason": "Native compilation and execution are not connected in this first version."
+      },
+      {
+        "id": "F03",
+        "title": "Authentication before output",
+        "requirement": "Failed authenticated decryption exposes no plaintext and reports failure.",
+        "status": "not_run",
+        "evidenceType": "none",
+        "reason": "Native compilation and execution are not connected in this first version."
+      },
+      {
+        "id": "F04",
+        "title": "Key and nonce handling",
+        "requirement": "Use a 16-byte key, 12-byte nonce and 16-byte tag for this profile; never reuse a nonce for encryption under the same key.",
+        "status": "not_run",
+        "evidenceType": "none",
+        "reason": "Native compilation and execution are not connected in this first version."
+      },
+      {
+        "id": "F05",
+        "title": "Input boundaries",
+        "requirement": "Reject malformed lengths and handle output-buffer capacities safely.",
+        "status": "not_run",
+        "evidenceType": "none",
+        "reason": "Native compilation and execution are not connected in this first version."
+      }
+    ],
+    "execution": {
+      "status": "not_run",
+      "reason": "Tool installation deferred."
+    },
+    "formalVerification": {
+      "status": "not_run",
+      "reason": "Formal verifier installation deferred."
+    },
+    "model": {
+      "model": "gpt-6-astra",
+      "reasoningEffort": "medium",
+      "provider": "OpenAI API",
+      "digest": null,
+      "state": "missing_key",
+      "message": "Connect an OpenAI API key to enable GPT-6 Astra · Medium.",
+      "discarded": 0,
+      "sourceSent": false
+    },
+    "candidateExecuted": false,
+    "limitations": [
+      "Assessments are based on source inspection and may be incorrect.",
+      "Compilation, execution and formal verification have not run.",
+      "No issues identified does not mean proven secure or deployable."
+    ],
+    "learning": {
+      "enabled": false,
+      "phase": "Awaiting first reviewed testing phase",
+      "policyVersion": "1.0"
+    },
+    "provenance": {
+      "policy": "The backend derives assessments from validated model output. Model claims are never formal evidence.",
+      "sourceStored": false
+    }
+  }
+}

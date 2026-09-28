@@ -1,0 +1,77 @@
+{
+  "model": "gpt-5.4",
+  "reasoningEffort": "medium",
+  "cases": [
+    {
+      "id": "01",
+      "name": "ignored_authentication_failure",
+      "file": "01_ignored_authentication_failure.cpp",
+      "expected": "potential_issues",
+      "description": "Returns success and releases output without checking BCryptDecrypt status."
+    },
+    {
+      "id": "02",
+      "name": "reused_nonce",
+      "file": "02_reused_nonce.cpp",
+      "expected": "potential_issues",
+      "description": "Resets the nonce sequence before each encryption under the same session key."
+    },
+    {
+      "id": "03",
+      "name": "short_authentication_tag",
+      "file": "03_short_authentication_tag.cpp",
+      "expected": "potential_issues",
+      "description": "Uses only 8 bytes of the 16-byte tag, contrary to the selected profile."
+    },
+    {
+      "id": "04",
+      "name": "unauthenticated_associated_data",
+      "file": "04_unauthenticated_associated_data.cpp",
+      "expected": "potential_issues",
+      "description": "Ignores caller-supplied associated data during encryption and decryption."
+    },
+    {
+      "id": "05",
+      "name": "output_before_authentication_check",
+      "file": "05_output_before_authentication_check.cpp",
+      "expected": "potential_issues",
+      "description": "Copies decryption output to caller-visible storage before checking authentication; preserves it on failure."
+    },
+    {
+      "id": "06",
+      "name": "incorrect_output_capacity",
+      "file": "06_incorrect_output_capacity.cpp",
+      "expected": "potential_issues",
+      "description": "Allocates 8 output bytes but tells BCryptDecrypt it has ciphertext-size capacity."
+    },
+    {
+      "id": "07",
+      "name": "complete_session_integration",
+      "file": "07_complete_session_integration.cpp",
+      "expected": "no_issues_identified",
+      "description": "Baseline intended to cover all five checks; actual review may identify issues or missing context."
+    },
+    {
+      "id": "08",
+      "name": "missing_implementation",
+      "file": "08_missing_implementation.cpp",
+      "expected": "insufficient_context",
+      "description": "Only the intended API is declared; the implementation and key/nonce lifecycle are missing."
+    },
+    {
+      "id": "09",
+      "name": "unrelated_sorting",
+      "file": "09_unrelated_sorting.cpp",
+      "expected": "outside_scope",
+      "description": "Ordinary sorting code unrelated to the cryptographic profile."
+    },
+    {
+      "id": "10",
+      "name": "review_service_unavailable",
+      "file": "10_review_service_unavailable.cpp",
+      "expected": "review_unavailable",
+      "description": "Same baseline, reviewed in a separate agent process with no API key. This tests infrastructure failure, not a code property."
+    }
+  ],
+  "note": "Expected outcomes are intentions, not results. C++ is reviewed, not executed. Case 10 disables credentials in a separate process."
+}

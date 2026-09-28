@@ -1,0 +1,57 @@
+{
+  "id": "aes128-gcm-tampering-v1",
+  "version": "1.0.0",
+  "scheme": "AES-128-GCM",
+  "language": "C++20",
+  "library": "Windows CNG",
+  "attacker": "Message tampering",
+  "keyBytes": 16,
+  "nonceBytes": 12,
+  "tagBytes": 16,
+  "model": "gpt-5.4",
+  "reasoningEffort": "medium",
+  "modelProvider": "OpenAI API",
+  "maxSourceBytes": 65536,
+  "maxSourceLines": 2000,
+  "checks": [
+    {
+      "id": "F01",
+      "title": "Functional correctness",
+      "requirement": "Valid supported inputs encrypt and decrypt correctly."
+    },
+    {
+      "id": "F02",
+      "title": "Tampering rejection",
+      "requirement": "Modified ciphertext, nonce, authentication tag and associated data are rejected."
+    },
+    {
+      "id": "F03",
+      "title": "Authentication before output",
+      "requirement": "Failed authenticated decryption exposes no plaintext and reports failure."
+    },
+    {
+      "id": "F04",
+      "title": "Key and nonce handling",
+      "requirement": "Use a 16-byte key, 12-byte nonce and 16-byte tag for this profile; never reuse a nonce for encryption under the same key."
+    },
+    {
+      "id": "F05",
+      "title": "Input boundaries",
+      "requirement": "Reject malformed lengths and handle output-buffer capacities safely."
+    }
+  ],
+  "assumptions": [
+    "Trusted Windows CNG and operating system",
+    "Attacker cannot read the secret key",
+    "Attacker may modify encrypted inputs and observe public status/output"
+  ],
+  "exclusions": [
+    "Replay prevention",
+    "Timing and physical side channels",
+    "Universal memory-safety proof"
+  ],
+  "learning": {
+    "enabled": false,
+    "policy": "Changes require a completed testing phase, reviewed evidence, regression evaluation and explicit activation. Never train on raw model claims."
+  }
+}
