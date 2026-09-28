@@ -1,0 +1,27 @@
+{
+  "case_id": "F26_oversize_plaintext",
+  "scenario_group": "F26",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F26_oversize_plaintext/candidate.cpp",
+  "source_sha256": "a7200a521329baf79c52fbedc985cccfefd977600030100f1584c3b6ca097eff",
+  "plaintext_bytes": 1048576,
+  "aad_bytes": 0,
+  "mutations": [
+    "oversize_plaintext"
+  ],
+  "expected_violations": [
+    "M-01"
+  ],
+  "trigger_checks": [
+    "oversize-plaintext"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Restore the plaintext limit before allocation."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

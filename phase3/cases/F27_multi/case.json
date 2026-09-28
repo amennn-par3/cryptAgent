@@ -1,0 +1,30 @@
+{
+  "case_id": "F27_multi",
+  "scenario_group": "F27",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "multiple_defects",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F27_multi/candidate.cpp",
+  "source_sha256": "b230c54512f95cb3ba0b74955acc098508665498ac51cb9261ed5832607d1b5e",
+  "plaintext_bytes": 1048576,
+  "aad_bytes": 1,
+  "mutations": [
+    "reject_empty",
+    "reject_boundary"
+  ],
+  "expected_violations": [
+    "F-01"
+  ],
+  "trigger_checks": [
+    "empty",
+    "boundary"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Accept a valid zero-length plaintext.",
+    "Accept the inclusive maximum size."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

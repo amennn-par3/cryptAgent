@@ -1,0 +1,31 @@
+{
+  "case_id": "F06_multi",
+  "scenario_group": "F06",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "multiple_defects",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F06_multi/candidate.cpp",
+  "source_sha256": "c91d70486a5c67539cfd41cfba1b23868693d4376fe5c8aa9c6e47e5a271b3c9",
+  "plaintext_bytes": 1,
+  "aad_bytes": 0,
+  "mutations": [
+    "log_key",
+    "oversize_plaintext"
+  ],
+  "expected_violations": [
+    "M-01",
+    "S-01"
+  ],
+  "trigger_checks": [
+    "log",
+    "oversize-plaintext"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Never output secret key bytes.",
+    "Restore the plaintext limit before allocation."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

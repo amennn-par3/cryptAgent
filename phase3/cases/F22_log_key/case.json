@@ -1,0 +1,27 @@
+{
+  "case_id": "F22_log_key",
+  "scenario_group": "F22",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F22_log_key/candidate.cpp",
+  "source_sha256": "a002ecd7222717c69ddefca1cf4329c74ad33756b42cdef0899ad2d9251bfaff",
+  "plaintext_bytes": 17,
+  "aad_bytes": 1,
+  "mutations": [
+    "log_key"
+  ],
+  "expected_violations": [
+    "S-01"
+  ],
+  "trigger_checks": [
+    "log"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Never output secret key bytes."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

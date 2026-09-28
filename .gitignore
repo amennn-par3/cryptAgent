@@ -16,13 +16,15 @@ Desktop.ini
 .vscode/
 .idea/
 
-# Python caches used by report generation
+# Python environments and caches
 __pycache__/
 *.py[cod]
 .venv/
 .training-venv/
 
-# Temporary evaluation rendering
+# Generated validation and evaluation output
+native-results/
+demo-output/
 evaluation/tmp/
 
 # Local LLM runtimes, weights, adapters, and checkpoints

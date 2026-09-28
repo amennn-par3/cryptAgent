@@ -1,0 +1,31 @@
+{
+  "case_id": "F14_multi",
+  "scenario_group": "F14",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "validation",
+  "kind": "multiple_defects",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F14_multi/candidate.cpp",
+  "source_sha256": "9c7c1f88be5a92db6f7f1996e9b86895a6c69c425784ba5f54f6a95072f9ae7a",
+  "plaintext_bytes": 15,
+  "aad_bytes": 255,
+  "mutations": [
+    "reject_boundary",
+    "fixed_nonce"
+  ],
+  "expected_violations": [
+    "C-03",
+    "F-01"
+  ],
+  "trigger_checks": [
+    "boundary",
+    "fixed-nonce"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Accept the inclusive maximum size.",
+    "Fresh random nonce on every encryption; inspect RNG data flow."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

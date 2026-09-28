@@ -1,0 +1,27 @@
+{
+  "case_id": "F27_fixed_nonce",
+  "scenario_group": "F27",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F27_fixed_nonce/candidate.cpp",
+  "source_sha256": "0124046bc93746a93faa87acff7a25051601baedaa7c24258326a8f2a14c5b8f",
+  "plaintext_bytes": 1048576,
+  "aad_bytes": 1,
+  "mutations": [
+    "fixed_nonce"
+  ],
+  "expected_violations": [
+    "C-03"
+  ],
+  "trigger_checks": [
+    "fixed-nonce"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Fresh random nonce on every encryption; inspect RNG data flow."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

@@ -1,0 +1,20 @@
+{
+  "case_ids": [
+    "F01_reference",
+    "F01_fixed_nonce",
+    "F01_fixed_key",
+    "F01_ignore_auth",
+    "F01_multi",
+    "F02_reference",
+    "F02_omit_aad",
+    "F02_log_plaintext",
+    "F02_log_key",
+    "F02_multi",
+    "F03_reference",
+    "F03_oversize_plaintext",
+    "F03_oversize_aad",
+    "F03_reject_empty",
+    "F03_multi"
+  ],
+  "purpose": "first 15 development cases"
+}

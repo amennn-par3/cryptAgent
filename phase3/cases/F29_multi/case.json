@@ -1,0 +1,30 @@
+{
+  "case_id": "F29_multi",
+  "scenario_group": "F29",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "validation",
+  "kind": "multiple_defects",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F29_multi/candidate.cpp",
+  "source_sha256": "265d56625d4e71f1925181159ad8a2efa42e80031d4b77a206c2705f01901467",
+  "plaintext_bytes": 1048576,
+  "aad_bytes": 255,
+  "mutations": [
+    "log_plaintext",
+    "log_key"
+  ],
+  "expected_violations": [
+    "S-01"
+  ],
+  "trigger_checks": [
+    "log",
+    "log"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Remove plaintext logging, including debug sinks.",
+    "Never output secret key bytes."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

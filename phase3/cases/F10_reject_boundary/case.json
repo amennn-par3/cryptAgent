@@ -1,0 +1,27 @@
+{
+  "case_id": "F10_reject_boundary",
+  "scenario_group": "F10",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "heldout",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F10_reject_boundary/candidate.cpp",
+  "source_sha256": "41723c6e9a9abfc1ba3a0ef42e35d37ea0aff205be641fd21cac7d534984b8ac",
+  "plaintext_bytes": 1,
+  "aad_bytes": 65536,
+  "mutations": [
+    "reject_boundary"
+  ],
+  "expected_violations": [
+    "F-01"
+  ],
+  "trigger_checks": [
+    "boundary"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Accept the inclusive maximum size."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

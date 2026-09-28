@@ -1,0 +1,28 @@
+{
+  "case_id": "F18_ignore_auth",
+  "scenario_group": "F18",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F18_ignore_auth/candidate.cpp",
+  "source_sha256": "61eb2695dc667cb1ec59ccc87d15f6d55c3b71792e7c9c754228b04ab3a14157",
+  "plaintext_bytes": 16,
+  "aad_bytes": 16,
+  "mutations": [
+    "ignore_auth"
+  ],
+  "expected_violations": [
+    "C-04",
+    "E-01"
+  ],
+  "trigger_checks": [
+    "tamper"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Reject failed authentication and return no value."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}

@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "mode": {
+      "enum": [
+        "assess",
+        "generate",
+        "repair"
+      ]
+    },
+    "spec_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile_id": {
+      "const": "windows-msvc-x64-v1"
+    }
+  },
+  "required": [
+    "mode",
+    "spec_path",
+    "source_path",
+    "profile_id"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

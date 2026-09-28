@@ -1,0 +1,21 @@
+{
+  "case_id": "F10_reference",
+  "scenario_group": "F10",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "heldout",
+  "kind": "reference",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F10_reference/candidate.cpp",
+  "source_sha256": "bf6e491742dc7e7c25a96254e5545ef0e092a13c6c39dae654ad49cdf825c4d8",
+  "plaintext_bytes": 1,
+  "aad_bytes": 65536,
+  "mutations": [],
+  "expected_violations": [],
+  "trigger_checks": [
+    "roundtrip"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [],
+  "all_other_requirements": "inconclusive_until_checked"
+}

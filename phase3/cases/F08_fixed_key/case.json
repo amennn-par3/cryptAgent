@@ -1,0 +1,27 @@
+{
+  "case_id": "F08_fixed_key",
+  "scenario_group": "F08",
+  "source_ancestry": "shared-reference-template-v1",
+  "split": "development",
+  "kind": "single_defect",
+  "spec_path": "phase2/examples/spec.json",
+  "source_path": "phase3/cases/F08_fixed_key/candidate.cpp",
+  "source_sha256": "f92096e1616e1ecd07544bb0b366b6b4fa478887a1e5ffa81f9750cef612d477",
+  "plaintext_bytes": 1,
+  "aad_bytes": 16,
+  "mutations": [
+    "fixed_key"
+  ],
+  "expected_violations": [
+    "C-02"
+  ],
+  "trigger_checks": [
+    "fixed-key"
+  ],
+  "label_status": "authored_expectation_pending_native_confirmation",
+  "evidence_artifacts": [],
+  "repair_expectations": [
+    "Use the library key generator; inspect production key source."
+  ],
+  "all_other_requirements": "inconclusive_until_checked"
+}
