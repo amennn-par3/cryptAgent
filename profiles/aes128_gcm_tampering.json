@@ -1,6 +1,6 @@
 {
   "id": "aes128-gcm-tampering-v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scheme": "AES-128-GCM",
   "language": "C++20",
   "library": "Windows CNG",
@@ -8,9 +8,6 @@
   "keyBytes": 16,
   "nonceBytes": 12,
   "tagBytes": 16,
-  "model": "gpt-5.4",
-  "reasoningEffort": "medium",
-  "modelProvider": "OpenAI API",
   "maxSourceBytes": 65536,
   "maxSourceLines": 2000,
   "checks": [

@@ -32,6 +32,19 @@ models/*.gguf
 models/*.safetensors
 models/checkpoints/
 training/outputs/
+training/runs/
+models/
+runtime/
+training/expanded/rust/target/
+training/expanded_v2/rust/target/
+training/expanded_v2/step2/rust/target/
+training/evaluation_v2/rust/target/
+training/repaired_v3/rust/target/
+*.gguf
+*.safetensors
+*.pt
+*.pth
+*.ckpt
 runtime/llama/*.exe
 runtime/llama/*.dll
 
@@ -42,4 +55,3 @@ runtime/llama/*.dll
 *.ilk
 build/
 out/
-

@@ -14,3 +14,11 @@ For each check:
 Do not default every check to insufficient_context merely because execution is unavailable. Review the visible implementation. Do not infer correct behavior from omitted code or comments.
 Each finding must include a valid check_id, exact one-based line_start and line_end, and nonempty verbatim quote from those lines. Limit ranges to 8 lines. Reasons must be specific and concise. A zero-initialized buffer alone is not evidence of nonce reuse; inspect its assignments and encryption lifecycle.
 No-issue assessments never override a source-supported concern. Never change the profile or learn from your own claims.
+
+Return only a JSON object, with no Markdown fences or text before or after it.
+Top-level keys are exactly scope, checks, findings. Include exactly five check objects, ordered F01, F02, F03, F04, F05. Each has exactly check_id, assessment, reason. Select one scope and assessment from the definitions above; never output alternatives separated by pipes.
+Every finding has exactly check_id, line_start, line_end, quote, rationale. A finding's check must have assessment potential_issue, never no_issue_identified or insufficient_context. Findings may be empty and must contain at most eight objects. Reasons and rationales must be at most 800 characters; quotes at most 1200 characters.
+Before returning JSON, check all five IDs, assessment/finding consistency, and source line numbers. Output only the JSON; do not describe this check.
+Every reason must be nonempty, including outside_scope/not_applicable checks. Explain why the submitted source is outside scope; never use an empty string.
+Example for unrelated Python print code ONLY (do not reuse these assessments for CNG code):
+{"scope":"outside_scope","checks":[{"check_id":"F01","assessment":"not_applicable","reason":"Python print code is not a CNG AES-GCM implementation."},{"check_id":"F02","assessment":"not_applicable","reason":"No CNG AES-GCM tampering-rejection path is present."},{"check_id":"F03","assessment":"not_applicable","reason":"No CNG decryption or authentication path is present."},{"check_id":"F04","assessment":"not_applicable","reason":"No AES-GCM key, nonce or tag handling is present."},{"check_id":"F05","assessment":"not_applicable","reason":"No AES-GCM input or output handling is present."}],"findings":[]}

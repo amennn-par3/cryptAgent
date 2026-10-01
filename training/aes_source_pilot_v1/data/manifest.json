@@ -1,0 +1,101 @@
+{
+  "version": "aes-source-pilot-v1",
+  "training_ready": false,
+  "training_authorized": false,
+  "readiness_blockers": [
+    "Independent full-session label review and fresh evaluation split remain outstanding.",
+    "Training was deferred by the owner while selecting the appropriate dataset."
+  ],
+  "readiness_scope": "Candidate AES source-review pilot, not production/security validation.",
+  "profile_id": "aes128-gcm-tampering-v1",
+  "counts": {
+    "train": 22,
+    "validation": 4,
+    "test": 4
+  },
+  "sha256": {
+    "train": "2bd3d76f6bb50eb692378141e6c7c7cba4ad2fb676a46d1d8c7e59d73d76517c",
+    "validation": "7fb7a0242108e4a6d19f8141c09ee86fc98a36d97be6811ccf115eec1430c9b8",
+    "test": "3863ce55607d45d335d3232113d622c58b469287cff4479a7d0fff958985e0fc"
+  },
+  "prompt_sha256": "e5524d9ba537a771a039a089896f8517668ad9bb9a802ab1d6fe35389fe3f212",
+  "profile_sha256": "460b07a5fc0df98811daa793b164ab4bd1310de7d856e06510609f385237c952",
+  "token_lengths": {
+    "ignored_status-0": 1499,
+    "early_copy-0": 1436,
+    "counter_reset-0": 1527,
+    "fixed_nonce-0": 1481,
+    "short_tag-0": 1412,
+    "omitted_aad-0": 1439,
+    "capacity_lie-0": 1425,
+    "wrong_key_length-0": 1401,
+    "reject_empty-0": 1317,
+    "subtract_underflow-0": 1387,
+    "status_checked-0": 1463,
+    "fresh_random-0": 1412,
+    "declarations-0": 1292,
+    "unrelated_sort-0": 1291,
+    "other_library-0": 1282,
+    "comment_injection-0": 1365,
+    "v3_aes_correct": 2981,
+    "v3_aes_empty": 3046,
+    "v3_aes_authentication": 3049,
+    "v3_aes_publication": 3042,
+    "v3_aes_keysize": 3015,
+    "v3_aes_bounds": 2998,
+    "validation_status_branch-0": 1354,
+    "validation_nonce_length-0": 1372,
+    "validation_unknown_helper-0": 1266,
+    "validation_python-0": 1241,
+    "test_false_gate-0": 1368,
+    "test_tag_zero-0": 1366,
+    "test_unrelated-0": 1234,
+    "test_no_body-0": 1243
+  },
+  "normalized_unique_sources": 30,
+  "families": {
+    "train": [
+      "capacity_lie",
+      "comment_injection",
+      "complete-cng-session-v3",
+      "counter_reset",
+      "declarations",
+      "early_copy",
+      "fixed_nonce",
+      "fresh_random",
+      "ignored_status",
+      "omitted_aad",
+      "other_library",
+      "reject_empty",
+      "short_tag",
+      "status_checked",
+      "subtract_underflow",
+      "unrelated_sort",
+      "wrong_key_length"
+    ],
+    "validation": [
+      "validation_nonce_length",
+      "validation_python",
+      "validation_status_branch",
+      "validation_unknown_helper"
+    ],
+    "test": [
+      "test_false_gate",
+      "test_no_body",
+      "test_tag_zero",
+      "test_unrelated"
+    ]
+  },
+  "train_assessment_counts": {
+    "insufficient_context": 64,
+    "potential_issue": 16,
+    "no_issue_identified": 20,
+    "not_applicable": 10
+  },
+  "limitations": [
+    "Synthetic excerpts and six related full-session variants; not 30 independent projects.",
+    "Validation/test are historical development sets, excluded from this run but previously inspected in project experiments.",
+    "Most omitted-context checks abstain; no whole-program secure/insecure labels are inferred.",
+    "No native Windows execution. Dataset is too small for a generalization claim."
+  ]
+}

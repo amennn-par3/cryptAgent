@@ -1,10 +1,53 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cryptagent · Verification workspace</title><meta name="description" content="Local cryptographic code review with traceable evidence."><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232a58ed'/%3E%3Cpath d='M16 6 25 10v7c0 5-9 10-9 10S7 22 7 17v-7z' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E"><link rel="stylesheet" href="/styles.css"></head>
-<body><div class="shell"><aside class="sidebar"><a class="brand" href="/" aria-label="Cryptagent home"><span class="brand-icon">C<span>·</span></span>cryptagent</a><div class="workspace-label">YOUR WORKSPACE</div><div class="nav-active"><span aria-hidden="true">⌘</span> Code verification <span class="nav-mark">01</span></div><div class="sidebar-bottom"><div class="local-icon" aria-hidden="true">⌁</div><strong>Local app. OpenAI review.</strong><p>AI reviews send code to OpenAI. This app does not save your source.</p><span class="version">Windows · First build</span></div></aside>
-<div class="main"><header class="topbar"><div>Workspace <span>/</span> Verification</div></header>
-<main><div class="heading-row"><div><div class="eyebrow">CRYPTOGRAPHIC CODE REVIEW</div><h1>Verification workspace</h1><p class="subtitle">Inspect your code. Understand the evidence.</p></div><div class="privacy-badge"><span aria-hidden="true">◈</span> OpenAI API · Medium</div></div>
-<section class="profile-panel" aria-label="Verification settings"><label>MODE<select id="mode"><option value="verify">Verify code</option></select></label><label>SCHEME<select id="scheme"><option>AES</option></select></label><label>ATTACKER<select id="attacker"><option>Message tampering</option></select></label><label>LANGUAGE<select id="language"><option>C++20 · Windows CNG</option></select></label></section>
-<div class="work-grid"><section class="editor-panel" aria-labelledby="code-heading"><div class="panel-header"><div><span class="section-number">01</span><h2 id="code-heading">Your source code</h2></div><button class="text-button" id="upload">Upload .cpp <span aria-hidden="true">↥</span></button><input id="file" type="file" accept=".cpp,.cc,.cxx,.h,.hpp" hidden></div><div class="editor-tab"><span class="file-icon">C++</span><span id="filename">untitled.cpp</span><span class="editor-hint">PASTE OR UPLOAD</span></div><div class="editor-body"><pre id="line-numbers" aria-hidden="true">1</pre><textarea id="code" aria-label="C++ source code" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="// Paste your C++ encryption or decryption code here.&#10;// AI review sends this source to OpenAI."></textarea></div><div class="editor-footer"><span id="source-meta">0 lines · 0 bytes</span><button class="text-button" id="clear">Clear</button></div><div class="action-area"><p>Checks follow the selected scheme and attacker.<br><span>Each requirement receives a source-review assessment.</span></p><button id="verify" class="primary-button" disabled><span class="button-icon" aria-hidden="true">⌕</span><span id="verify-label">Verify code</span><span aria-hidden="true">→</span></button></div><div id="request-error" class="request-error" role="alert" hidden></div></section>
-<section class="result-panel" aria-labelledby="result-heading"><div class="panel-header"><div><span class="section-number">02</span><h2 id="result-heading">Review & evidence</h2></div><button id="download" class="text-button" hidden>Export JSON</button></div><div id="empty-state" class="empty-state"><div class="evidence-symbol" aria-hidden="true"><span>⌕</span></div><h3>A clear picture starts here</h3><p>Submit your code to see source observations,<br>AI assessments, and missing evidence.</p><div class="empty-checks"><span>Source references</span><span>Explicit limitations</span><span>No invented verdicts</span></div></div><div id="loading-state" class="loading-state" role="status" hidden><div class="spinner"></div><h3>Reviewing your source</h3><p>Checking the code and requesting GPT-5.4 review.<br>This may take up to two minutes.</p></div><div id="report" hidden aria-live="polite"></div><div class="result-footnote">A source review does not prove cryptographic security.</div></section></div>
-<section class="bottom-grid"><div class="runtime-card"><span class="runtime-symbol" aria-hidden="true">✳</span><div><strong>OpenAI reviewer</strong><p id="model-status">Checking connection…</p></div><button id="refresh" class="text-button">Refresh</button></div></section>
-<details class="setup" id="model-setup"><summary>Model setup</summary><div><p>Connect <strong>GPT-5.4 · Medium</strong> using an OpenAI API key with access to this model. Your ChatGPT sign-in is not used by this application. API usage is billed to the API project.</p><form id="connect-form"><label for="api-key">OpenAI API key</label><div class="key-controls"><input id="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your OpenAI API key" maxlength="512" required><button class="primary-button" id="connect-model" type="submit">Connect GPT-5.4</button><button class="text-button" id="disconnect-model" type="button">Disconnect</button></div></form><p id="connection-message" role="status">The key is held in this local server session only and is sent only to OpenAI for API authentication. Reviews send code to OpenAI with response storage disabled.</p></div></details><footer>CRYPTAGENT <span>Evidence first. Uncertainty visible.</span></footer></main></div></div><script src="/app.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CryptAgent · AES review</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main>
+    <header class="heading">
+      <div><h1>CryptAgent</h1><p>AES code review</p></div>
+      <span class="local-badge">Runs locally</span>
+    </header>
+    <section class="profile-panel" aria-label="Active review profile">
+      <div><span>Scheme</span><strong>AES-128-GCM</strong></div>
+      <div><span>Code</span><strong>C++20 · Windows CNG</strong></div>
+      <div><span>Threat</span><strong>Message tampering</strong></div>
+    </section>
+    <section class="connection" aria-label="Local model status">
+      <p id="model-status" role="status">Checking local model…</p>
+      <button id="refresh" type="button">Refresh</button>
+    </section>
+    <div class="work-grid">
+      <section class="panel" aria-labelledby="code-heading">
+        <div class="panel-header">
+          <h2 id="code-heading">Source code</h2>
+          <button id="upload" type="button">Open C++ file</button>
+          <input id="file" type="file" accept=".cpp,.cc,.cxx,.h,.hpp" hidden>
+        </div>
+        <div class="file-meta"><span id="filename">untitled.cpp</span><span id="source-meta">0 lines · 0 bytes</span></div>
+        <div class="editor">
+          <pre id="line-numbers" aria-hidden="true">1</pre>
+          <textarea id="code" aria-label="C++ source code" spellcheck="false" autocomplete="off" placeholder="// Paste the AES encryption or decryption implementation here."></textarea>
+        </div>
+        <div class="actions">
+          <button id="clear" type="button">Clear</button>
+          <button id="verify" class="primary" type="button" disabled>Review AES code</button>
+        </div>
+        <p id="request-error" class="error" role="alert" hidden></p>
+      </section>
+      <section class="panel" aria-labelledby="result-heading">
+        <div class="panel-header"><h2 id="result-heading">Review</h2><button id="download" type="button" hidden>Export JSON</button></div>
+        <p id="empty-state" class="placeholder">Submit code to see findings, source lines, and the five requirement assessments.</p>
+        <p id="loading-state" class="placeholder" role="status" hidden>Local Llama is reviewing the source. This can take up to two minutes.</p>
+        <div id="report" aria-live="polite" hidden></div>
+      </section>
+    </div>
+    <footer>Source review only. Compilation and runtime tests are not connected. Submitted code is not used for training.</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

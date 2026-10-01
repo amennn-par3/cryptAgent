@@ -1,0 +1,361 @@
+{
+  "version": "multi-profile-pilot-v1",
+  "counts": {
+    "train": 42,
+    "validation": 6,
+    "test": 10
+  },
+  "sha256": {
+    "train": "62d9b2e7c3d95ce30034972eab32ad7586b30650f1dfd0a18419722bdc70b793",
+    "validation": "c87dfc9c8ebfd3461b86d1374a94a9c13544f104f20efeb4359d23e10978c9a3",
+    "test": "bfb2cb5bbb3d75ce088d4f00afb34067c38cac93073a0202c68741f99e31f620"
+  },
+  "fhe_cases": [
+    {
+      "id": "ckks_export_private",
+      "family": "ckks-key-export",
+      "split": "train",
+      "scheme": "ckks",
+      "profile_id": "ckks-tenseal-review-v1",
+      "source_path": "training/expanded/cases/ckks_export_private.py",
+      "source_sha256": "ec6cb6b6d9078eadf48932dc2cc745c8c20886fb140ae643eb818d5dd1e95300",
+      "requirement": "H03",
+      "expected_property_satisfied": false
+    },
+    {
+      "id": "ckks_export_public",
+      "family": "ckks-key-export",
+      "split": "train",
+      "scheme": "ckks",
+      "profile_id": "ckks-tenseal-review-v1",
+      "source_path": "training/expanded/cases/ckks_export_public.py",
+      "source_sha256": "14b03c30d367ed881cb6589b5c96a3f68630cd67a2e72edf754fe186ac234cd7",
+      "requirement": "H03",
+      "expected_property_satisfied": true
+    },
+    {
+      "id": "ckks_accept_any",
+      "family": "ckks-result",
+      "split": "test",
+      "scheme": "ckks",
+      "profile_id": "ckks-tenseal-review-v1",
+      "source_path": "training/expanded/cases/ckks_accept_any.py",
+      "source_sha256": "7a2c70d8d2573655fe17bb044b82816f0871b6ff910ca63d5a84e8db8b2a71f3",
+      "requirement": "H02",
+      "expected_property_satisfied": false
+    },
+    {
+      "id": "ckks_validate_result",
+      "family": "ckks-result",
+      "split": "test",
+      "scheme": "ckks",
+      "profile_id": "ckks-tenseal-review-v1",
+      "source_path": "training/expanded/cases/ckks_validate_result.py",
+      "source_sha256": "1fc536f78b189d86f754e0133a76dca189c9906b98ebb9fd546916856f519f00",
+      "requirement": "H02",
+      "expected_property_satisfied": true
+    },
+    {
+      "id": "ckks_unbounded",
+      "family": "ckks-input",
+      "split": "train",
+      "scheme": "ckks",
+      "profile_id": "ckks-tenseal-review-v1",
+      "source_path": "training/expanded/cases/ckks_unbounded.py",
+      "source_sha256": "a6360bc25f8b4e0827e18c683ea1fb9d57dfa8a629df19250469847cc9adf470",
+      "requirement": "H05",
+      "expected_property_satisfied": false
+    },
+    {
+      "id": "ckks_bounded",
+      "family": "ckks-input",
+      "split": "train",
+      "scheme": "ckks",
+      "profile_id": "ckks-tenseal-review-v1",
+      "source_path": "training/expanded/cases/ckks_bounded.py",
+      "source_sha256": "adce9634693c29dd2a57c2b8ceed0796c3ddda2372d4b7852a9f55def07a58a5",
+      "requirement": "H05",
+      "expected_property_satisfied": true
+    },
+    {
+      "id": "tfhe_export_private",
+      "family": "tfhe-key-export",
+      "split": "train",
+      "scheme": "tfhe",
+      "profile_id": "tfhe-rs-review-v1",
+      "source_path": "training/expanded/cases/tfhe_export_private.rs",
+      "source_sha256": "232d15ce8a8afe6ff8522052ac90e47092548543fcf6440340c727fddb7460a8",
+      "requirement": "H03",
+      "expected_property_satisfied": false
+    },
+    {
+      "id": "tfhe_export_public",
+      "family": "tfhe-key-export",
+      "split": "train",
+      "scheme": "tfhe",
+      "profile_id": "tfhe-rs-review-v1",
+      "source_path": "training/expanded/cases/tfhe_export_public.rs",
+      "source_sha256": "f7dc5c3d9731253719eb2a149695c5632f4b6bfa6a14e4b17140c6ca346b0891",
+      "requirement": "H03",
+      "expected_property_satisfied": true
+    },
+    {
+      "id": "tfhe_wrapping_sum",
+      "family": "tfhe-numeric",
+      "split": "train",
+      "scheme": "tfhe",
+      "profile_id": "tfhe-rs-review-v1",
+      "source_path": "training/expanded/cases/tfhe_wrapping_sum.rs",
+      "source_sha256": "aa62c91750d981ee363b1f3c178e6d7526a10dc2735773796d7baf5c1ed528a9",
+      "requirement": "H01",
+      "expected_property_satisfied": false
+    },
+    {
+      "id": "tfhe_widened_sum",
+      "family": "tfhe-numeric",
+      "split": "train",
+      "scheme": "tfhe",
+      "profile_id": "tfhe-rs-review-v1",
+      "source_path": "training/expanded/cases/tfhe_widened_sum.rs",
+      "source_sha256": "297052fd97eec7f736c2a7bae446c40aea9f9176d5bd465222a10422f0d73aaa",
+      "requirement": "H01",
+      "expected_property_satisfied": true
+    },
+    {
+      "id": "tfhe_accept_any",
+      "family": "tfhe-result",
+      "split": "test",
+      "scheme": "tfhe",
+      "profile_id": "tfhe-rs-review-v1",
+      "source_path": "training/expanded/cases/tfhe_accept_any.rs",
+      "source_sha256": "dfafb578e549d0a2fde19914db0ed6d2ef5f6011b6317506988f3c8327136316",
+      "requirement": "H02",
+      "expected_property_satisfied": false
+    },
+    {
+      "id": "tfhe_validate_result",
+      "family": "tfhe-result",
+      "split": "test",
+      "scheme": "tfhe",
+      "profile_id": "tfhe-rs-review-v1",
+      "source_path": "training/expanded/cases/tfhe_validate_result.rs",
+      "source_sha256": "e577a04a15873280e16755ded64cd961a60e37d7cb474496097743d2035ad6a4",
+      "requirement": "H02",
+      "expected_property_satisfied": true
+    },
+    {
+      "id": "bfv_export_private",
+      "family": "bfv-key-export",
+      "split": "train",
+      "scheme": "bfv",
+      "profile_id": "bfv-openfhe-review-v1",
+      "source_path": "training/expanded/cases/bfv_export_private.hpp",
+      "source_sha256": "f0f18aab2ad400c52dc14240bb2708c0caff203b94aeca16b95226858d9dbd82",
+      "requirement": "H03",
+      "expected_property_satisfied": false
+    },
+    {
+      "id": "bfv_export_public",
+      "family": "bfv-key-export",
+      "split": "train",
+      "scheme": "bfv",
+      "profile_id": "bfv-openfhe-review-v1",
+      "source_path": "training/expanded/cases/bfv_export_public.hpp",
+      "source_sha256": "c6d23ac7374c2bb482339fe0e97926f6a1ce8c38e76d73da3f79e84dba321db2",
+      "requirement": "H03",
+      "expected_property_satisfied": true
+    },
+    {
+      "id": "bfv_unbounded_sum",
+      "family": "bfv-numeric",
+      "split": "validation",
+      "scheme": "bfv",
+      "profile_id": "bfv-openfhe-review-v1",
+      "source_path": "training/expanded/cases/bfv_unbounded_sum.hpp",
+      "source_sha256": "e5bef89f3feabc6bcc9e690b749325c28420241b7c53e4dc377ca1af10c5993f",
+      "requirement": "H01",
+      "expected_property_satisfied": false
+    },
+    {
+      "id": "bfv_bounded_sum",
+      "family": "bfv-numeric",
+      "split": "validation",
+      "scheme": "bfv",
+      "profile_id": "bfv-openfhe-review-v1",
+      "source_path": "training/expanded/cases/bfv_bounded_sum.hpp",
+      "source_sha256": "1c23649dd1e3fdd483c1b6c34887249e44409ade51e7efda11d534c3ee8744fa",
+      "requirement": "H01",
+      "expected_property_satisfied": true
+    },
+    {
+      "id": "bfv_accept_any",
+      "family": "bfv-result",
+      "split": "test",
+      "scheme": "bfv",
+      "profile_id": "bfv-openfhe-review-v1",
+      "source_path": "training/expanded/cases/bfv_accept_any.hpp",
+      "source_sha256": "a6efb19f8619419798f6b96bdb8a9204bd2452d3bc6d3dd27510f13789d2df9f",
+      "requirement": "H02",
+      "expected_property_satisfied": false
+    },
+    {
+      "id": "bfv_validate_result",
+      "family": "bfv-result",
+      "split": "test",
+      "scheme": "bfv",
+      "profile_id": "bfv-openfhe-review-v1",
+      "source_path": "training/expanded/cases/bfv_validate_result.hpp",
+      "source_sha256": "ae5475967e9310db4c269eb67e03522c3115ae9c17d032568fbfffdf86fb8f10",
+      "requirement": "H02",
+      "expected_property_satisfied": true
+    }
+  ],
+  "profiles": {
+    "ckks": {
+      "id": "ckks-tenseal-review-v1",
+      "scheme": "CKKS",
+      "language": "Python",
+      "library": "TenSEAL 0.3.16",
+      "parameters": {
+        "poly_modulus_degree": 8192,
+        "coeff_mod_bit_sizes": [
+          60,
+          40,
+          40,
+          60
+        ],
+        "scale": 1099511627776
+      },
+      "version": "1.0.0",
+      "platform": "Ubuntu 22.04 x86_64",
+      "checks": [
+        {
+          "id": "H01",
+          "title": "Functional and numerical correctness",
+          "requirement": "Honor the application arithmetic domain; CKKS comparisons use explicit tolerance and integer schemes respect their modulus."
+        },
+        {
+          "id": "H02",
+          "title": "Untrusted result handling",
+          "requirement": "When the application requires correct results from an untrusted evaluator, do not equate decryptability with correct computation. In these toy jobs, compare to the independently known expected result."
+        },
+        {
+          "id": "H03",
+          "title": "Secret-key and plaintext boundaries",
+          "requirement": "Do not send client/private/decryption keys or confidential plaintext to an untrusted evaluator. Public/evaluation/server keys may be shared."
+        },
+        {
+          "id": "H04",
+          "title": "Parameter and context handling",
+          "requirement": "Use library security presets and compatible keys/contexts. Assess visible configuration; omitted setup is insufficient context."
+        },
+        {
+          "id": "H05",
+          "title": "Input and resource bounds",
+          "requirement": "Enforce the documented input domain and resource budget before encryption, allocation or processing."
+        }
+      ],
+      "attacker": "Untrusted evaluator, modified computation results, or adversarial application inputs",
+      "exclusions": [
+        "Primitive cryptanalysis",
+        "General proof of evaluator correctness",
+        "Side-channel certification"
+      ]
+    },
+    "tfhe": {
+      "id": "tfhe-rs-review-v1",
+      "scheme": "TFHE",
+      "language": "Rust",
+      "library": "TFHE-rs 1.4.3",
+      "parameters": "ConfigBuilder::default(); CPU; integer API",
+      "version": "1.0.0",
+      "platform": "Ubuntu 22.04 x86_64",
+      "checks": [
+        {
+          "id": "H01",
+          "title": "Functional and numerical correctness",
+          "requirement": "Honor the application arithmetic domain; CKKS comparisons use explicit tolerance and integer schemes respect their modulus."
+        },
+        {
+          "id": "H02",
+          "title": "Untrusted result handling",
+          "requirement": "When the application requires correct results from an untrusted evaluator, do not equate decryptability with correct computation. In these toy jobs, compare to the independently known expected result."
+        },
+        {
+          "id": "H03",
+          "title": "Secret-key and plaintext boundaries",
+          "requirement": "Do not send client/private/decryption keys or confidential plaintext to an untrusted evaluator. Public/evaluation/server keys may be shared."
+        },
+        {
+          "id": "H04",
+          "title": "Parameter and context handling",
+          "requirement": "Use library security presets and compatible keys/contexts. Assess visible configuration; omitted setup is insufficient context."
+        },
+        {
+          "id": "H05",
+          "title": "Input and resource bounds",
+          "requirement": "Enforce the documented input domain and resource budget before encryption, allocation or processing."
+        }
+      ],
+      "attacker": "Untrusted evaluator, modified computation results, or adversarial application inputs",
+      "exclusions": [
+        "Primitive cryptanalysis",
+        "General proof of evaluator correctness",
+        "Side-channel certification"
+      ]
+    },
+    "bfv": {
+      "id": "bfv-openfhe-review-v1",
+      "scheme": "BFV (lattice-based)",
+      "language": "C++20",
+      "library": "OpenFHE 1.4.2",
+      "parameters": {
+        "plaintext_modulus": 65537,
+        "multiplicative_depth": 1,
+        "security": "HEStd_128_classic"
+      },
+      "version": "1.0.0",
+      "platform": "Ubuntu 22.04 x86_64",
+      "checks": [
+        {
+          "id": "H01",
+          "title": "Functional and numerical correctness",
+          "requirement": "Honor the application arithmetic domain; CKKS comparisons use explicit tolerance and integer schemes respect their modulus."
+        },
+        {
+          "id": "H02",
+          "title": "Untrusted result handling",
+          "requirement": "When the application requires correct results from an untrusted evaluator, do not equate decryptability with correct computation. In these toy jobs, compare to the independently known expected result."
+        },
+        {
+          "id": "H03",
+          "title": "Secret-key and plaintext boundaries",
+          "requirement": "Do not send client/private/decryption keys or confidential plaintext to an untrusted evaluator. Public/evaluation/server keys may be shared."
+        },
+        {
+          "id": "H04",
+          "title": "Parameter and context handling",
+          "requirement": "Use library security presets and compatible keys/contexts. Assess visible configuration; omitted setup is insufficient context."
+        },
+        {
+          "id": "H05",
+          "title": "Input and resource bounds",
+          "requirement": "Enforce the documented input domain and resource budget before encryption, allocation or processing."
+        }
+      ],
+      "attacker": "Untrusted evaluator, modified computation results, or adversarial application inputs",
+      "exclusions": [
+        "Primitive cryptanalysis",
+        "General proof of evaluator correctness",
+        "Side-channel certification"
+      ]
+    }
+  },
+  "limitations": [
+    "Small authored pilot; no independent-author or broad generalization claim.",
+    "Fixed and defective counterparts stay together in the same split.",
+    "Runtime probes establish only the named property for their concrete inputs.",
+    "No target label is copied from Llama output. Original Python crypto-llm examples excluded.",
+    "The FHE primitives are used for shallow computations here; bootstrapping/depth exhaustion is not tested."
+  ]
+}

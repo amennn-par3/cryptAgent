@@ -1,0 +1,444 @@
+{
+  "version": "curated-repair-v3",
+  "training_ready": false,
+  "training_authorized": false,
+  "counts": {
+    "train": 43,
+    "validation": 6,
+    "test": 6,
+    "regression": 10
+  },
+  "sha256": {
+    "train": "148d7fad3d38be97cd62d24e3215c7daffdd5f6700bd57d236e36d6351e4e496",
+    "validation": "8f1861080b8128c7fd54d4ceae2dd9492902e1754857f2ca3fc0d9da1d8d527a",
+    "test": "e378df8b88ab47f03caa91595b6e5cd9e5b14f7ba2efa012751fee6a45d92720",
+    "regression": "bfb2cb5bbb3d75ce088d4f00afb34067c38cac93073a0202c68741f99e31f620"
+  },
+  "parent_train_sha256": "e2e306403261412db574c80a952e683934146543680c72196d98128f3326a733",
+  "evaluation_freeze_sha256": "fce7ae2588921e95024503f156e8f338bead683d4726a50dfd580865cd9bfedf",
+  "native_evidence_sha256": "b4d36a5173e620d7d5ce1a46d95bb55a5426ea5804dca871adffac30b9ed2bd4",
+  "new_sources": [
+    {
+      "id": "v3_ckks_correct",
+      "source_path": "training/repaired_v3/cases/ckks_correct.py",
+      "source_sha256": "1abc1ef6b65882da9d4f11721c988e63c1750e089ffdd5926e9a90053813e5cb",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_ckks_arithmetic",
+      "source_path": "training/repaired_v3/cases/ckks_arithmetic.py",
+      "source_sha256": "463ea355c1f1b82207b23100edaeeb496841916b9bc7c6eebd29c94571f0fe8c",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_ckks_acceptance",
+      "source_path": "training/repaired_v3/cases/ckks_acceptance.py",
+      "source_sha256": "371fee4141b5e835646ae3ede815bfdf32967b9eb79ce51b8aaa53b45ea94742",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_ckks_secret",
+      "source_path": "training/repaired_v3/cases/ckks_secret.py",
+      "source_sha256": "773430bfd6be4a55e3508ae58cfa82d4b85a4fbe6493846f0781137e94a6df4b",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_ckks_setup",
+      "source_path": "training/repaired_v3/cases/ckks_setup.py",
+      "source_sha256": "1e0d2ba855e4527bf79ffcf6f6116c95c3ee2d0460d3e20fe22acbb182baad9e",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_ckks_bounds",
+      "source_path": "training/repaired_v3/cases/ckks_bounds.py",
+      "source_sha256": "e85b65e64723fb84f3801b51e3d8ecabb9adf9415820a54e7fc4359a44a933f9",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_tfhe_correct",
+      "source_path": "training/repaired_v3/cases/tfhe_correct.rs",
+      "source_sha256": "15e057ce2c70e673602be29298ece4699dac98b7de4597c0650c329ef2d229ef",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_tfhe_arithmetic",
+      "source_path": "training/repaired_v3/cases/tfhe_arithmetic.rs",
+      "source_sha256": "2da603c45f206996ae963f9359528ff4c661c9ff1a84283a12c464f439128798",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_tfhe_acceptance",
+      "source_path": "training/repaired_v3/cases/tfhe_acceptance.rs",
+      "source_sha256": "5370625cc43bc3d51a54a1183b33a79b2c4f7648de78834e89fb44cc6597e0cf",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_tfhe_secret",
+      "source_path": "training/repaired_v3/cases/tfhe_secret.rs",
+      "source_sha256": "99baf17ba4e21148c5542fae1622de9e446fca5f2e5a93ad47e02d3fb836fe10",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_tfhe_setup",
+      "source_path": "training/repaired_v3/cases/tfhe_setup.rs",
+      "source_sha256": "51a6d487ea418aba7023a61bf3f8fa30eb75596484146f187de9493fc459b74d",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_tfhe_bounds",
+      "source_path": "training/repaired_v3/cases/tfhe_bounds.rs",
+      "source_sha256": "759fbb856356473b099efe6f54653f9712754a6d3284e4c66c107c8d945f31f8",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_bfv_correct",
+      "source_path": "training/repaired_v3/cases/bfv_correct.hpp",
+      "source_sha256": "e6cf2060f2b16622831725cca5ccc3950ff1ee59599b15e984bbc38513b4414a",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_bfv_arithmetic",
+      "source_path": "training/repaired_v3/cases/bfv_arithmetic.hpp",
+      "source_sha256": "6fa4fb678f980bcd19e3eb37da4c63ecb1a80a0400b972d981db84487be7db41",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_bfv_acceptance",
+      "source_path": "training/repaired_v3/cases/bfv_acceptance.hpp",
+      "source_sha256": "555d8c5617a16cd1ae97838a26a24a6bdc1d5c645bc1cbdb9c750adf36ad640a",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_bfv_secret",
+      "source_path": "training/repaired_v3/cases/bfv_secret.hpp",
+      "source_sha256": "ab0b947c75a7f5d3b32bc94f3e6b36b1835e1b5f9930e0f296085161140b3ade",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_bfv_setup",
+      "source_path": "training/repaired_v3/cases/bfv_setup.hpp",
+      "source_sha256": "d875693d3252504f58842ad8ccac8cfb36c758853d6dc36edef72db08f1fd916",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_bfv_bounds",
+      "source_path": "training/repaired_v3/cases/bfv_bounds.hpp",
+      "source_sha256": "b2e830262d76cf9de450f989f0d72e669961b20c2dc5f4443fe698e5fb0c8303",
+      "native_evidence_status": "native_witnesses_passed"
+    },
+    {
+      "id": "v3_aes_correct",
+      "source_path": "training/repaired_v3/cases/aes_correct.hpp",
+      "source_sha256": "d08d5eab10b2e1aaf60603c0f274e03c30bfd076ad84247e71d137c91fd1bde9",
+      "native_evidence_status": "not_run_no_native_windows"
+    },
+    {
+      "id": "v3_aes_empty",
+      "source_path": "training/repaired_v3/cases/aes_empty.hpp",
+      "source_sha256": "15c2f8829caf5b537c81fcfbe12832aa16ba7aab86d87e994b61fe3eeb1e8332",
+      "native_evidence_status": "not_run_no_native_windows"
+    },
+    {
+      "id": "v3_aes_authentication",
+      "source_path": "training/repaired_v3/cases/aes_authentication.hpp",
+      "source_sha256": "48df3c563f1292b3c2698cdd17161abfa01fe4e5351834f8ea16c96cac6e5e8d",
+      "native_evidence_status": "not_run_no_native_windows"
+    },
+    {
+      "id": "v3_aes_publication",
+      "source_path": "training/repaired_v3/cases/aes_publication.hpp",
+      "source_sha256": "05616d300a448fd798cf2aa5deb269869a69f41455c39615f6cd224868d508ef",
+      "native_evidence_status": "not_run_no_native_windows"
+    },
+    {
+      "id": "v3_aes_keysize",
+      "source_path": "training/repaired_v3/cases/aes_keysize.hpp",
+      "source_sha256": "a3be30d859036a3cd12f2c8ff1c84a7282e821bb71f6a259e5647eb2e74a942a",
+      "native_evidence_status": "not_run_no_native_windows"
+    },
+    {
+      "id": "v3_aes_bounds",
+      "source_path": "training/repaired_v3/cases/aes_bounds.hpp",
+      "source_sha256": "69b59ac9b0802b42c66a058a659dfd1a9bc71934a6d5a0828e5fa8c6afc89ae6",
+      "native_evidence_status": "not_run_no_native_windows"
+    }
+  ],
+  "removed_from_new_release": [
+    {
+      "id": "ckks_export_private",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "ckks_export_public",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "ckks_unbounded",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "ckks_bounded",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "tfhe_export_private",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "tfhe_export_public",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "tfhe_wrapping_sum",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "tfhe_widened_sum",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "bfv_export_private",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "bfv_export_public",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "ignored_status-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "early_copy-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "counter_reset-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "fixed_nonce-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "short_tag-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "omitted_aad-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "capacity_lie-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "wrong_key_length-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "reject_empty-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "subtract_underflow-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "status_checked-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "fresh_random-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "declarations-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "unrelated_sort-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "other_library-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "comment_injection-1",
+      "reason": "whitespace_duplicate"
+    },
+    {
+      "id": "ckks_batch_any",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "ckks_batch_all",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "tfhe_batch_any",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "tfhe_batch_all",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "bfv_batch_any",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "bfv_batch_all",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "ckks_missing_scale",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "ckks_configured_scale",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "tfhe_missing_server",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "tfhe_configured_server",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "bfv_missing_pke",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    },
+    {
+      "id": "bfv_configured_pke",
+      "reason": "partial_FHE_excerpt_superseded_by_complete_workflows"
+    }
+  ],
+  "training_label_counts": {
+    "insufficient_context": 75,
+    "potential_issue": 36,
+    "no_issue_identified": 94,
+    "not_applicable": 10
+  },
+  "coverage": {
+    "aes128-gcm-tampering-v1/F01": {
+      "insufficient_context": 13,
+      "potential_issue": 2,
+      "not_applicable": 2,
+      "no_issue_identified": 5
+    },
+    "aes128-gcm-tampering-v1/F02": {
+      "potential_issue": 4,
+      "insufficient_context": 11,
+      "not_applicable": 2,
+      "no_issue_identified": 5
+    },
+    "aes128-gcm-tampering-v1/F03": {
+      "potential_issue": 4,
+      "insufficient_context": 11,
+      "no_issue_identified": 5,
+      "not_applicable": 2
+    },
+    "aes128-gcm-tampering-v1/F04": {
+      "insufficient_context": 10,
+      "potential_issue": 5,
+      "not_applicable": 2,
+      "no_issue_identified": 5
+    },
+    "aes128-gcm-tampering-v1/F05": {
+      "insufficient_context": 12,
+      "potential_issue": 3,
+      "not_applicable": 2,
+      "no_issue_identified": 5
+    },
+    "ckks-tenseal-review-v1/H01": {
+      "insufficient_context": 1,
+      "no_issue_identified": 4,
+      "potential_issue": 2
+    },
+    "ckks-tenseal-review-v1/H02": {
+      "insufficient_context": 2,
+      "no_issue_identified": 4,
+      "potential_issue": 1
+    },
+    "ckks-tenseal-review-v1/H03": {
+      "insufficient_context": 1,
+      "no_issue_identified": 5,
+      "potential_issue": 1
+    },
+    "ckks-tenseal-review-v1/H04": {
+      "insufficient_context": 1,
+      "no_issue_identified": 5,
+      "potential_issue": 1
+    },
+    "ckks-tenseal-review-v1/H05": {
+      "insufficient_context": 1,
+      "no_issue_identified": 5,
+      "potential_issue": 1
+    },
+    "tfhe-rs-review-v1/H01": {
+      "insufficient_context": 1,
+      "no_issue_identified": 4,
+      "potential_issue": 2
+    },
+    "tfhe-rs-review-v1/H02": {
+      "insufficient_context": 2,
+      "no_issue_identified": 4,
+      "potential_issue": 1
+    },
+    "tfhe-rs-review-v1/H03": {
+      "insufficient_context": 1,
+      "no_issue_identified": 5,
+      "potential_issue": 1
+    },
+    "tfhe-rs-review-v1/H04": {
+      "insufficient_context": 1,
+      "no_issue_identified": 5,
+      "potential_issue": 1
+    },
+    "tfhe-rs-review-v1/H05": {
+      "insufficient_context": 1,
+      "no_issue_identified": 5,
+      "potential_issue": 1
+    },
+    "bfv-openfhe-review-v1/H01": {
+      "insufficient_context": 1,
+      "no_issue_identified": 4,
+      "potential_issue": 2
+    },
+    "bfv-openfhe-review-v1/H02": {
+      "insufficient_context": 2,
+      "no_issue_identified": 4,
+      "potential_issue": 1
+    },
+    "bfv-openfhe-review-v1/H03": {
+      "insufficient_context": 1,
+      "no_issue_identified": 5,
+      "potential_issue": 1
+    },
+    "bfv-openfhe-review-v1/H04": {
+      "insufficient_context": 1,
+      "no_issue_identified": 5,
+      "potential_issue": 1
+    },
+    "bfv-openfhe-review-v1/H05": {
+      "insufficient_context": 1,
+      "no_issue_identified": 5,
+      "potential_issue": 1
+    }
+  },
+  "readiness_blockers": [
+    "AES sources lack native Windows CNG evidence; no Windows machine is available.",
+    "Frozen fresh evaluation covers only H03 validation and H05 test; broader evaluation is still needed.",
+    "User has explicitly reserved training authorization for a later instruction."
+  ],
+  "limitations": [
+    "Same-author synthetic workflows; variants are not independent implementations.",
+    "Complete FHE workflows exercise a locally known-answer toy sum, not generic verifiable computation.",
+    "AES no-issue labels describe source review only, not a native security certification.",
+    "Existing evaluation sets stay reserved; no examples were moved from evaluation into training."
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "version": "multi-profile-v2-step2-draft",
+  "training_ready": false,
+  "counts": {
+    "train": 57,
+    "validation": 6,
+    "regression": 10,
+    "additions": 6
+  },
+  "sha256": {
+    "train": "e2e306403261412db574c80a952e683934146543680c72196d98128f3326a733",
+    "validation": "c87dfc9c8ebfd3461b86d1374a94a9c13544f104f20efeb4359d23e10978c9a3",
+    "regression": "bfb2cb5bbb3d75ce088d4f00afb34067c38cac93073a0202c68741f99e31f620",
+    "additions": "211cf27eff4312414bbba590198906c0f79eeaa50b919fdd902497e78e5ba869"
+  },
+  "parent_sha256": {
+    "train": "78a663f6c638b455457cf365180a9219210a643b46785045ef852ddc88eccb6b",
+    "validation": "c87dfc9c8ebfd3461b86d1374a94a9c13544f104f20efeb4359d23e10978c9a3",
+    "regression": "bfb2cb5bbb3d75ce088d4f00afb34067c38cac93073a0202c68741f99e31f620",
+    "additions": "ab83ff8bb04083e2f8ac70cbe52e4776f908cfd479c9ef4e4320faf097a4f12c"
+  },
+  "native_evidence_sha256": "8f07dc73ef7c0812b10516725d82bd7047e23d8b026493b0bbd6305d6989ea7f",
+  "after_training_coverage": {
+    "aes128-gcm-tampering-v1": {
+      "F01": {
+        "potential_issue": 2,
+        "no_issue_identified": 0,
+        "insufficient_context": 26,
+        "not_applicable": 4
+      },
+      "F02": {
+        "potential_issue": 6,
+        "no_issue_identified": 0,
+        "insufficient_context": 22,
+        "not_applicable": 4
+      },
+      "F03": {
+        "potential_issue": 4,
+        "no_issue_identified": 2,
+        "insufficient_context": 22,
+        "not_applicable": 4
+      },
+      "F04": {
+        "potential_issue": 8,
+        "no_issue_identified": 0,
+        "insufficient_context": 20,
+        "not_applicable": 4
+      },
+      "F05": {
+        "potential_issue": 4,
+        "no_issue_identified": 0,
+        "insufficient_context": 24,
+        "not_applicable": 4
+      }
+    },
+    "bfv-openfhe-review-v1": {
+      "H01": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H02": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      },
+      "H03": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      },
+      "H04": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      },
+      "H05": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      }
+    },
+    "ckks-tenseal-review-v1": {
+      "H01": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 9,
+        "not_applicable": 0
+      },
+      "H02": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H03": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H04": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H05": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      }
+    },
+    "tfhe-rs-review-v1": {
+      "H01": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H02": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H03": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H04": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H05": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 9,
+        "not_applicable": 0
+      }
+    }
+  },
+  "readiness_blockers": [
+    "Overall labels remain dominated by insufficient context.",
+    "Independent validation and held-out implementations are still required.",
+    "H04 coverage here tests initialization, not cross-context key misuse or weak custom security parameters."
+  ],
+  "limitations": [
+    "All six additions share one train-only family.",
+    "Setup exceptions do not demonstrate cryptanalytic attacks.",
+    "Corrected examples have no identified H04 issue in their shown setup, not a whole-program security guarantee."
+  ]
+}

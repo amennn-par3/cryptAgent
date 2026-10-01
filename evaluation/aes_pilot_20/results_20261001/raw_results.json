@@ -1,0 +1,550 @@
+{
+  "created_at": "2026-10-01T17:48:27.536255+00:00",
+  "base_model": "meta-llama/Llama-3.1-8B-Instruct",
+  "base_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "adapter": "/home/hp/Documents/Codex/2026-09-29/pull-and-setup/cryptAgent/training/runs/aes-pilot-lean-v1-20261001/adapter",
+  "adapter_sha256": "1af6708c71c90974800102a578b6832dc28e92f919f472e39fdb1a21b06c5409",
+  "cases_sha256": "b942c8ee4653ef3a12fcf258cf537a7800e23cf80ddc35d7683bb3266d68078c",
+  "prompt_sha256": "e5524d9ba537a771a039a089896f8517668ad9bb9a802ab1d6fe35389fe3f212",
+  "profile_sha256": "460b07a5fc0df98811daa793b164ab4bd1310de7d856e06510609f385237c952",
+  "training_overlap": "no_exact_or_whitespace_normalized_source_overlap",
+  "test_policy": "not_training_data; synthetic source-only review; no native Windows execution",
+  "results": [
+    {
+      "id": "01_mismatch_accepted",
+      "source": "bool openPacket(BCRYPT_KEY_HANDLE key, BYTE* ct, ULONG n,\n                BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO& auth, BYTE* out) {\n    ULONG used = 0;\n    NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, out, n, &used, 0);\n    if (rc == STATUS_AUTH_TAG_MISMATCH) return true;\n    return NT_SUCCESS(rc);\n}",
+      "issues": {
+        "F02": "if (rc == STATUS_AUTH_TAG_MISMATCH) return true;"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "Explicitly reports a forged-tag mismatch as success; plaintext exposure is not established.",
+      "source_sha256": "8cff8b3c3bf9a07d3ca643a68967e87dd922843e723416838420b6ac9247ad12",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The provided code snippet appears to be a decryption function, but the implementation is too limited to assess functional correctness.\"},{\"check_id\":\"F02\",\"assessment\":\"potential_issue\",\"reason\":\"The function openPacket() does not check the return code of BCryptDecrypt() for any error other than STATUS_AUTH_TAG_MISMATCH, which may indicate a tampering-rejection path, but it does not handle other potential errors.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The provided code snippet does not appear to be an authentication function, but it does check the return code of BCryptDecrypt() for STATUS_AUTH_TAG_MISMATCH, which may indicate authentication before output.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The function openPacket() does not check the length of the nonce or the tag, which may indicate a key and nonce handling issue.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The provided code snippet does not provide enough context to assess input boundaries.\"}], \"findings\":[{\"check_id\":\"F02\",\"line_start\":4,\"line_end\":4,\"quote\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, out, n, &used, 0);\",\"verbatim_quote\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, out, n, &used, 0);\",\"rationale\":\"The function openPacket() does not check the return code of BCryptDecrypt() for any error other than STATUS_AUTH_TAG_MISMATCH.\"},{\"check_id\":\"F04\",\"line_start\":4,\"line_end\":4,\"quote\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, out, n, &used, 0);\",\"verbatim_quote\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, out, n, &used, 0);\",\"quote\":\"The function openPacket() does not check the length of the nonce or the tag, which may indicate a key and nonce handling issue.\"},{\"check_id\":\"F04\",\"line_start\":4,\"line_end\":4,\"quote\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, out, n, &used, 0);\",\"verbatim_quote\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, out, n, &used, 0);\",\"quote\":\"The function openPacket() does not check the length of the nonce or the tag, which may indicate a key and nonce handling issue.\"}]}",
+          "new_tokens": 577,
+          "seconds": 13.23
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key, nonce and tag handling is incomplete.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible input and output handling is incomplete.\"}],\"findings\":[]}",
+          "new_tokens": 130,
+          "seconds": 3.4
+        }
+      },
+      "prompt_tokens": 1214
+    },
+    {
+      "id": "02_publish_before_gate",
+      "source": "bool decode(BCRYPT_KEY_HANDLE key, BYTE* ct, ULONG n,\n            BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO& auth, std::vector<BYTE>& result) {\n    std::vector<BYTE> scratch(n);\n    ULONG used = 0;\n    NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch.data(), n, &used, 0);\n    result.assign(scratch.begin(), scratch.end());\n    if (!NT_SUCCESS(rc)) return false;\n    result.resize(used);\n    return true;\n}",
+      "issues": {
+        "F03": "result.assign(scratch.begin(), scratch.end());"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "Caller-visible result is populated before authentication status is checked.",
+      "source_sha256": "8686a744f060ee7168ba484f3fd28190388a96de2ed4c987352f862a93099974",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The decode function appears to correctly handle decryption and authentication.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The decode function checks the return code of BCryptDecrypt and returns false on failure.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The decode function correctly handles the result of the decryption, resizing the output vector.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The decode function does not check if the nonce has been reused for encryption under the same key.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The decode function checks the length of the output buffer and resizes the result vector accordingly.\"}], \"findings\":[{\"check_id\":\"F04\",\"line_start\":5,\"line_end\":5,\"quote\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch.data(), n, &used, 0);\",\"verbatim\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch.data(), n, &used, 0);\",\"rationale\":\"The decode function does not check if the nonce has been reused for encryption under the same key. The BCryptDecrypt function does not provide information about the nonce used for the decryption.\"},{\"check_id\":\"F04\",\"line_start\":5,\"line_end\":5,\"quote\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch.data(), n, &used, 0);\",\"verbatim\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch.data(), n, &used, 0);\",\"rationale\":\"The decode function does not check if the nonce has been reused for encryption under the same key. The BCryptDecrypt function does not provide information about the nonce used for the decryption.\"}]}",
+          "new_tokens": 421,
+          "seconds": 9.66
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete; inspect the full decryption lifecycle.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible tampering-rejection path is incomplete; inspect the full decryption lifecycle.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible authentication path is incomplete; inspect the full decryption lifecycle.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key, nonce and tag handling is incomplete; inspect the full decryption lifecycle.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible input and output handling is incomplete; inspect the full decryption lifecycle.\"}],\"findings\":[]}",
+          "new_tokens": 163,
+          "seconds": 4.22
+        }
+      },
+      "prompt_tokens": 1271
+    },
+    {
+      "id": "03_auth_then_commit",
+      "source": "bool decode(BCRYPT_KEY_HANDLE key, BYTE* ct, ULONG n,\n            BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO& auth, std::vector<BYTE>& result) {\n    std::vector<BYTE> scratch(n);\n    ULONG used = 0;\n    NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch.data(), n, &used, 0);\n    if (!NT_SUCCESS(rc) || used > scratch.size()) {\n        SecureZeroMemory(scratch.data(), scratch.size());\n        result.clear();\n        return false;\n    }\n    result.assign(scratch.begin(), scratch.begin() + used);\n    SecureZeroMemory(scratch.data(), scratch.size());\n    return true;\n}",
+      "issues": {},
+      "controls": {
+        "F03": "if (!NT_SUCCESS(rc) || used > scratch.size())"
+      },
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "Visible output publication is after the CNG status and length checks; caller aliasing contract omitted.",
+      "source_sha256": "264e713bb90f0bb742d4a8d1ea1b3c99b7dec305632f50631cd85269b07512ad",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The decode function appears to correctly handle decryption and authentication.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The decode function checks the return code of BCryptDecrypt and handles the case where the used buffer size exceeds the scratch buffer size.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The decode function properly clears the result vector and returns false in case of an error.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The decode function does not check if the nonce has been reused for encryption under the same key. The code snippet does not provide information about the encryption process, but it is a concern that should be addressed.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The decode function checks the buffer size and handles the case where the used buffer size exceeds the scratch buffer size.\"}], \"findings\":[{\"check_id\":\"F04\",\"line_start\":5,\"line_end\":5,\"quote\":\"NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch.data(), n, &used, 0);\",\"verbatim_quote\":\"BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch.data(), n, &used, 0);\",\"rationale\":\"The decode function does not check if the nonce has been reused for encryption under the same key. The code snippet does not provide information about the encryption process, but it is a concern that should be addressed.\"}]}",
+          "new_tokens": 336,
+          "seconds": 7.94
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete; inspect the full implementation.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete; inspect the full implementation.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete; inspect the full implementation.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete; inspect the full implementation.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete; inspect the full implementation.\"}],\"findings\":[]}",
+          "new_tokens": 149,
+          "seconds": 3.98
+        }
+      },
+      "prompt_tokens": 1348
+    },
+    {
+      "id": "04_aad_dropped",
+      "source": "// The caller requires the packet header to be authenticated as AAD.\nbool checkPacket(BCRYPT_KEY_HANDLE key, BYTE* ct, ULONG n, BYTE* header, ULONG headerLen,\n                 BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO& auth, BYTE* scratch) {\n    auth.pbAuthData = nullptr;\n    auth.cbAuthData = 0;\n    ULONG used = 0;\n    NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch, n, &used, 0);\n    return NT_SUCCESS(rc);\n}",
+      "issues": {
+        "F02": "auth.cbAuthData = 0;"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "The header parameter is discarded despite the stated AAD contract; the contract is shown only in a comment.",
+      "source_sha256": "952e187ac00a8656e9b681e6c3dc25d1351bbe41a9d63ce55bd77d3130eef74d",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function checkPacket() appears to be correctly checking the packet header as AAD, but the implementation details are unclear due to the lack of code for the authentication process.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function BCryptDecrypt() is called with the correct parameters, but the implementation details are unclear due to the lack of code for the authentication process.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function checkPacket() does not appear to be checking for tampering, but the implementation details are unclear due to the lack of code for the authentication process.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The function checkPacket() does not appear to be checking for nonce reuse, but the implementation details are unclear due to the lack of code for the nonce handling.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function checkPacket() does not appear to be checking for input boundaries, but the implementation details are unclear due to the lack of code for the authentication process.\"}], \"findings\":[{\"check_id\":\"F04\",\"line_start\":4,\"line_end\":5,\"quote\":\"auth.pbAuthData = nullptr;\\\\nauth.cbAuthData = 0;\",\"reason\":\"The function checkPacket() does not appear to be checking for nonce reuse, but the implementation details are unclear due to the lack of code for the nonce handling.\"}]}",
+          "new_tokens": 323,
+          "seconds": 7.65
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key, nonce and tag handling is incomplete.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible input and output handling is incomplete.\"}],\"findings\":[]}",
+          "new_tokens": 130,
+          "seconds": 3.52
+        }
+      },
+      "prompt_tokens": 1260
+    },
+    {
+      "id": "05_negative_status_accepted",
+      "source": "bool verified(BCRYPT_KEY_HANDLE key, BYTE* ct, ULONG n,\n              BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO& auth, BYTE* scratch) {\n    ULONG used = 0;\n    NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch, n, &used, 0);\n    return rc != STATUS_INVALID_PARAMETER;\n}",
+      "issues": {
+        "F02": "return rc != STATUS_INVALID_PARAMETER;"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "An authentication-tag mismatch is not STATUS_INVALID_PARAMETER, so this success predicate accepts it.",
+      "source_sha256": "caa5a4f4ee94acb0811c2b86162b41a88d62904f44e1d412ab7883bca5284f87",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The provided code snippet appears to be a decryption function, but the implementation is too limited to assess its functional correctness.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code snippet does not contain a tampering-rejection path, but the function's purpose is decryption, not authentication.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code snippet does not contain an authentication path, but the function's purpose is decryption.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The code snippet does not explicitly check for nonce reuse, but it does not provide any information about the key or nonce handling.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code snippet does not contain any input boundary checks, but the function's purpose is decryption, not encryption.\"},{\"check_id\":\"F06\",\"assessment\":\"insufficient_context\",\"reason\":\"The code snippet does not provide any information about the key, nonce, or tag handling, making it difficult to assess the key and nonce handling requirement.\"}],\"findings\":[{\"check_id\":\"F04\",\"line_start\":4,\"line_end\":4,\"quote\":\"rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0, scratch, n, &used, 0);\",\"reason\":\"The code snippet does not explicitly check for nonce reuse, but it does not provide any information about the key or nonce handling.\"}]}",
+          "new_tokens": 325,
+          "seconds": 7.7
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key, nonce and tag handling is incomplete.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible input and output handling is incomplete.\"}],\"findings\":[]}",
+          "new_tokens": 130,
+          "seconds": 3.56
+        }
+      },
+      "prompt_tokens": 1190
+    },
+    {
+      "id": "06_fixed_nonce_persistent_key",
+      "source": "struct Sender {\n    BCRYPT_KEY_HANDLE key; // Same key is retained for every call.\n    bool seal(BYTE* data, ULONG size, BYTE* out) {\n        BYTE nonce[12] = {};\n        BYTE tag[16] = {};\n        BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO auth;\n        BCRYPT_INIT_AUTH_MODE_INFO(auth);\n        auth.pbNonce = nonce; auth.cbNonce = sizeof(nonce);\n        auth.pbTag = tag; auth.cbTag = sizeof(tag);\n        ULONG used = 0;\n        return NT_SUCCESS(BCryptEncrypt(key, data, size, &auth, nullptr, 0, out, size, &used, 0));\n    }\n};",
+      "issues": {
+        "F04": "BYTE nonce[12] = {};"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "Repeated calls use the same zero nonce with the retained key.",
+      "source_sha256": "b0268a8c304eb8d4d2ea4ae4684d0e88bd4a5f112476cfef726eb9ae92fdde78",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The provided code snippet uses a retained key, but it does not reuse a nonce for encryption under the same key. However, the key is not initialized or provided in the snippet, so it's unclear if it's reused or not.\"},{\"check_id\":\"F02\",\"assessment\":\"potential_issue\",\"reason\":\"The code uses a zero-initialized buffer for the nonce, but it does not check if the buffer is properly assigned before use. The line \\\"BYTE nonce[12] = {};\\\" suggests that the buffer is initialized, but the code does not verify if the buffer is properly assigned before passing it to the BcryptEncrypt function. The quote \\\"BYTE nonce[12] = {};\\\" on line 4 and \\\"auth.pbNonce = nonce; auth.cbNonce = sizeof(nonce);\\\" on line 8.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code initializes the authentication tag buffer with a zero-initialized buffer, but it does not check if the buffer is properly assigned before use. However, the code does not use the tag buffer in the provided snippet, so it's unclear if it's properly assigned or not.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The code uses a zero-initialized buffer for the tag, but it does not check if the buffer is properly assigned before use. The line \\\"BYTE tag[16] = {};\\\" suggests that the buffer is initialized, but the code does not verify if the buffer is properly assigned before passing it to the BcryptEncrypt function. The quote \\\"BYTE tag[16] = {};\\\" on line 5 and \\\"auth.pbTag = tag; auth.cbTag = sizeof(tag);\\\" on line 9.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code does not handle output-buffer capacities safely, but it does not appear to be related to the provided snippet. The code does not handle input lengths or output capacities in the provided snippet, so it's unclear if it's properly handled or not.\"}], \"findings\":[{\"check_id\":\"F02\",\"line_start\":4,\"line_end\":8,\"quote\":\"BYTE nonce[12] = {};\\n        auth.pbNonce = nonce; auth.cbNonce = sizeof(nonce);\",\"reason\":\"The code does not check if the buffer is properly assigned before use.\"},{\"check_id\":\"F04\",\"line_start\":5,\"line_end\":9,\"quote\":\"BYTE tag[16] = {};\\n        auth.pbTag = tag; auth.cbTag = sizeof(tag);\",\"reason\":\"The code does not check if the buffer is properly assigned before use.\"}]}",
+          "new_tokens": 567,
+          "seconds": 13.74
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The submitted source lacks a decryption path.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The submitted source lacks a tampering-rejection path.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The submitted source lacks a decryption path.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The submitted source reuses a zero-initialized nonce for every encryption call.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The submitted source lacks input length and output capacity checks.\"}],\"findings\":[{\"check_id\":\"F04\",\"line_start\":4,\"line_end\":4,\"quote\":\"BYTE nonce[12] = {};\",\"rationale\":\"The submitted source reuses a zero-initialized nonce for every encryption call.\"}]}",
+          "new_tokens": 185,
+          "seconds": 4.99
+        }
+      },
+      "prompt_tokens": 1331
+    },
+    {
+      "id": "07_second_resolution_nonce",
+      "source": "bool seal(BCRYPT_KEY_HANDLE persistentKey, BYTE* data, ULONG size, BYTE* out) {\n    BYTE nonce[12] = {};\n    const auto seconds = static_cast<unsigned long long>(time(nullptr));\n    memcpy(nonce + 4, &seconds, sizeof(seconds));\n    BYTE tag[16] = {};\n    BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO auth;\n    BCRYPT_INIT_AUTH_MODE_INFO(auth);\n    auth.pbNonce = nonce; auth.cbNonce = 12;\n    auth.pbTag = tag; auth.cbTag = 16;\n    ULONG used = 0;\n    return NT_SUCCESS(BCryptEncrypt(persistentKey, data, size, &auth, nullptr, 0, out, size, &used, 0));\n}",
+      "issues": {
+        "F04": "time(nullptr)"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "Two encryptions in one second under the same key reuse the nonce.",
+      "source_sha256": "7251b67947d9239cd25e34dbff18eba9ce422478cd99a69765c96345b05268b8",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function uses the BCRYPT_KEY_HANDLE persistentKey to encrypt data, which is a valid supported input.\"},{\"check_id\":\"F02\",\"assessment\":\"potential_issue\",\"reason\":\"The nonce is generated using the current time, but the code does not check if the nonce has been reused before.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function uses the BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO auth to authenticate the encryption, which is a valid authentication path.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The code does not check if the nonce has been reused before using it for encryption.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function uses the NT_SUCCESS function to check the result of the encryption, which is a valid input boundary check.\"}], \"findings\":[{\"check_id\":\"F02\",\"line_start\":3,\"line_end\":4,\"quote\":\"    memcpy(nonce + 4, &seconds, sizeof(seconds));\",\"rationale\":\"The code generates the nonce using the current time, but does not check if the nonce has been reused before.\"},{\"check_id\":\"F02\",\"line_start\":8,\"line_end\":9,\"quote\":\"    auth.pbNonce = nonce; auth.cbNonce = 12;\",\"rationale\":\"The code sets the nonce in the BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO auth, but does not check if the nonce has been reused before.\"},{\"check_id\":\"F04\",\"line_start\":2,\"line_end\":3,\"quote\":\"    BYTE nonce[12] = {};\",\"rationale\":\"The code initializes a zero-initialized buffer for the nonce, but does not check if the nonce has been reused before.\"},{\"check_id\":\"F04\",\"line_start\":8,\"line_end\":9,\"quote\":\"    auth.pbNonce = nonce; auth.cbNonce = 12;\",\"rationale\":\"The code sets the nonce in the BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO auth, but does not check if the nonce has been reused before.\"},{\"check_id\":\"F04\",\"line_start\":11,\"line_end\":12,\"quote\":\"    return NT_SUCCESS(BCryptEncrypt(persistentKey, data, size, &auth, nullptr, 0, out, size, &used, 0));\",\"rationale\":\"The code calls the BCryptEncrypt function without checking if the nonce has been reused before.\"}]}",
+          "new_tokens": 523,
+          "seconds": 12.55
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible encryption path is incomplete; inspect the decryption path.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible authentication path is incomplete; inspect the decryption path.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete; inspect the authentication path.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The nonce is not initialized with a random value; it is set to a system time value.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible input and output handling is incomplete; inspect the decryption path.\"}],\"findings\":[{\"check_id\":\"F04\",\"line_start\":3,\"line_end\":4,\"quote\":\"    memcpy(nonce + 4, &seconds, sizeof(seconds));\",\"rationale\":\"The nonce is not initialized with a random value; it is set to a system time value.\"}]}",
+          "new_tokens": 213,
+          "seconds": 5.58
+        }
+      },
+      "prompt_tokens": 1333
+    },
+    {
+      "id": "08_bounded_counter_control",
+      "source": "struct Sender {\n    BCRYPT_KEY_HANDLE key;\n    std::mutex mu;\n    unsigned long long next = 0;\n    bool seal(BYTE* data, ULONG size, BYTE* out) {\n        std::lock_guard<std::mutex> hold(mu);\n        if (next == 1000000) return false;\n        BYTE nonce[12] = {};\n        const auto value = next++;\n        for (unsigned i = 0; i < 8; ++i) nonce[11 - i] = BYTE(value >> (8 * i));\n        BYTE tag[16] = {};\n        BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO auth;\n        BCRYPT_INIT_AUTH_MODE_INFO(auth);\n        auth.pbNonce = nonce; auth.cbNonce = 12;\n        auth.pbTag = tag; auth.cbTag = 16;\n        ULONG used = 0;\n        return NT_SUCCESS(BCryptEncrypt(key, data, size, &auth, nullptr, 0, out, size, &used, 0));\n    }\n};",
+      "issues": {},
+      "controls": {
+        "F04": "const auto value = next++;"
+      },
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "No nonce repeats within this object for one million calls; key/object persistence outside this excerpt is unknown.",
+      "source_sha256": "cb2ab0d4cc34870185d9feb425efbfad494f13b37e2e6b3d90e76438d3beb33d",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The provided code snippet appears to be a part of a larger implementation that uses Windows CNG AES-GCM. However, without the complete code, it's difficult to assess the functional correctness of the encryption process.\"},{\"check_id\":\"F02\",\"assessment\":\"potential_issue\",\"reason\":\"The code uses a counter-based nonce generation, which may lead to nonce reuse if the counter wraps around. The requirement states that a nonce should never be reused for encryption under the same key. The relevant lines are 8-11, where the nonce is generated. The quote is: \\\"BYTE nonce[12] = {};\\\" \\\"for (unsigned i = 0; i < 8; ++i) nonce[11 - i] = BYTE(value >> (8 * i));\\\". The rationale is that the code does not check if the generated nonce has been used before, which could lead to a potential issue.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code snippet does not appear to handle authentication before output. However, without the complete code, it's difficult to assess the authentication process.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The code does not check if the generated nonce has been used before, which could lead to nonce reuse. The relevant lines are 8-11, where the nonce is generated. The quote is: \\\"BYTE nonce[12] = {};\\\" \\\"for (unsigned i = 0; i < 8; ++i) nonce[11 - i] = BYTE(value >> (8 * i));\\\". The rationale is that the code does not implement a nonce reuse prevention mechanism.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code snippet does not appear to handle input boundaries. However, without the complete code, it's difficult to assess the input handling process.\"}], \"findings\":[{\"check_id\":\"F02\",\"line_start\":8,\"line_end\":11,\"quote\":\"BYTE nonce[12] = {};\\\\nfor (unsigned i = 0; i < 8; ++i) nonce[11 - i] = BYTE(value >> (8 * i));\",\"reason\":\"The code does not check if the generated nonce has been used before, which could lead to a potential issue.\"},{\"check_id\":\"F04\",\"line_start\":8,\"line_end\":11,\"quote\":\"BYTE nonce[12] = {};\\\\nfor (unsigned i = 0; i < 8; ++i) nonce[11 - i] = BYTE(value >> (8 * i));\",\"reason\":\"The code does not implement a nonce reuse prevention mechanism.\"}]}",
+          "new_tokens": 569,
+          "seconds": 13.7
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The submitted source lacks a decryption path.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The submitted source lacks a tampering-rejection path.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The submitted source lacks a decryption path.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The submitted source reuses a nonce for encryption under the same key.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The submitted source lacks input-boundary checks.\"}],\"findings\":[{\"check_id\":\"F04\",\"line_start\":8,\"line_end\":8,\"quote\":\"BYTE nonce[12] = {};\",\"rationale\":\"The submitted source reuses a nonce for encryption under the same key.\"}]}",
+          "new_tokens": 183,
+          "seconds": 4.97
+        }
+      },
+      "prompt_tokens": 1467
+    },
+    {
+      "id": "09_nonce_length_mismatch",
+      "source": "bool open(BCRYPT_KEY_HANDLE key, BYTE* ct, ULONG n, BYTE* out) {\n    BYTE nonce[12] = {};\n    BYTE tag[16] = {};\n    BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO auth;\n    BCRYPT_INIT_AUTH_MODE_INFO(auth);\n    auth.pbNonce = nonce;\n    auth.cbNonce = 8;\n    auth.pbTag = tag; auth.cbTag = 16;\n    ULONG used = 0;\n    return NT_SUCCESS(BCryptDecrypt(key, ct, n, &auth, nullptr, 0, out, n, &used, 0));\n}",
+      "issues": {
+        "F04": "auth.cbNonce = 8;"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "The supplied nonce length violates this fixed 12-byte profile.",
+      "source_sha256": "3728a3197b15636650612fca40c600280e6fc4b9bf12712b9511d7ee95b791d6",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function open() appears to correctly handle the decryption process, but the source code is too limited to assess its functional correctness.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function open() initializes the authentication mode info, but the source code is too limited to assess its tampering rejection.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function open() initializes the authentication mode info, but the source code is too limited to assess its authentication before output.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The function open() initializes a 12-byte nonce, but the source code does not ensure that the nonce is not reused for encryption under the same key.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function open() does not handle input boundaries, but the source code is too limited to assess its input boundary handling.\"}], \"findings\":[{\"check_id\":\"F04\",\"line_start\":2,\"line_end\":2,\"quote\":\"BYTE nonce[12] = {};\",\"rationale\":\"The source code initializes a 12-byte nonce, but the source code does not ensure that the nonce is not reused for encryption under the same key.\"}]}",
+          "new_tokens": 281,
+          "seconds": 6.86
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The nonce length is 8 bytes, not 12.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"}],\"findings\":[{\"check_id\":\"F04\",\"line_start\":6,\"line_end\":7,\"quote\":\"    auth.cbNonce = 8;\",\"rationale\":\"The nonce length is 8 bytes, not 12.\"}]}",
+          "new_tokens": 171,
+          "seconds": 4.59
+        }
+      },
+      "prompt_tokens": 1292
+    },
+    {
+      "id": "10_tag_length_mismatch",
+      "source": "bool open(BCRYPT_KEY_HANDLE key, BYTE* ct, ULONG n, BYTE* out) {\n    BYTE nonce[12] = {};\n    BYTE tag[16] = {};\n    BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO auth;\n    BCRYPT_INIT_AUTH_MODE_INFO(auth);\n    auth.pbNonce = nonce; auth.cbNonce = 12;\n    auth.pbTag = tag;\n    auth.cbTag = 12;\n    ULONG used = 0;\n    return NT_SUCCESS(BCryptDecrypt(key, ct, n, &auth, nullptr, 0, out, n, &used, 0));\n}",
+      "issues": {
+        "F04": "auth.cbTag = 12;"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "A 12-byte tag is a fixed-profile mismatch, not a claim that all truncated GCM tags are universally insecure.",
+      "source_sha256": "288fa998385988b8b5c5317c472f91defedd1bd0db4d1746b480a89f02abd26b",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function open() appears to correctly handle the decryption process, but the source code is too limited to assess its functional correctness.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function open() initializes the authentication tag and nonce, but the source code is too limited to assess its tampering rejection.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function open() initializes the authentication tag and nonce, but the source code is too limited to assess its authentication before output.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The function open() initializes a zero-initialized buffer for the nonce, but its assignments and encryption lifecycle are not visible to assess potential nonce reuse.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The function open() does not handle input boundaries, but the source code is too limited to assess its input boundary handling.\"}],\"findings\":[{\"check_id\":\"F04\",\"line_start\":2,\"line_end\":2,\"quote\":\"BYTE nonce[12] = {};\",\"rationale\":\"The zero-initialized buffer for the nonce may indicate potential nonce reuse, but its assignments and encryption lifecycle are not visible to assess this concern.\"}]}",
+          "new_tokens": 277,
+          "seconds": 6.79
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"}],\"findings\":[]}",
+          "new_tokens": 124,
+          "seconds": 3.48
+        }
+      },
+      "prompt_tokens": 1292
+    },
+    {
+      "id": "11_aes256_profile_mismatch",
+      "source": "BCRYPT_KEY_HANDLE createKey(BCRYPT_ALG_HANDLE aes, BYTE* keyObject, ULONG objectBytes) {\n    std::array<BYTE, 32> material{};\n    BCryptGenRandom(nullptr, material.data(), ULONG(material.size()), BCRYPT_USE_SYSTEM_PREFERRED_RNG);\n    BCRYPT_KEY_HANDLE key = nullptr;\n    BCryptGenerateSymmetricKey(aes, &key, keyObject, objectBytes,\n                               material.data(), ULONG(material.size()), 0);\n    return key;\n}",
+      "issues": {
+        "F04": "std::array<BYTE, 32> material{};"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "This is AES-256 key material, not the fixed AES-128 profile; function status checking is also weak but omitted context limits conclusions.",
+      "source_sha256": "9f41f81c395e3ba10de91306b14225c2277b3201a69113061c10852403167751",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"Key generation and key object creation are present, but the key object is not inspected for correctness.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"Key generation and key object creation are present, but the key object is not inspected for correctness.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"Key generation and key object creation are present, but the key object is not inspected for correctness.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The material buffer is zero-initialized, but its assignments and encryption lifecycle are not inspected for nonce reuse.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"Key generation and key object creation are present, but the key object is not inspected for correctness.\"}],\"findings\":[{\"check_id\":\"F04\",\"line_start\":3,\"line_end\":4,\"quote\":\"BCryptGenRandom(nullptr, material.data(), ULONG(material.size()), BCRYPT_USE_SYSTEM_PREFERRED_RNG);\\n    BCRYPT_KEY_HANDLE key = nullptr;\",\"reason\":\"The material buffer is zero-initialized, but its assignments and encryption lifecycle are not inspected for nonce reuse.\"}]}",
+          "new_tokens": 262,
+          "seconds": 6.49
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key generation path is incomplete.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key generation path is incomplete.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key generation path is incomplete.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key generation path is incomplete.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key generation path is incomplete.\"}],\"findings\":[]}",
+          "new_tokens": 129,
+          "seconds": 3.55
+        }
+      },
+      "prompt_tokens": 1235
+    },
+    {
+      "id": "12_key_length_control",
+      "source": "BCRYPT_KEY_HANDLE createKey(BCRYPT_ALG_HANDLE aes, BYTE* keyObject, ULONG objectBytes) {\n    std::array<BYTE, 16> material{};\n    if (!NT_SUCCESS(BCryptGenRandom(nullptr, material.data(), ULONG(material.size()),\n                                    BCRYPT_USE_SYSTEM_PREFERRED_RNG))) return nullptr;\n    BCRYPT_KEY_HANDLE key = nullptr;\n    NTSTATUS rc = BCryptGenerateSymmetricKey(aes, &key, keyObject, objectBytes,\n                                              material.data(), ULONG(material.size()), 0);\n    SecureZeroMemory(material.data(), material.size());\n    return NT_SUCCESS(rc) ? key : nullptr;\n}",
+      "issues": {},
+      "controls": {
+        "F04": "std::array<BYTE, 16> material{};"
+      },
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "Key generation and size are visible; nonce/tag lifecycle is absent, so full F04 is insufficient-context.",
+      "source_sha256": "24c50a08c7c1e819ed495ca02a183e40fff086e88a605e45e4c1c832742c0ab4",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The createKey function initializes a 16-byte material buffer, which is used to generate a symmetric key. The buffer is zeroed after use, indicating proper key material handling.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The createKey function uses BCryptGenerateSymmetricKey to generate a symmetric key, which is a valid operation for this profile.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The createKey function does not perform any authentication before output, as it is a key generation function and not an encryption function.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The createKey function uses a zero-initialized buffer to generate a symmetric key, but it does not check if the buffer was properly initialized before use. The quote: \\\"    std::array<BYTE, 16> material{};\\\".\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The createKey function does not handle input boundaries, as it is a key generation function and not an encryption function.\"}], \"findings\":[{\"check_id\":\"F04\",\"line_start\":2,\"line_end\":2,\"quote\":\"    std::array<BYTE, 16> material{};\",\"rationale\":\"The buffer material is zero-initialized, but its assignment and use are not inspected for potential issues.\"}]}",
+          "new_tokens": 304,
+          "seconds": 7.41
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key generation path is incomplete.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key generation path is incomplete.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key generation path is incomplete.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key generation path is incomplete.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key generation path is incomplete.\"}],\"findings\":[]}",
+          "new_tokens": 129,
+          "seconds": 3.59
+        }
+      },
+      "prompt_tokens": 1287
+    },
+    {
+      "id": "13_output_capacity_lie",
+      "source": "bool open(BCRYPT_KEY_HANDLE key, BYTE* ct, ULONG n,\n          BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO& auth) {\n    BYTE output[32] = {};\n    ULONG used = 0;\n    return NT_SUCCESS(BCryptDecrypt(key, ct, n, &auth, nullptr, 0,\n                                    output, n, &used, 0));\n}",
+      "issues": {
+        "F05": "output, n, &used, 0"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "No n<=32 bound is shown; advertised output capacity can exceed the 32-byte allocation.",
+      "source_sha256": "1d02089213fbc8a8778f14804bf2b2da9952eb4d1fa9545cad13d56eaf7f5b42",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The provided code snippet appears to be a decryption function, but the implementation is too limited to assess functional correctness.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The provided code snippet does not contain a tampering-rejection path, but the implementation is too limited to assess this requirement.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The provided code snippet does not contain an authentication path, but the implementation is too limited to assess this requirement.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The code snippet uses a zero-initialized buffer, but its assignments and encryption lifecycle are not visible to assess nonce reuse.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The provided code snippet does not contain input boundaries handling, but the implementation is too limited to assess this requirement.\"}],\"findings\":[{\"check_id\":\"F04\",\"line_start\":3,\"line_end\":4,\"quote\":\"    BYTE output[32] = {};\\n    ULONG used = 0;\",\"reason\":\"The use of a zero-initialized buffer alone is not evidence of nonce reuse; inspect its assignments and encryption lifecycle.\"}]}",
+          "new_tokens": 267,
+          "seconds": 6.53
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The decryption path is incomplete; the caller must provide a valid nonce.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The decryption path is incomplete; the caller must provide a valid nonce.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The decryption path is incomplete; the caller must provide a valid nonce.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The decryption path is incomplete; the caller must provide a valid nonce.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The decryption path is incomplete; the caller must provide a valid nonce.\"}],\"findings\":[]}",
+          "new_tokens": 159,
+          "seconds": 4.25
+        }
+      },
+      "prompt_tokens": 1199
+    },
+    {
+      "id": "14_narrow_before_limit",
+      "source": "bool seal(BCRYPT_KEY_HANDLE key, const std::vector<BYTE>& input,\n          BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO& auth, std::vector<BYTE>& out) {\n    ULONG n = static_cast<ULONG>(input.size());\n    if (n > 4096) return false;\n    out.resize(input.size());\n    ULONG used = 0;\n    return NT_SUCCESS(BCryptEncrypt(key, const_cast<BYTE*>(input.data()), n, &auth,\n                                    nullptr, 0, out.data(), n, &used, 0));\n}",
+      "issues": {
+        "F05": "ULONG n = static_cast<ULONG>(input.size());"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "A size above ULONG_MAX may wrap before the 4096-byte check.",
+      "source_sha256": "923003f3caa62a0a51bbc28c8f40b2e670d27836d4d51bdab64f6fb5bf58f14b",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function checks the input size and returns false if it exceeds 4096 bytes.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function uses NT_SUCCESS to check the result of BcryptEncrypt, but the specific error codes are not checked.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function does not explicitly check the authentication status before returning the encrypted data.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The seal function does not check if the nonce is reused for encryption under the same key.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function checks the output buffer capacity and resizes it to match the input size.\"}], \"findings\":[{\"check_id\":\"F04\",\"line_start\":7,\"line_end\":8,\"quote\":\"NT_SUCCESS(BCryptEncrypt(key, const_cast<BYTE*>(input.data()), n, &auth,\\\\n                                    nullptr, 0, out.data(), n, &used, 0));\",\"rationale\":\"The seal function does not check if the nonce is reused for encryption under the same key. The BcryptEncrypt function does not provide any information about the nonce, and the function does not check if the key is reused.\"}]}",
+          "new_tokens": 293,
+          "seconds": 7.15
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible implementation is incomplete.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible implementation is incomplete.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible implementation is incomplete.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible implementation is incomplete.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible implementation is incomplete.\"}],\"findings\":[]}",
+          "new_tokens": 119,
+          "seconds": 3.33
+        }
+      },
+      "prompt_tokens": 1259
+    },
+    {
+      "id": "15_bounds_before_narrow_control",
+      "source": "bool seal(BCRYPT_KEY_HANDLE key, const std::vector<BYTE>& input,\n          BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO& auth, std::vector<BYTE>& out) {\n    if (input.size() > 4096) return false;\n    const ULONG n = static_cast<ULONG>(input.size());\n    std::vector<BYTE> scratch(input.size());\n    ULONG used = 0;\n    NTSTATUS rc = BCryptEncrypt(key, const_cast<BYTE*>(input.data()), n, &auth,\n                                nullptr, 0, scratch.data(), n, &used, 0);\n    if (!NT_SUCCESS(rc) || used > scratch.size()) return false;\n    out.assign(scratch.begin(), scratch.begin() + used);\n    return true;\n}",
+      "issues": {},
+      "controls": {
+        "F05": "if (input.size() > 4096) return false;"
+      },
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "The visible bound precedes narrowing and output capacity matches the allocated buffer.",
+      "source_sha256": "395a2ba3476dbcb00892e074e83e117aff1d1fc8980af4c83cdb2427dfb93874",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function checks the input size before proceeding with encryption, which is a good practice to prevent buffer overflows.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function uses BCryptEncrypt to perform the encryption, which is a valid function for authenticated encryption.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function checks the return code of BCryptEncrypt and the used space in the scratch buffer, which is a good practice to prevent buffer overflows.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The seal function uses a zero-initialized buffer scratch, but its assignments and encryption lifecycle are not visible in this snippet. It is unclear whether the buffer is reused or not.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function checks the input size and the used space in the scratch buffer, which is a good practice to prevent buffer overflows.\"}], \"findings\":[{\"check_id\":\"F04\",\"line_start\":5,\"line_end\":6,\"quote\":\"std::vector<BYTE> scratch(input.size());\\nULONG used = 0;\",\"rationale\":\"The buffer scratch is zero-initialized, but its assignments and encryption lifecycle are not visible in this snippet. It is unclear whether the buffer is reused or not.\"}]}",
+          "new_tokens": 300,
+          "seconds": 7.37
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible encryption path is incomplete; inspect the decryption path.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible tampering-rejection path is incomplete; inspect the decryption path.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible authentication path is incomplete; inspect the decryption path.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key, nonce and tag handling is incomplete; inspect the encryption path.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible input and output handling is incomplete; inspect the encryption path.\"}],\"findings\":[]}",
+          "new_tokens": 158,
+          "seconds": 4.31
+        }
+      },
+      "prompt_tokens": 1333
+    },
+    {
+      "id": "16_empty_supported_but_rejected",
+      "source": "// API contract: supports plaintext lengths from zero through 1024 bytes.\nbool seal(BCRYPT_KEY_HANDLE key, std::span<const BYTE> plain,\n          BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO& auth, BYTE* output) {\n    if (plain.empty()) return false;\n    if (plain.size() > 1024) return false;\n    ULONG used = 0;\n    return NT_SUCCESS(BCryptEncrypt(key, const_cast<BYTE*>(plain.data()), ULONG(plain.size()),\n                                    &auth, nullptr, 0, output, ULONG(plain.size()), &used, 0));\n}",
+      "issues": {},
+      "controls": {},
+      "abstentions": {
+        "F01": "if (plain.empty()) return false;"
+      },
+      "scope": "in_scope",
+      "note": "Only a source comment promises empty input support; the external API contract is missing, so abstain.",
+      "source_sha256": "bd29caab4a5188b8ce3a6d3462ce6cc2c0b9514e7adb11d36001d36d85ec825b",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function checks for valid plaintext lengths, ensuring it does not exceed 1024 bytes.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function checks for empty plaintext, preventing tampering attacks.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function uses NT_SUCCESS to check the result of BcryptEncrypt, indicating a successful encryption.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The seal function uses a zero-initialized buffer for the nonce, but its assignments and encryption lifecycle are not visible in this snippet.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The seal function checks the output buffer capacity, preventing buffer overflow attacks.\"}], \"findings\":[]}",
+          "new_tokens": 184,
+          "seconds": 4.66
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible implementation is incomplete.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible implementation is incomplete.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible implementation is incomplete.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible implementation is incomplete.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible implementation is incomplete.\"}],\"findings\":[]}",
+          "new_tokens": 119,
+          "seconds": 3.32
+        }
+      },
+      "prompt_tokens": 1266
+    },
+    {
+      "id": "17_status_checked_but_output_exposed",
+      "source": "bool open(BCRYPT_KEY_HANDLE key, BYTE* ct, ULONG n,\n          BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO& auth, BYTE* callerBuffer) {\n    ULONG used = 0;\n    NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0,\n                                callerBuffer, n, &used, 0);\n    return NT_SUCCESS(rc);\n}",
+      "issues": {
+        "F03": "callerBuffer, n, &used, 0"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "CNG writes to caller-owned memory before the function checks authentication; the caller can observe it on failure.",
+      "source_sha256": "89bdddc67d1ff628b78e87ecb6bd84062000cfde4b35d9cafc43bc43257b139a",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The provided code snippet appears to be a decryption function, but the implementation is not visible. The function signature suggests it uses Windows CNG AES-GCM.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code snippet does not contain a tampering-rejection path, but the function signature suggests it uses Windows CNG AES-GCM.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code snippet does not contain an authentication path, but the function signature suggests it uses Windows CNG AES-GCM.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The code snippet does not explicitly check for nonce reuse, but the function signature suggests it uses Windows CNG AES-GCM. The requirement states that a nonce should never be reused for encryption under the same key.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code snippet does not contain input boundary checks, but the function signature suggests it uses Windows CNG AES-GCM.\"}], \"findings\":[{\"check_id\":\"F04\",\"line_start\":4,\"line_end\":5,\"quote\":\"    NTSTATUS rc = BCryptDecrypt(key, ct, n, &auth, nullptr, 0,\\\\n                                callerBuffer, n, &used, 0);\",\"reason\":\"The code snippet does not explicitly check for nonce reuse, but the function signature suggests it uses Windows CNG AES-GCM. The requirement states that a nonce should never be reused for encryption under the same key.\"}]}",
+          "new_tokens": 340,
+          "seconds": 8.21
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible decryption path is incomplete.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible key, nonce and tag handling is incomplete.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible input and output handling is incomplete.\"}],\"findings\":[]}",
+          "new_tokens": 130,
+          "seconds": 3.57
+        }
+      },
+      "prompt_tokens": 1202
+    },
+    {
+      "id": "18_profile_mode_mismatch",
+      "source": "bool configureAesGcm(BCRYPT_ALG_HANDLE aes) {\n    NTSTATUS rc = BCryptSetProperty(aes, BCRYPT_CHAINING_MODE,\n        reinterpret_cast<PUCHAR>(const_cast<wchar_t*>(BCRYPT_CHAIN_MODE_CBC)),\n        sizeof(BCRYPT_CHAIN_MODE_CBC), 0);\n    return NT_SUCCESS(rc);\n}",
+      "issues": {
+        "F01": "BCRYPT_CHAIN_MODE_CBC"
+      },
+      "controls": {},
+      "abstentions": {},
+      "scope": "in_scope",
+      "note": "The function claims to configure GCM but selects CBC; this is a fixed-profile mismatch.",
+      "source_sha256": "3f12a760aa0ddfb28ef6bd347cf23deb32c086d142c94756569115cdd478263d",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The configureAesGcm function sets the chaining mode to CBC, which is not the required GCM mode.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The configureAesGcm function does not set any properties related to tampering rejection.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The configureAesGcm function does not perform any authentication before output.\"},{\"check_id\":\"F04\",\"assessment\":\"potential_issue\",\"reason\":\"The configureAesGcm function does not check if the key, nonce, or tag are properly initialized or reused.\",\"line_start\":1,\"line_end\":6,\"quote\":\"bool configureAesGcm(BCRYPT_ALG_HANDLE aes) {\",\"line_start\":1,\"line_end\":6,\"quote\":\"    NTSTATUS rc = BCryptSetProperty(aes, BCRYPT_CHAINING_MODE,\"\",\"line_start\":1,\"line_end\":6,\"quote\":\"        reinterpret_cast<PUCHAR>(const_cast<wchar_t*>(BCRYPT_CHAIN_MODE_CBC)),\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The configureAesGcm function does not handle input boundaries or output-buffer capacities.\"}],\"findings\":[{\"check_id\":\"F04\",\"line_start\":1,\"line_end\":6,\"quote\":\"bool configureAesGcm(BCRYPT_ALG_HANDLE aes) {\",\"line_start\":1,\"line_end\":6,\"quote\":\"    NTSTATUS rc = BCryptSetProperty(aes, BCRYPT_CHAINING_MODE,\"\",\"line_start\":1,\"line_end\":6,\"quote\":\"        reinterpret_cast<PUCHAR>(const_cast<wchar_t*>(BCRYPT_CHAIN_MODE_CBC)),\",\"reason\":\"The configureAesGcm function does not check if the key, nonce, or tag are properly initialized or reused.\"}]}",
+          "new_tokens": 405,
+          "seconds": 9.81
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible configuration is not a valid GCM mode.\"},{\"check_id\":\"F02\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible configuration is not a valid GCM mode.\"},{\"check_id\":\"F03\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible configuration is not a valid GCM mode.\"},{\"check_id\":\"F04\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible configuration is not a valid GCM mode.\"},{\"check_id\":\"F05\",\"assessment\":\"insufficient_context\",\"reason\":\"The visible configuration is not a valid GCM mode.\"}],\"findings\":[]}",
+          "new_tokens": 144,
+          "seconds": 4.0
+        }
+      },
+      "prompt_tokens": 1181
+    },
+    {
+      "id": "19_other_library",
+      "source": "// Crypto++ implementation; this is not Windows CNG.\nvoid seal(CryptoPP::GCM<CryptoPP::AES>::Encryption& cipher,\n          const std::string& plaintext, std::string& output) {\n    CryptoPP::StringSource ss(plaintext, true,\n        new CryptoPP::AuthenticatedEncryptionFilter(cipher,\n            new CryptoPP::StringSink(output)));\n}",
+      "issues": {},
+      "controls": {},
+      "abstentions": {},
+      "scope": "outside_scope",
+      "note": "Another library is explicitly named; do not infer a CNG integration.",
+      "source_sha256": "29d205e73ff1ddc34255ece584bb9915d9092ae9b2fb34924a0db9c5b0b32443",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"outside_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"not_applicable\",\"reason\":\"This is a Crypto++ implementation, not Windows CNG.\"},{\"check_id\":\"F02\",\"assessment\":\"not_applicable\",\"reason\":\"No Windows CNG tampering-rejection path is present.\"},{\"check_id\":\"F03\",\"assessment\":\"not_applicable\",\"reason\":\"No Windows CNG decryption or authentication path is present.\"},{\"check_id\":\"F04\",\"assessment\":\"not_applicable\",\"reason\":\"No Windows CNG key, nonce or tag handling is present.\"},{\"check_id\":\"F05\",\"assessment\":\"not_applicable\",\"reason\":\"No Windows CNG input or output handling is present.\"}],\"findings\":[]}",
+          "new_tokens": 148,
+          "seconds": 3.88
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"outside_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"not_applicable\",\"reason\":\"This is not a Windows CNG AES-GCM implementation.\"},{\"check_id\":\"F02\",\"assessment\":\"not_applicable\",\"reason\":\"This is not a Windows CNG AES-GCM implementation.\"},{\"check_id\":\"F03\",\"assessment\":\"not_applicable\",\"reason\":\"This is not a Windows CNG AES-GCM implementation.\"},{\"check_id\":\"F04\",\"assessment\":\"not_applicable\",\"reason\":\"This is not a Windows CNG AES-GCM implementation.\"},{\"check_id\":\"F05\",\"assessment\":\"not_applicable\",\"reason\":\"This is not a Windows CNG AES-GCM implementation.\"}],\"findings\":[]}",
+          "new_tokens": 149,
+          "seconds": 4.11
+        }
+      },
+      "prompt_tokens": 1197
+    },
+    {
+      "id": "20_declarations_only",
+      "source": "#include <bcrypt.h>\nstruct Packet {\n    BYTE nonce[12];\n    BYTE tag[16];\n    std::vector<BYTE> ciphertext;\n};\n// AES-GCM implementation is supplied by another translation unit.\nbool verifyPacket(const Packet& packet);",
+      "issues": {},
+      "controls": {},
+      "abstentions": {},
+      "scope": "unclear",
+      "note": "Declarations alone do not show algorithm selection, cryptographic calls, or behavior.",
+      "source_sha256": "465dff98102de3e92cc93118572810c5489b04ee48f4e558e081deea617f6f11",
+      "predictions": {
+        "base": {
+          "state": "completed",
+          "text": "{\"scope\":\"in_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code includes the necessary bcrypt.h header, which is required for Windows CNG AES-GCM implementation.\"},{\"check_id\":\"F02\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code defines a struct Packet with fields for nonce, tag, and ciphertext, which are relevant to AES-GCM encryption.\"},{\"check_id\":\"F03\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code declares a function verifyPacket, which suggests the presence of a tampering-rejection path.\"},{\"check_id\":\"F04\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code defines a 12-byte nonce and a 16-byte tag, which aligns with the requirements for AES-GCM key, nonce, and tag handling.\"},{\"check_id\":\"F05\",\"assessment\":\"no_issue_identified\",\"reason\":\"The code includes a std::vector for ciphertext, which suggests handling of output-buffer capacities.\"}], \"findings\":[]}",
+          "new_tokens": 211,
+          "seconds": 5.3
+        },
+        "adapter": {
+          "state": "completed",
+          "text": "{\"scope\":\"outside_scope\",\"checks\":[{\"check_id\":\"F01\",\"assessment\":\"not_applicable\",\"reason\":\"CNG AES-GCM code is supplied by another translation unit.\"},{\"check_id\":\"F02\",\"assessment\":\"not_applicable\",\"reason\":\"CNG AES-GCM code is supplied by another translation unit.\"},{\"check_id\":\"F03\",\"assessment\":\"not_applicable\",\"reason\":\"CNG AES-GCM code is supplied by another translation unit.\"},{\"check_id\":\"F04\",\"assessment\":\"not_applicable\",\"reason\":\"CNG AES-GCM code is supplied by another translation unit.\"},{\"check_id\":\"F05\",\"assessment\":\"not_applicable\",\"reason\":\"CNG AES-GCM code is supplied by another translation unit.\"}],\"findings\":[]}",
+          "new_tokens": 154,
+          "seconds": 4.23
+        }
+      },
+      "prompt_tokens": 1181
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+[package]
+name = "cryptagent-tfhe-probes"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+tfhe = { version = "=1.4.3", features = ["integer"] }
+
+[profile.release]
+debug = false

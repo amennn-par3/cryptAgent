@@ -4,7 +4,7 @@ import {randomBytes,timingSafeEqual} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import {profile,verify} from './verifier.mjs';
-import {modelStatus,connectModel} from './llm_client.mjs';
+import {modelStatus} from './llm_client.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const token=randomBytes(32).toString('hex');let active=0;
 const assets=new Map([['/',['frontend/index.html','text/html; charset=utf-8']],['/styles.css',['frontend/styles.css','text/css; charset=utf-8']],['/app.js',['frontend/app.js','text/javascript; charset=utf-8']]]);
@@ -18,20 +18,17 @@ export function createApp(){return http.createServer({requestTimeout:150000,head
  const route=(req.url||'/').split('?')[0];
  try{
   if(req.method==='GET'&&assets.has(route)){const [file,type]=assets.get(route);res.writeHead(200,{'Content-Type':type});res.end(await readFile(path.join(root,file)));return;}
-  if(req.method==='GET'&&route==='/api/status'){json(res,200,{profile,model:await modelStatus(),sessionToken:token,capabilities:{sourceReview:true,llmReview:'openai_api_key_required',nativeExecution:false,generation:false,learning:false}});return;}
-  if(req.method==='POST'&&(route==='/api/verify'||route==='/api/model/connect')){
+  if(req.method==='GET'&&route==='/api/status'){json(res,200,{profile,model:await modelStatus(),sessionToken:token,capabilities:{sourceReview:true,llmReview:'local',nativeExecution:false,generation:false,learning:false}});return;}
+  if(req.method==='POST'&&route==='/api/verify'){
    const supplied=req.headers['x-session-token'];
    if(typeof supplied!=='string'||!/^[0-9a-f]{64}$/.test(supplied)||!timingSafeEqual(Buffer.from(supplied),Buffer.from(token))){json(res,403,{error:'Reload the page to refresh your local session.'});return;}
    if(!req.headers['content-type']?.startsWith('application/json')){json(res,415,{error:'JSON required'});return;}
-   if(active>=2){json(res,429,{error:'Two reviews are already running. Please wait.'});return;}
+   if(active>=1){json(res,429,{error:'A review is already running. Please wait.'});return;}
    const data=await body(req);
-   if(route==='/api/model/connect'){
-    if(!data||Array.isArray(data)||typeof data!=='object'||Object.keys(data).some(k=>k!=='apiKey')||typeof data.apiKey!=='string'||data.apiKey.length>512){json(res,400,{error:'Invalid connection request.'});return;}
-    active++;try{json(res,200,{model:await connectModel(data.apiKey)});}catch{json(res,400,{error:'Use a valid API-key format.'});}finally{active--;}return;
-   }
    if(!data||Array.isArray(data)||typeof data!=='object'||Object.keys(data).some(k=>!['code','profileId','mode'].includes(k))||data.profileId!==profile.id||data.mode!=='verify'||typeof data.code!=='string'){json(res,400,{error:'Unsupported request or profile.'});return;}
    const source=data.code.replace(/\r\n?/g,'\n');
    if(!source.trim()||source.includes('\0')||Buffer.byteLength(source)>profile.maxSourceBytes||source.split('\n').length>profile.maxSourceLines){json(res,400,{error:'Use nonempty C++ source, at most 64 KiB and 2,000 lines, with no null bytes.'});return;}
+   if(active>=1){json(res,429,{error:'A review is already running. Please wait.'});return;}
    active++;try{json(res,200,await verify(source));}finally{active--;}return;
   }
   json(res,404,{error:'Not found'});

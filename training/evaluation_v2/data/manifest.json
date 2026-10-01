@@ -1,0 +1,242 @@
+{
+  "version": "fresh-targeted-fhe-evaluation-v2",
+  "evaluation_only": true,
+  "training_ready": false,
+  "counts": {
+    "validation": 6,
+    "test": 6
+  },
+  "sha256": {
+    "validation": "8f1861080b8128c7fd54d4ceae2dd9492902e1754857f2ca3fc0d9da1d8d527a",
+    "test": "e378df8b88ab47f03caa91595b6e5cd9e5b14f7ba2efa012751fee6a45d92720"
+  },
+  "historical_sha256": {
+    "training/expanded/data/train.jsonl": "62d9b2e7c3d95ce30034972eab32ad7586b30650f1dfd0a18419722bdc70b793",
+    "training/expanded/data/validation.jsonl": "c87dfc9c8ebfd3461b86d1374a94a9c13544f104f20efeb4359d23e10978c9a3",
+    "training/expanded/data/test.jsonl": "bfb2cb5bbb3d75ce088d4f00afb34067c38cac93073a0202c68741f99e31f620",
+    "training/expanded_v2/data/additions.jsonl": "ab83ff8bb04083e2f8ac70cbe52e4776f908cfd479c9ef4e4320faf097a4f12c",
+    "training/expanded_v2/step2/data/additions.jsonl": "211cf27eff4312414bbba590198906c0f79eeaa50b919fdd902497e78e5ba869"
+  },
+  "training_snapshot_sha256": "e2e306403261412db574c80a952e683934146543680c72196d98128f3326a733",
+  "prompt_sha256": "fa75a834e246d7198b383f0b21cf0117db0908fdae2e6ca670a8162f297dbb1e",
+  "cases": [
+    {
+      "id": "ckks_telemetry_leaky",
+      "scheme": "ckks",
+      "kind": "telemetry",
+      "variant": "leaky",
+      "split": "validation",
+      "family": "plaintext-telemetry-boundary-eval-v2",
+      "source_path": "training/evaluation_v2/cases/ckks_telemetry_leaky.py",
+      "source_sha256": "00238a53b60f41543afa3113935eff6d31ecd18b4c8cf49a0bd0ee76598c26ba",
+      "target_check": "H03",
+      "target_assessment": "potential_issue"
+    },
+    {
+      "id": "ckks_telemetry_redacted",
+      "scheme": "ckks",
+      "kind": "telemetry",
+      "variant": "redacted",
+      "split": "validation",
+      "family": "plaintext-telemetry-boundary-eval-v2",
+      "source_path": "training/evaluation_v2/cases/ckks_telemetry_redacted.py",
+      "source_sha256": "d4e2c6fe63edfbb81b4c23d0a3d4846c2e29785a59962d3dc85d3b0ef5487365",
+      "target_check": "H03",
+      "target_assessment": "no_issue_identified"
+    },
+    {
+      "id": "ckks_work_unchecked",
+      "scheme": "ckks",
+      "kind": "work",
+      "variant": "unchecked",
+      "split": "test",
+      "family": "evaluator-work-budget-eval-v2",
+      "source_path": "training/evaluation_v2/cases/ckks_work_unchecked.py",
+      "source_sha256": "227309eb92a8457af262e0e517d45e60ecab1d3a86d812cf744684eead12536b",
+      "target_check": "H05",
+      "target_assessment": "potential_issue"
+    },
+    {
+      "id": "ckks_work_bounded",
+      "scheme": "ckks",
+      "kind": "work",
+      "variant": "bounded",
+      "split": "test",
+      "family": "evaluator-work-budget-eval-v2",
+      "source_path": "training/evaluation_v2/cases/ckks_work_bounded.py",
+      "source_sha256": "e3cd333c4345d9a9774262f44a92892c99523ead9624af345d65c327ebec563b",
+      "target_check": "H05",
+      "target_assessment": "no_issue_identified"
+    },
+    {
+      "id": "tfhe_telemetry_leaky",
+      "scheme": "tfhe",
+      "kind": "telemetry",
+      "variant": "leaky",
+      "split": "validation",
+      "family": "plaintext-telemetry-boundary-eval-v2",
+      "source_path": "training/evaluation_v2/cases/tfhe_telemetry_leaky.rs",
+      "source_sha256": "d81cea111183cc0006ebb80d1a2905eebab689c44ac072626827139ead7ad74e",
+      "target_check": "H03",
+      "target_assessment": "potential_issue"
+    },
+    {
+      "id": "tfhe_telemetry_redacted",
+      "scheme": "tfhe",
+      "kind": "telemetry",
+      "variant": "redacted",
+      "split": "validation",
+      "family": "plaintext-telemetry-boundary-eval-v2",
+      "source_path": "training/evaluation_v2/cases/tfhe_telemetry_redacted.rs",
+      "source_sha256": "4a23449ed8212a7423a12553b60aa26ae794c0fe8a53fbe42b055b144b8a705b",
+      "target_check": "H03",
+      "target_assessment": "no_issue_identified"
+    },
+    {
+      "id": "tfhe_work_unchecked",
+      "scheme": "tfhe",
+      "kind": "work",
+      "variant": "unchecked",
+      "split": "test",
+      "family": "evaluator-work-budget-eval-v2",
+      "source_path": "training/evaluation_v2/cases/tfhe_work_unchecked.rs",
+      "source_sha256": "b19a7bb9ee10007fe404be06ccf8dcc7ccea9d66fb7cb7cd5395badfd47fb8bd",
+      "target_check": "H05",
+      "target_assessment": "potential_issue"
+    },
+    {
+      "id": "tfhe_work_bounded",
+      "scheme": "tfhe",
+      "kind": "work",
+      "variant": "bounded",
+      "split": "test",
+      "family": "evaluator-work-budget-eval-v2",
+      "source_path": "training/evaluation_v2/cases/tfhe_work_bounded.rs",
+      "source_sha256": "c3640c0e17e0f77c701ab3046e987038edf35ce5992e067f9acdd94f62d04ebd",
+      "target_check": "H05",
+      "target_assessment": "no_issue_identified"
+    },
+    {
+      "id": "bfv_telemetry_leaky",
+      "scheme": "bfv",
+      "kind": "telemetry",
+      "variant": "leaky",
+      "split": "validation",
+      "family": "plaintext-telemetry-boundary-eval-v2",
+      "source_path": "training/evaluation_v2/cases/bfv_telemetry_leaky.hpp",
+      "source_sha256": "10351b0bd2075a560371619f93d1ba13f0a0eba89b03e5a53d29c55ae8aa9026",
+      "target_check": "H03",
+      "target_assessment": "potential_issue"
+    },
+    {
+      "id": "bfv_telemetry_redacted",
+      "scheme": "bfv",
+      "kind": "telemetry",
+      "variant": "redacted",
+      "split": "validation",
+      "family": "plaintext-telemetry-boundary-eval-v2",
+      "source_path": "training/evaluation_v2/cases/bfv_telemetry_redacted.hpp",
+      "source_sha256": "2d3011f6be7575223d5e1cafd5e7109f8fde5a95a9fc595e8ef03b0274c7a0bf",
+      "target_check": "H03",
+      "target_assessment": "no_issue_identified"
+    },
+    {
+      "id": "bfv_work_unchecked",
+      "scheme": "bfv",
+      "kind": "work",
+      "variant": "unchecked",
+      "split": "test",
+      "family": "evaluator-work-budget-eval-v2",
+      "source_path": "training/evaluation_v2/cases/bfv_work_unchecked.hpp",
+      "source_sha256": "45fbca945f7ea615e3e3d6cbe869d419c57ab6c21ffdb299a27ce23d014fc5a7",
+      "target_check": "H05",
+      "target_assessment": "potential_issue"
+    },
+    {
+      "id": "bfv_work_bounded",
+      "scheme": "bfv",
+      "kind": "work",
+      "variant": "bounded",
+      "split": "test",
+      "family": "evaluator-work-budget-eval-v2",
+      "source_path": "training/evaluation_v2/cases/bfv_work_bounded.hpp",
+      "source_sha256": "770c3cb6533cdd546bee7a9b80c8e1477683b53df2afaa2f65d8c28ab648f494",
+      "target_check": "H05",
+      "target_assessment": "no_issue_identified"
+    }
+  ],
+  "similarity_audit": [
+    {
+      "id": "ckks_telemetry_leaky",
+      "nearest_historical_id": "ckks_accept_any",
+      "token_sequence_similarity": 0.5574
+    },
+    {
+      "id": "ckks_telemetry_redacted",
+      "nearest_historical_id": "ckks_accept_any",
+      "token_sequence_similarity": 0.5574
+    },
+    {
+      "id": "ckks_work_unchecked",
+      "nearest_historical_id": "ckks_accept_any",
+      "token_sequence_similarity": 0.4737
+    },
+    {
+      "id": "ckks_work_bounded",
+      "nearest_historical_id": "ckks_accept_any",
+      "token_sequence_similarity": 0.3857
+    },
+    {
+      "id": "tfhe_telemetry_leaky",
+      "nearest_historical_id": "tfhe_validate_result",
+      "token_sequence_similarity": 0.5833
+    },
+    {
+      "id": "tfhe_telemetry_redacted",
+      "nearest_historical_id": "tfhe_validate_result",
+      "token_sequence_similarity": 0.5917
+    },
+    {
+      "id": "tfhe_work_unchecked",
+      "nearest_historical_id": "tfhe_validate_result",
+      "token_sequence_similarity": 0.3791
+    },
+    {
+      "id": "tfhe_work_bounded",
+      "nearest_historical_id": "tfhe_configured_server",
+      "token_sequence_similarity": 0.3053
+    },
+    {
+      "id": "bfv_telemetry_leaky",
+      "nearest_historical_id": "bfv_validate_result",
+      "token_sequence_similarity": 0.6604
+    },
+    {
+      "id": "bfv_telemetry_redacted",
+      "nearest_historical_id": "bfv_validate_result",
+      "token_sequence_similarity": 0.673
+    },
+    {
+      "id": "bfv_work_unchecked",
+      "nearest_historical_id": "bfv_unbounded_sum",
+      "token_sequence_similarity": 0.5649
+    },
+    {
+      "id": "bfv_work_bounded",
+      "nearest_historical_id": "bfv_bounded_sum",
+      "token_sequence_similarity": 0.5272
+    }
+  ],
+  "model_evaluation_status": "not_run",
+  "readiness_blockers": [
+    "Evaluation-only dataset: never use as training input."
+  ],
+  "limitations": [
+    "Six rows per split, representing one semantic family per split across three languages.",
+    "Authored by the same assistant; no independent-author or pretrained-data novelty claim.",
+    "Validation targets H03 and test targets H05; aggregate results cannot represent H01-H05 coverage.",
+    "No new AES/Windows CNG evaluation is included; existing AES regression data is unchanged.",
+    "Token similarity is a diagnostic, not proof of semantic independence.",
+    "These excerpts intentionally leave unrelated checks insufficient_context; score target checks separately."
+  ]
+}

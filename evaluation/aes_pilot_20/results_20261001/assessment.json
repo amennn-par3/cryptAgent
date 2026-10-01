@@ -1,0 +1,1239 @@
+{
+  "provenance": {
+    "created_at": "2026-10-01T17:48:27.536255+00:00",
+    "base_model": "meta-llama/Llama-3.1-8B-Instruct",
+    "base_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+    "adapter": "/home/hp/Documents/Codex/2026-09-29/pull-and-setup/cryptAgent/training/runs/aes-pilot-lean-v1-20261001/adapter",
+    "adapter_sha256": "1af6708c71c90974800102a578b6832dc28e92f919f472e39fdb1a21b06c5409",
+    "cases_sha256": "b942c8ee4653ef3a12fcf258cf537a7800e23cf80ddc35d7683bb3266d68078c",
+    "prompt_sha256": "e5524d9ba537a771a039a089896f8517668ad9bb9a802ab1d6fe35389fe3f212",
+    "profile_sha256": "460b07a5fc0df98811daa793b164ab4bd1310de7d856e06510609f385237c952",
+    "training_overlap": "no_exact_or_whitespace_normalized_source_overlap",
+    "test_policy": "not_training_data; synthetic source-only review; no native Windows execution"
+  },
+  "counts": {
+    "base": {
+      "issue_targets": 13,
+      "issue_hits": 0,
+      "valid_outputs": 7,
+      "scope_hits": 17,
+      "cases": 20,
+      "seconds": 166.63000000000002,
+      "control_targets": 4,
+      "control_hits": 3,
+      "abstention_targets": 1,
+      "abstention_hits": 0
+    },
+    "adapter": {
+      "issue_targets": 13,
+      "issue_hits": 3,
+      "valid_outputs": 20,
+      "scope_hits": 19,
+      "cases": 20,
+      "seconds": 80.54999999999998,
+      "control_targets": 4,
+      "control_hits": 3,
+      "abstention_targets": 1,
+      "abstention_hits": 1
+    }
+  },
+  "details": [
+    {
+      "id": "01_mismatch_accepted",
+      "scope": "in_scope",
+      "issues": {
+        "F02": "if (rc == STATUS_AUTH_TAG_MISMATCH) return true;"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "Explicitly reports a forged-tag mismatch as success; plaintext exposure is not established.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "insufficient_context",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 3,
+        "issue_hits": {
+          "F02": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 13.23
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {
+          "F02": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 3.4
+      }
+    },
+    {
+      "id": "02_publish_before_gate",
+      "scope": "in_scope",
+      "issues": {
+        "F03": "result.assign(scratch.begin(), scratch.end());"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "Caller-visible result is populated before authentication status is checked.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 2,
+        "issue_hits": {
+          "F03": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 9.66
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {
+          "F03": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 4.22
+      }
+    },
+    {
+      "id": "03_auth_then_commit",
+      "scope": "in_scope",
+      "issues": {},
+      "controls": {
+        "F03": "if (!NT_SUCCESS(rc) || used > scratch.size())"
+      },
+      "abstentions": {},
+      "note": "Visible output publication is after the CNG status and length checks; caller aliasing contract omitted.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 1,
+        "issue_hits": {},
+        "control_hits": {
+          "F03": true
+        },
+        "abstention_hits": {},
+        "seconds": 7.94
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {
+          "F03": true
+        },
+        "abstention_hits": {},
+        "seconds": 3.98
+      }
+    },
+    {
+      "id": "04_aad_dropped",
+      "scope": "in_scope",
+      "issues": {
+        "F02": "auth.cbAuthData = 0;"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "The header parameter is discarded despite the stated AAD contract; the contract is shown only in a comment.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 1,
+        "issue_hits": {
+          "F02": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 7.65
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {
+          "F02": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 3.52
+      }
+    },
+    {
+      "id": "05_negative_status_accepted",
+      "scope": "in_scope",
+      "issues": {
+        "F02": "return rc != STATUS_INVALID_PARAMETER;"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "An authentication-tag mismatch is not STATUS_INVALID_PARAMETER, so this success predicate accepts it.",
+      "base": {
+        "inference_state": "completed",
+        "valid": false,
+        "validator_state": null,
+        "error": "Invalid review structure",
+        "scope": null,
+        "assessments": {},
+        "findings": [],
+        "discarded": null,
+        "issue_hits": {
+          "F02": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 7.7
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {
+          "F02": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 3.56
+      }
+    },
+    {
+      "id": "06_fixed_nonce_persistent_key",
+      "scope": "in_scope",
+      "issues": {
+        "F04": "BYTE nonce[12] = {};"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "Repeated calls use the same zero nonce with the retained key.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "insufficient_context",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 2,
+        "issue_hits": {
+          "F04": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 13.74
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "potential_issue",
+          "F05": "insufficient_context"
+        },
+        "findings": [
+          {
+            "checkId": "F04",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 4,
+            "lineEnd": 4,
+            "quote": "BYTE nonce[12] = {};",
+            "explanation": "The submitted source reuses a zero-initialized nonce for every encryption call.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          }
+        ],
+        "discarded": 0,
+        "issue_hits": {
+          "F04": true
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 4.99
+      }
+    },
+    {
+      "id": "07_second_resolution_nonce",
+      "scope": "in_scope",
+      "issues": {
+        "F04": "memcpy(nonce + 4, &seconds, sizeof(seconds));"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "Two encryptions in one second under the same key reuse the nonce.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "potential_issue",
+          "F03": "no_issue_identified",
+          "F04": "potential_issue",
+          "F05": "no_issue_identified"
+        },
+        "findings": [
+          {
+            "checkId": "F02",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 3,
+            "lineEnd": 4,
+            "quote": "    memcpy(nonce + 4, &seconds, sizeof(seconds));",
+            "explanation": "The code generates the nonce using the current time, but does not check if the nonce has been reused before.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          },
+          {
+            "checkId": "F02",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 8,
+            "lineEnd": 9,
+            "quote": "    auth.pbNonce = nonce; auth.cbNonce = 12;",
+            "explanation": "The code sets the nonce in the BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO auth, but does not check if the nonce has been reused before.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          },
+          {
+            "checkId": "F04",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 2,
+            "lineEnd": 3,
+            "quote": "    BYTE nonce[12] = {};",
+            "explanation": "The code initializes a zero-initialized buffer for the nonce, but does not check if the nonce has been reused before.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          },
+          {
+            "checkId": "F04",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 8,
+            "lineEnd": 9,
+            "quote": "    auth.pbNonce = nonce; auth.cbNonce = 12;",
+            "explanation": "The code sets the nonce in the BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO auth, but does not check if the nonce has been reused before.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          },
+          {
+            "checkId": "F04",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 11,
+            "lineEnd": 12,
+            "quote": "    return NT_SUCCESS(BCryptEncrypt(persistentKey, data, size, &auth, nullptr, 0, out, size, &used, 0));",
+            "explanation": "The code calls the BCryptEncrypt function without checking if the nonce has been reused before.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          }
+        ],
+        "discarded": 0,
+        "issue_hits": {
+          "F04": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 12.55
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "potential_issue",
+          "F05": "insufficient_context"
+        },
+        "findings": [
+          {
+            "checkId": "F04",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 3,
+            "lineEnd": 4,
+            "quote": "    memcpy(nonce + 4, &seconds, sizeof(seconds));",
+            "explanation": "The nonce is not initialized with a random value; it is set to a system time value.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          }
+        ],
+        "discarded": 0,
+        "issue_hits": {
+          "F04": true
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 5.58
+      }
+    },
+    {
+      "id": "08_bounded_counter_control",
+      "scope": "in_scope",
+      "issues": {},
+      "controls": {
+        "F04": "const auto value = next++;"
+      },
+      "abstentions": {},
+      "note": "No nonce repeats within this object for one million calls; key/object persistence outside this excerpt is unknown.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "insufficient_context",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 2,
+        "issue_hits": {},
+        "control_hits": {
+          "F04": true
+        },
+        "abstention_hits": {},
+        "seconds": 13.7
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "potential_issue",
+          "F05": "insufficient_context"
+        },
+        "findings": [
+          {
+            "checkId": "F04",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 8,
+            "lineEnd": 8,
+            "quote": "BYTE nonce[12] = {};",
+            "explanation": "The submitted source reuses a nonce for encryption under the same key.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          }
+        ],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {
+          "F04": false
+        },
+        "abstention_hits": {},
+        "seconds": 4.97
+      }
+    },
+    {
+      "id": "09_nonce_length_mismatch",
+      "scope": "in_scope",
+      "issues": {
+        "F04": "auth.cbNonce = 8;"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "The supplied nonce length violates this fixed 12-byte profile.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "potential_issue",
+          "F05": "no_issue_identified"
+        },
+        "findings": [
+          {
+            "checkId": "F04",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 2,
+            "lineEnd": 2,
+            "quote": "BYTE nonce[12] = {};",
+            "explanation": "The source code initializes a 12-byte nonce, but the source code does not ensure that the nonce is not reused for encryption under the same key.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          }
+        ],
+        "discarded": 0,
+        "issue_hits": {
+          "F04": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 6.86
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "potential_issue",
+          "F05": "insufficient_context"
+        },
+        "findings": [
+          {
+            "checkId": "F04",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 6,
+            "lineEnd": 7,
+            "quote": "    auth.cbNonce = 8;",
+            "explanation": "The nonce length is 8 bytes, not 12.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          }
+        ],
+        "discarded": 0,
+        "issue_hits": {
+          "F04": true
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 4.59
+      }
+    },
+    {
+      "id": "10_tag_length_mismatch",
+      "scope": "in_scope",
+      "issues": {
+        "F04": "auth.cbTag = 12;"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "A 12-byte tag is a fixed-profile mismatch, not a claim that all truncated GCM tags are universally insecure.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "potential_issue",
+          "F05": "no_issue_identified"
+        },
+        "findings": [
+          {
+            "checkId": "F04",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 2,
+            "lineEnd": 2,
+            "quote": "BYTE nonce[12] = {};",
+            "explanation": "The zero-initialized buffer for the nonce may indicate potential nonce reuse, but its assignments and encryption lifecycle are not visible to assess this concern.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          }
+        ],
+        "discarded": 0,
+        "issue_hits": {
+          "F04": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 6.79
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {
+          "F04": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 3.48
+      }
+    },
+    {
+      "id": "11_aes256_profile_mismatch",
+      "scope": "in_scope",
+      "issues": {
+        "F04": "std::array<BYTE, 32> material{};"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "This is AES-256 key material, not the fixed AES-128 profile; function status checking is also weak but omitted context limits conclusions.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 1,
+        "issue_hits": {
+          "F04": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 6.49
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {
+          "F04": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 3.55
+      }
+    },
+    {
+      "id": "12_key_length_control",
+      "scope": "in_scope",
+      "issues": {},
+      "controls": {
+        "F04": "std::array<BYTE, 16> material{};"
+      },
+      "abstentions": {},
+      "note": "Key generation and size are visible; nonce/tag lifecycle is absent, so full F04 is insufficient-context.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "potential_issue",
+          "F05": "no_issue_identified"
+        },
+        "findings": [
+          {
+            "checkId": "F04",
+            "title": "Potential issue",
+            "kind": "hypothesis",
+            "source": "local_model",
+            "lineStart": 2,
+            "lineEnd": 2,
+            "quote": "    std::array<BYTE, 16> material{};",
+            "explanation": "The buffer material is zero-initialized, but its assignment and use are not inspected for potential issues.",
+            "evidence": "Source quote checked; security interpretation requires review."
+          }
+        ],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {
+          "F04": false
+        },
+        "abstention_hits": {},
+        "seconds": 7.41
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {
+          "F04": true
+        },
+        "abstention_hits": {},
+        "seconds": 3.59
+      }
+    },
+    {
+      "id": "13_output_capacity_lie",
+      "scope": "in_scope",
+      "issues": {
+        "F05": "output, n, &used, 0"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "No n<=32 bound is shown; advertised output capacity can exceed the 32-byte allocation.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 1,
+        "issue_hits": {
+          "F05": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 6.53
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {
+          "F05": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 4.25
+      }
+    },
+    {
+      "id": "14_narrow_before_limit",
+      "scope": "in_scope",
+      "issues": {
+        "F05": "ULONG n = static_cast<ULONG>(input.size());"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "A size above ULONG_MAX may wrap before the 4096-byte check.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 1,
+        "issue_hits": {
+          "F05": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 7.15
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {
+          "F05": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 3.33
+      }
+    },
+    {
+      "id": "15_bounds_before_narrow_control",
+      "scope": "in_scope",
+      "issues": {},
+      "controls": {
+        "F05": "if (input.size() > 4096) return false;"
+      },
+      "abstentions": {},
+      "note": "The visible bound precedes narrowing and output capacity matches the allocated buffer.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 1,
+        "issue_hits": {},
+        "control_hits": {
+          "F05": true
+        },
+        "abstention_hits": {},
+        "seconds": 7.37
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {
+          "F05": true
+        },
+        "abstention_hits": {},
+        "seconds": 4.31
+      }
+    },
+    {
+      "id": "16_empty_supported_but_rejected",
+      "scope": "in_scope",
+      "issues": {},
+      "controls": {},
+      "abstentions": {
+        "F01": "if (plain.empty()) return false;"
+      },
+      "note": "Only a source comment promises empty input support; the external API contract is missing, so abstain.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {},
+        "abstention_hits": {
+          "F01": false
+        },
+        "seconds": 4.66
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {},
+        "abstention_hits": {
+          "F01": true
+        },
+        "seconds": 3.32
+      }
+    },
+    {
+      "id": "17_status_checked_but_output_exposed",
+      "scope": "in_scope",
+      "issues": {
+        "F03": "callerBuffer, n, &used, 0"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "CNG writes to caller-owned memory before the function checks authentication; the caller can observe it on failure.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "partial",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "insufficient_context",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 1,
+        "issue_hits": {
+          "F03": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 8.21
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {
+          "F03": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 3.57
+      }
+    },
+    {
+      "id": "18_profile_mode_mismatch",
+      "scope": "in_scope",
+      "issues": {
+        "F01": "BCRYPT_CHAIN_MODE_CBC"
+      },
+      "controls": {},
+      "abstentions": {},
+      "note": "The function claims to configure GCM but selects CBC; this is a fixed-profile mismatch.",
+      "base": {
+        "inference_state": "completed",
+        "valid": false,
+        "validator_state": null,
+        "error": "Expected ',' or '}' after property value in JSON at position 840 (line 1 column 841)",
+        "scope": null,
+        "assessments": {},
+        "findings": [],
+        "discarded": null,
+        "issue_hits": {
+          "F01": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 9.81
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "insufficient_context",
+          "F02": "insufficient_context",
+          "F03": "insufficient_context",
+          "F04": "insufficient_context",
+          "F05": "insufficient_context"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {
+          "F01": false
+        },
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 4.0
+      }
+    },
+    {
+      "id": "19_other_library",
+      "scope": "outside_scope",
+      "issues": {},
+      "controls": {},
+      "abstentions": {},
+      "note": "Another library is explicitly named; do not infer a CNG integration.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "outside_scope",
+        "assessments": {
+          "F01": "not_applicable",
+          "F02": "not_applicable",
+          "F03": "not_applicable",
+          "F04": "not_applicable",
+          "F05": "not_applicable"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 3.88
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "outside_scope",
+        "assessments": {
+          "F01": "not_applicable",
+          "F02": "not_applicable",
+          "F03": "not_applicable",
+          "F04": "not_applicable",
+          "F05": "not_applicable"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 4.11
+      }
+    },
+    {
+      "id": "20_declarations_only",
+      "scope": "unclear",
+      "issues": {},
+      "controls": {},
+      "abstentions": {},
+      "note": "Declarations alone do not show algorithm selection, cryptographic calls, or behavior.",
+      "base": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "in_scope",
+        "assessments": {
+          "F01": "no_issue_identified",
+          "F02": "no_issue_identified",
+          "F03": "no_issue_identified",
+          "F04": "no_issue_identified",
+          "F05": "no_issue_identified"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 5.3
+      },
+      "adapter": {
+        "inference_state": "completed",
+        "valid": true,
+        "validator_state": "completed",
+        "error": null,
+        "scope": "outside_scope",
+        "assessments": {
+          "F01": "not_applicable",
+          "F02": "not_applicable",
+          "F03": "not_applicable",
+          "F04": "not_applicable",
+          "F05": "not_applicable"
+        },
+        "findings": [],
+        "discarded": 0,
+        "issue_hits": {},
+        "control_hits": {},
+        "abstention_hits": {},
+        "seconds": 4.23
+      }
+    }
+  ],
+  "interpretation": "Targeted source-review assertions, not whole-program correctness or native execution. Untargeted findings require human adjudication."
+}

@@ -6,5 +6,5 @@ if ($btpNode) { $btpNodePath = $btpNode.Source } else {
     if (-not (Test-Path -LiteralPath $btpNodePath)) { throw 'Install Node.js 22 or newer, then run start.ps1 again.' }
 }
 Write-Host 'Open http://127.0.0.1:8000 in your browser.'
-Write-Host 'Connect your OpenAI API key on the page for GPT-5.4 with medium reasoning.'
-& $btpNodePath (Join-Path $PSScriptRoot 'backend\app.mjs')
+Write-Host 'Starting local Llama for AES review. Set CRYPTAGENT_PYTHON if your model environment is elsewhere.'
+& $btpNodePath (Join-Path $PSScriptRoot 'tools\start_local.mjs')

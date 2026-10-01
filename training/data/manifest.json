@@ -1,0 +1,51 @@
+{
+  "version": "cng-pilot-v1",
+  "counts": {
+    "train": 32,
+    "validation": 4,
+    "test": 4
+  },
+  "families": {
+    "train": [
+      "capacity_lie",
+      "comment_injection",
+      "counter_reset",
+      "declarations",
+      "early_copy",
+      "fixed_nonce",
+      "fresh_random",
+      "ignored_status",
+      "omitted_aad",
+      "other_library",
+      "reject_empty",
+      "short_tag",
+      "status_checked",
+      "subtract_underflow",
+      "unrelated_sort",
+      "wrong_key_length"
+    ],
+    "validation": [
+      "validation_nonce_length",
+      "validation_python",
+      "validation_status_branch",
+      "validation_unknown_helper"
+    ],
+    "test": [
+      "test_false_gate",
+      "test_no_body",
+      "test_tag_zero",
+      "test_unrelated"
+    ]
+  },
+  "sha256": {
+    "train": "af42d8cefcaaa52b1986690b729e03937e3e890914ad997f6aaa23c5be43cb30",
+    "validation": "6a9e043ea449b1ffd5061284db79320935da69df39087c908631bb1def10fad6",
+    "test": "485b909a7b13931d094359c02e62b3bdbadd00c1f15b51a0a5d2f6fb5ffd0abc"
+  },
+  "limitations": [
+    "Small synthetic source-review pilot; labels are not independently reviewed or natively verified.",
+    "Whitespace variants are not independent implementations.",
+    "Held-out templates are distinct but share author/style; no broad generalization claim.",
+    "Historical evaluation/ fixtures and all crypto-llm Python data excluded from training."
+  ]
+}

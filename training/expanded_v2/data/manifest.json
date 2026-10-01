@@ -1,0 +1,393 @@
+{
+  "version": "multi-profile-v2-step1-draft",
+  "training_ready": false,
+  "counts": {
+    "train": 51,
+    "validation": 6,
+    "regression": 10,
+    "additions": 9
+  },
+  "sha256": {
+    "train": "78a663f6c638b455457cf365180a9219210a643b46785045ef852ddc88eccb6b",
+    "validation": "c87dfc9c8ebfd3461b86d1374a94a9c13544f104f20efeb4359d23e10978c9a3",
+    "regression": "bfb2cb5bbb3d75ce088d4f00afb34067c38cac93073a0202c68741f99e31f620",
+    "additions": "ab83ff8bb04083e2f8ac70cbe52e4776f908cfd479c9ef4e4320faf097a4f12c"
+  },
+  "v1_sha256": {
+    "train": "62d9b2e7c3d95ce30034972eab32ad7586b30650f1dfd0a18419722bdc70b793",
+    "validation": "c87dfc9c8ebfd3461b86d1374a94a9c13544f104f20efeb4359d23e10978c9a3",
+    "test": "bfb2cb5bbb3d75ce088d4f00afb34067c38cac93073a0202c68741f99e31f620"
+  },
+  "new_cases": [
+    {
+      "id": "ckks_batch_any",
+      "variant": "any",
+      "scheme": "ckks",
+      "family": "batch-component-predicate-v2",
+      "source_path": "training/expanded_v2/cases/ckks_batch_any.py",
+      "source_sha256": "4e3a046ce4343761658ce6eadbbc56aaf2514549bc7e47fa6bc32bff8a78fd73",
+      "target": "H02",
+      "target_assessment": "potential_issue",
+      "execution_policy": "authored_fixture_only"
+    },
+    {
+      "id": "ckks_batch_all",
+      "variant": "all",
+      "scheme": "ckks",
+      "family": "batch-component-predicate-v2",
+      "source_path": "training/expanded_v2/cases/ckks_batch_all.py",
+      "source_sha256": "0cbedf2a3dd7cb7f24e1f1e812181d60c6adeccb64fd2d80ad8b230d3e4460c0",
+      "target": "H02",
+      "target_assessment": "no_issue_identified",
+      "execution_policy": "authored_fixture_only"
+    },
+    {
+      "id": "ckks_batch_delegate",
+      "variant": "delegate",
+      "scheme": "ckks",
+      "family": "batch-component-predicate-v2",
+      "source_path": "training/expanded_v2/cases/ckks_batch_delegate.py",
+      "source_sha256": "c4b0ce154c39c4f1331ab40ac40377cdbc3bc264aeeaddb81c9ad952bcdad06e",
+      "target": "H02",
+      "target_assessment": "insufficient_context",
+      "execution_policy": "no_callback_supplied_do_not_execute"
+    },
+    {
+      "id": "tfhe_batch_any",
+      "variant": "any",
+      "scheme": "tfhe",
+      "family": "batch-component-predicate-v2",
+      "source_path": "training/expanded_v2/cases/tfhe_batch_any.rs",
+      "source_sha256": "ee71428a77c4da6c3cccf6ee121d836f8c449771e0b389ad1fd4b435d003d9d4",
+      "target": "H02",
+      "target_assessment": "potential_issue",
+      "execution_policy": "authored_fixture_only"
+    },
+    {
+      "id": "tfhe_batch_all",
+      "variant": "all",
+      "scheme": "tfhe",
+      "family": "batch-component-predicate-v2",
+      "source_path": "training/expanded_v2/cases/tfhe_batch_all.rs",
+      "source_sha256": "be3aa2fd6309cac19f73b348695dccb06c60633890c2769df90374e8e4c43185",
+      "target": "H02",
+      "target_assessment": "no_issue_identified",
+      "execution_policy": "authored_fixture_only"
+    },
+    {
+      "id": "tfhe_batch_delegate",
+      "variant": "delegate",
+      "scheme": "tfhe",
+      "family": "batch-component-predicate-v2",
+      "source_path": "training/expanded_v2/cases/tfhe_batch_delegate.rs",
+      "source_sha256": "0654ec55fa2e266a6ca0e4a09bf10685f9e9824b422d2ad66a2359475bbce92d",
+      "target": "H02",
+      "target_assessment": "insufficient_context",
+      "execution_policy": "no_callback_supplied_do_not_execute"
+    },
+    {
+      "id": "bfv_batch_any",
+      "variant": "any",
+      "scheme": "bfv",
+      "family": "batch-component-predicate-v2",
+      "source_path": "training/expanded_v2/cases/bfv_batch_any.hpp",
+      "source_sha256": "30abbb5a3f868d1d32861e12d9fd25083e7605467c532173fd7ff3bad2c24508",
+      "target": "H02",
+      "target_assessment": "potential_issue",
+      "execution_policy": "authored_fixture_only"
+    },
+    {
+      "id": "bfv_batch_all",
+      "variant": "all",
+      "scheme": "bfv",
+      "family": "batch-component-predicate-v2",
+      "source_path": "training/expanded_v2/cases/bfv_batch_all.hpp",
+      "source_sha256": "af4ce029f470933946edff685e315262e030709d4656e6b89822ec4d0dd33409",
+      "target": "H02",
+      "target_assessment": "no_issue_identified",
+      "execution_policy": "authored_fixture_only"
+    },
+    {
+      "id": "bfv_batch_delegate",
+      "variant": "delegate",
+      "scheme": "bfv",
+      "family": "batch-component-predicate-v2",
+      "source_path": "training/expanded_v2/cases/bfv_batch_delegate.hpp",
+      "source_sha256": "b16f6f0279adb371a4962e7ff6ffe01e47774ca5a325823c40f345be6bd4528a",
+      "target": "H02",
+      "target_assessment": "insufficient_context",
+      "execution_policy": "no_callback_supplied_do_not_execute"
+    }
+  ],
+  "before_training_coverage": {
+    "aes128-gcm-tampering-v1": {
+      "F01": {
+        "potential_issue": 2,
+        "no_issue_identified": 0,
+        "insufficient_context": 26,
+        "not_applicable": 4
+      },
+      "F02": {
+        "potential_issue": 6,
+        "no_issue_identified": 0,
+        "insufficient_context": 22,
+        "not_applicable": 4
+      },
+      "F03": {
+        "potential_issue": 4,
+        "no_issue_identified": 2,
+        "insufficient_context": 22,
+        "not_applicable": 4
+      },
+      "F04": {
+        "potential_issue": 8,
+        "no_issue_identified": 0,
+        "insufficient_context": 20,
+        "not_applicable": 4
+      },
+      "F05": {
+        "potential_issue": 4,
+        "no_issue_identified": 0,
+        "insufficient_context": 24,
+        "not_applicable": 4
+      }
+    },
+    "bfv-openfhe-review-v1": {
+      "H01": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 2,
+        "not_applicable": 0
+      },
+      "H02": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 2,
+        "not_applicable": 0
+      },
+      "H03": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 0,
+        "not_applicable": 0
+      },
+      "H04": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 2,
+        "not_applicable": 0
+      },
+      "H05": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 2,
+        "not_applicable": 0
+      }
+    },
+    "ckks-tenseal-review-v1": {
+      "H01": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 4,
+        "not_applicable": 0
+      },
+      "H02": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 4,
+        "not_applicable": 0
+      },
+      "H03": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 2,
+        "not_applicable": 0
+      },
+      "H04": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 4,
+        "not_applicable": 0
+      },
+      "H05": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 2,
+        "not_applicable": 0
+      }
+    },
+    "tfhe-rs-review-v1": {
+      "H01": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 2,
+        "not_applicable": 0
+      },
+      "H02": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 4,
+        "not_applicable": 0
+      },
+      "H03": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 2,
+        "not_applicable": 0
+      },
+      "H04": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 4,
+        "not_applicable": 0
+      },
+      "H05": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 4,
+        "not_applicable": 0
+      }
+    }
+  },
+  "after_training_coverage": {
+    "aes128-gcm-tampering-v1": {
+      "F01": {
+        "potential_issue": 2,
+        "no_issue_identified": 0,
+        "insufficient_context": 26,
+        "not_applicable": 4
+      },
+      "F02": {
+        "potential_issue": 6,
+        "no_issue_identified": 0,
+        "insufficient_context": 22,
+        "not_applicable": 4
+      },
+      "F03": {
+        "potential_issue": 4,
+        "no_issue_identified": 2,
+        "insufficient_context": 22,
+        "not_applicable": 4
+      },
+      "F04": {
+        "potential_issue": 8,
+        "no_issue_identified": 0,
+        "insufficient_context": 20,
+        "not_applicable": 4
+      },
+      "F05": {
+        "potential_issue": 4,
+        "no_issue_identified": 0,
+        "insufficient_context": 24,
+        "not_applicable": 4
+      }
+    },
+    "bfv-openfhe-review-v1": {
+      "H01": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      },
+      "H02": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 3,
+        "not_applicable": 0
+      },
+      "H03": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 3,
+        "not_applicable": 0
+      },
+      "H04": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      },
+      "H05": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      }
+    },
+    "ckks-tenseal-review-v1": {
+      "H01": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H02": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      },
+      "H03": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      },
+      "H04": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H05": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      }
+    },
+    "tfhe-rs-review-v1": {
+      "H01": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      },
+      "H02": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      },
+      "H03": {
+        "potential_issue": 1,
+        "no_issue_identified": 1,
+        "insufficient_context": 5,
+        "not_applicable": 0
+      },
+      "H04": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      },
+      "H05": {
+        "potential_issue": 0,
+        "no_issue_identified": 0,
+        "insufficient_context": 7,
+        "not_applicable": 0
+      }
+    }
+  },
+  "readiness_blockers": [
+    "Most nontarget labels are still insufficient_context; full implementations and balanced labels are needed.",
+    "H04 lacks targeted training examples for every FHE profile; several other profile/check cells are empty.",
+    "New independently structured validation and held-out implementations are not prepared yet."
+  ],
+  "limitations": [
+    "All nine additions share one semantic family and remain in training; they are not nine independent implementations.",
+    "Existing v1 test data is preserved byte-for-byte as regression, never imported into training.",
+    "No new model output or evaluated test source was used as a label.",
+    "An all-component comparison with locally known results is a narrow toy contract, not generic FHE authentication."
+  ]
+}

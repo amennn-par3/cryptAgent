@@ -1,0 +1,12 @@
+{
+  "version": "fresh-targeted-fhe-evaluation-v2",
+  "dataset_sha256": {
+    "validation": "8f1861080b8128c7fd54d4ceae2dd9492902e1754857f2ca3fc0d9da1d8d527a",
+    "test": "e378df8b88ab47f03caa91595b6e5cd9e5b14f7ba2efa012751fee6a45d92720"
+  },
+  "manifest_sha256": "19f95412af8b7775a395984dba32d59abd4c45015c20b951ecc2801a8e6eaea7",
+  "prompt_sha256": "fa75a834e246d7198b383f0b21cf0117db0908fdae2e6ca670a8162f297dbb1e",
+  "native_evidence_sha256": "c01da38d4261759831c382dd46c3021067c359c2d7461c6c7793564389bc5afa",
+  "policy": "Never train on these sources or variants. Validation may guide tuning; test is reserved for the agreed evaluation. After test-driven changes, retire it to regression.",
+  "limitation": "A small targeted set authored by the same assistant, not an independently authored benchmark."
+}
